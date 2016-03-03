@@ -2,3 +2,4 @@ Supporting information for: [“Systematic investigation of the mechanical prope
 
 - [`elastic_properties.xlsx`](elastic_properties.xlsx): a summary of the calculated elastic properties of the pure-silica zeolites
 - [`energies.xlsx`](energies.xlsx): calculated relative energies, as well as some other properties (space group, channel system dimensionality, density)
+- [`optimized_structures.zip`](optimized_structures.zip): energy-minimized structures for 164 pure-silica zeolites. All structures were fully relaxed (atomic positions and unit cell parameters), with the B3LYP exchange–correlation functional and Grimme D2 dispersion corrections, as described in the text.
