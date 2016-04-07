@@ -20,3 +20,11 @@ Software used is [CRYSTAL14](http://www.crystal.unito.it/), version 1.0.2, massi
 From a direct calculation of the elastic tensor of DUT-49op, we find the following well-converged elastic constants: _C_<sub>11</sub> = 13.0 GPa, _C_<sub>12</sub> = 6.6 GPa.
 
 _C_<sub>44</sub> is more difficult to evaluate, and the value obtained is very sensitive to amount of strain (_δε_) applied, demonstrating a strong nonlinearity of the elastic behavior for DUT-49op. The best estimate is obtained from _δε_ = –0.01, which gives _C_<sub>44</sub> = 1.5 GPa.
+
+<script language="javascript">
+function DoPost(){
+  $.post("http://progs.coudert.name/elate", { sysname: "DUT-49op", matrix: "13.0  6.6  6.6    0   0   0\n     13.0  6.6    0   0   0\n          13.0    0   0   0\n                1.5   0   0\n                    1.5   0\n                        1.5" } );
+}
+</script>
+
+Click <a href="javascript:DoPost()">this link</a> to see the elastic tensor of DUT-49op analyzed in [ELATE](http://progs.coudert.name/elate).
