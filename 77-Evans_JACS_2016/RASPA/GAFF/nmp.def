@@ -1,0 +1,51 @@
+# critical constants: Temperature [T], Pressure [Pa], and Acentric factor [-]
+562.05
+4894000.0
+0.2092
+# Number Of Atoms
+16
+# Number of groups
+1
+# nmp-group
+rigid
+# number of atoms
+16
+# atomic positions
+0	C5_nmp       -0.0650215685      2.6166846920     -0.0451948798    
+1	C1_nmp   -1.1565515685      0.4132546920     -0.0299448798    
+2	C4_nmp    1.1997584315      0.4052846920     -0.0485248798    
+3	C2_nmp   -0.7670115685     -0.9939253080     -0.0464448798    
+4	C3_nmp    0.6600284315     -1.0053853080      0.3227451202    
+5	H5_nmp    0.6580184315      2.9651346920     -0.8595248798    
+6	H2_nmp   -0.9058615685     -1.3328353080     -1.1118148798    
+7	H2_nmp   -1.4041815685     -1.6281753080      0.5499751202    
+8	H4_nmp    1.6125884315      0.4165846920     -1.0560448798    
+9	H3_nmp    1.3198684315     -1.8472953080     -0.1313248798    
+10	H5_nmp    0.3063184315      3.0360946920      0.9185551202    
+11	H3_nmp    0.7774484315     -1.1036253080      1.4758651202    
+12	H5_nmp   -0.9999715685      2.9521146920     -0.2597948798    
+13	H4_nmp    1.9116984315      0.7733146920      0.6240951202    
+14	N1_nmp    0.0024584315      1.1943446920     -0.0429448798    
+15	O1_nmp   -2.3087815685      0.9064546920      0.0618451202    
+# Chiral centers Bond  BondDipoles Bend  UrayBradley InvBend  Torsion Imp. Torsion Bond/Bond Stretch/Bend Bend/Bend Bend/Torsion IntraVDW IntraCoulomb
+               0   16            0    0            0       0        0            0         0            0         0            0        0            0
+# Bond stretch: atom n1-n2, type, parameters
+0 14 RIGID_BOND
+0 5 RIGID_BOND
+0 12 RIGID_BOND
+0 5 RIGID_BOND
+14 1 RIGID_BOND
+14 2 RIGID_BOND
+1 15 RIGID_BOND
+1 3 RIGID_BOND
+3 4 RIGID_BOND
+4 2 RIGID_BOND
+3 6 RIGID_BOND
+3 7 RIGID_BOND
+4 11 RIGID_BOND
+4 9 RIGID_BOND
+2 13 RIGID_BOND
+2 8 RIGID_BOND
+# Number of config moves
+0
+
