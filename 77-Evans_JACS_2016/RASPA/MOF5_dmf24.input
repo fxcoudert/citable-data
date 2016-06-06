@@ -1,0 +1,30 @@
+SimulationType							MonteCarlo
+NumberOfCycles    1000000
+NumberOfInitializationCycles 500000
+PrintEvery 1000
+
+Forcefield								CS
+
+Framework 0
+FrameworkName		MOF5_pbesol0
+UnitCells 1 1 1
+ExternalTemperature 298.0
+UseChargesFromCIFFile yes
+
+Movies yes
+WriteMoviesEvery 1000
+ComputeRDF yes
+WriteRDFEvery 1000
+
+NumberOfGrids 5
+GridTypes C_dmf O_dmf H_dmf N_dmf CH3_dmf
+SpacingVDWGrid 0.1
+SpacingCoulombGrid 0.1
+UseTabularGrid yes
+
+Component 0  MoleculeName dmf
+MoleculeDefinition                                      CS
+TranslationProbability                                  0.5
+RotationProbability                                     0.5
+ReinsertionProbability                                  1.0
+CreateNumberOfMolecules                                 24

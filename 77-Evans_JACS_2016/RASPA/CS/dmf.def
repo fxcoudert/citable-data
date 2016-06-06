@@ -1,0 +1,30 @@
+# critical constants: Temperature [T], Pressure [Pa], and Acentric factor [-]
+562.05
+4894000.0
+0.2092
+# Number Of Atoms
+6
+# Number of groups
+1
+# dmf-group
+rigid
+# number of atoms
+6
+# atomic positions
+ 0 C_dmf   0.00000000    0.00000000    0.00000000
+ 1 O_dmf    1.20000000    0.00000000    0.00000000
+ 2 H_dmf    -0.5100000    0.95555555    0.00000000
+ 3 N_dmf    -0.7140000    -1.1600000    0.00000000
+ 4 CH3_dmf  0.00000000    -2.460000000    0.000000
+ 5 CH3_dmf -2.1600000    -1.110000   -0.000000
+# Chiral centers Bond  BondDipoles Bend  UrayBradley InvBend  Torsion Imp. Torsion Bond/Bond Stretch/Bend Bend/Bend Bend/Torsion IntraVDW IntraCoulomb
+               0   5            0    0            0       0        0            0         0            0         0            0        0            0
+# Bond stretch: atom n1-n2, type, parameters
+0 1 RIGID_BOND
+0 2 RIGID_BOND
+0 3 RIGID_BOND
+3 4 RIGID_BOND
+3 5 RIGID_BOND
+# Number of config moves
+0
+

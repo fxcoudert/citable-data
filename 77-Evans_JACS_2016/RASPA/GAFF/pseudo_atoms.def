@@ -1,0 +1,15 @@
+#number of pseudo atoms
+11
+#type      print   as    chem  oxidation   mass        charge   polarization B-factor radii  connectivity anisotropic anisotropic-type   tinker-type
+C5_nmp      yes     C     C     0           12.0        -0.24240    0.0          1.0      1.00   0            0           absolute           0
+C1_nmp      yes     C     C     0           12.0        0.61137     0.0          1.0      1.00   0            0           absolute           0
+C4_nmp      yes     C     C     0           12.0       -0.10358    0.0          1.0      1.00   0            0           absolute           0
+C2_nmp      yes     C     C     0           12.0       -0.15957    0.0          1.0      1.00   0            0           absolute           0
+C3_nmp      yes     C     C     0           12.0        -0.02696     0.0          1.0      1.00   0            0           absolute           0
+H5_nmp      yes     H     H     0           1.0         0.10783     0.0          1.0      1.00   0            0           absolute           0
+H2_nmp      yes     H     H     0           1.0         0.06981     0.0          1.0      1.00   0            0           absolute           0
+H3_nmp      yes     H     H     0           1.0         0.03663     0.0          1.0      1.00   0            0           absolute           0
+H4_nmp      yes     H     H     0           1.0         0.07067     0.0          1.0      1.00   0            0           absolute           0
+N1_nmp      yes     N     N     0           14.0        -0.13761     0.0          1.0      1.00   0            0           absolute           0
+O1_nmp      yes     O     O     0           16.0        -0.61897     0.0          1.0      1.00   0            0           absolute           0
+

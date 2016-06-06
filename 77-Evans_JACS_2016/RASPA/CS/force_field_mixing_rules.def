@@ -1,0 +1,15 @@
+# general rule for shifted vs truncated
+truncated
+# general rule tailcorrections
+yes
+# number of defined interactions
+5
+# type interaction
+C_dmf         LENNARD_JONES    50.0     3.70
+O_dmf        LENNARD_JONES     100.0    2.96
+H_dmf         LENNARD_JONES    8.0      2.20
+N_dmf         LENNARD_JONES    80.0     3.20
+CH3_dmf       LENNARD_JONES    80.0     3.80
+# general mixing rule for Lennard-Jones
+Lorentz-Berthelot
+

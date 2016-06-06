@@ -1,0 +1,8 @@
+#number of pseudo atoms
+5
+#type      print   as    chem  oxidation   mass        charge   polarization B-factor radii  connectivity anisotropic anisotropic-type   tinker-type
+C_dmf      yes     C     C     0           12.0        0.45     0.0          1.0      1.00   0            0           absolute           0
+O_dmf     yes     O     O     0           16.0         -0.50      0.0          1.0      1.00   0            0           absolute           0
+H_dmf     yes     H     H     0           1.0           0.06      0.0          1.0      1.00   0            0           absolute           0
+N_dmf    yes     N     N     0           14.0          -0.57      0.0          1.0      1.00   0            0           absolute           0
+CH3_dmf    yes     C     C     0           15.03452    0.28      0.0          1.0      1.00   0            0           absolute           0
