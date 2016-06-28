@@ -1,0 +1,26 @@
+Zn(CN)2 dia 3x3x2 supercell
+
+temperature       200
+pressure          0
+steps             200000
+equil             20000
+
+ensemble nst hoover 1.0 1.0
+
+timestep          0.001
+integrator        leapfrog
+scale             5
+
+rcut              12.0
+ewald precision   1.0e-6
+cutoff            12.0
+delr              1.0
+
+traj              0 1000 0
+print             500
+stats             10
+
+job time          5000000
+close time        100000
+
+finish

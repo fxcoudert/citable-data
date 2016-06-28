@@ -1,0 +1,21 @@
+data_lon
+_symmetry_space_group_name_H-M 'P 63 M C'
+_space_group_IT_number         186
+_cell_length_a                 8.44926470
+_cell_length_b                 8.44926470
+_cell_length_c                 13.78271173
+_cell_angle_alpha              90.000000
+_cell_angle_beta               90.000000
+_cell_angle_gamma              120.000000
+loop_
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Zn -3.333333333333E-01 3.333333333333E-01 4.399594053622E-01
+Zn -3.333333333333E-01 3.333333333333E-01 6.435354790291E-02
+N 3.333333333333E-01 -3.333333333333E-01 -2.054274591459E-01
+N -4.597948471174E-01 8.041030576517E-02 1.214805932788E-02
+C -3.333333333333E-01 3.333333333333E-01 2.102686845111E-01
+C -4.650672826485E-01 4.650672826485E-01 4.848005477953E-01
+

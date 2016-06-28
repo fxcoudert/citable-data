@@ -1,0 +1,20 @@
+data_unj
+_symmetry_space_group_name_H-M 'P 61'
+_space_group_IT_number         169
+_cell_length_a                 11.85599386
+_cell_length_b                 11.85599386
+_cell_length_c                 11.28003969
+_cell_angle_alpha              90.000000
+_cell_angle_beta               90.000000
+_cell_angle_gamma              120.000000
+loop_
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Zn 2.283842045429E-01 -2.384015604200E-01 4.139042937799E-01
+N -3.611457538719E-01 -3.003941070640E-01 1.497014415258E-01
+N 2.283631696700E-01 -3.504991020186E-01 -4.540937879268E-01
+C -2.308791359366E-01 4.172875991808E-01 1.200413887116E-01
+C 4.457822217440E-02 -3.118668336479E-01 3.539466639095E-01
+

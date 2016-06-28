@@ -1,0 +1,20 @@
+data_unc
+_symmetry_space_group_name_H-M 'P 41'
+_space_group_IT_number         76
+_cell_length_a                 9.91465359
+_cell_length_b                 9.91465359
+_cell_length_c                 7.80520480
+_cell_angle_alpha              90.000000
+_cell_angle_beta               90.000000
+_cell_angle_gamma              90.000000
+loop_
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+Zn 7.396075481384E-03 -3.406210181333E-01 -4.962924208794E-01
+N -1.394775432256E-01 -2.270915511955E-01 4.047450664501E-01
+N 5.990507146311E-02 -4.566409756528E-01 3.055552878984E-01
+C 4.678637528194E-01 -4.904769391444E-02 -5.764211601909E-02
+C -1.513111564824E-01 2.149001671333E-01 9.363418254994E-02
+
