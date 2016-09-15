@@ -1,0 +1,31 @@
+UNITS = 1	! 0 for LB units and 1 for SI units
+MESHSIZELB = 1	1 22	! Size of mesh on X, Y, Z
+NBTHREADS = 1
+GEOMVIEW = 0	! 1: no calculus just computation of geometry
+TMOM = 6000000	! Number of time steps for flux equilibration
+COMPEQFLUX = 1	! 1: compute flux equilibration, 0: read fluid properties in DensityField.dat and FluxField.dat
+TMIN = 40000	! Minimum number of step of moment propagation before checking convergence
+TMAX = 6000000	! Number of time step for moment propagation
+DELTADISP = 1E-9	! convergence criterion on dispersion coefficient
+DELTAVACF = 1E-15	! convergence criterion on vacf
+DELTAFA= 1E-11	! convergence criterion on fraction adsorbed
+DELTAFLUX = 1.0E-14	! convergence criterion on flux field
+PRINTFREQUENCY = 1000
+CONSIDERPMAX = 0
+
+PMAX = 1E-8	! Maximal quantity adsorbed per unit of surface of the material ($Kg/m^2$ if SI units)\
+FEXTI = 0.0 5E+7 0.0	! External forces
+DB = 6.04E-8	! Diffusion coefficient (m^2/s if SI units)
+KA = 6.04	! Adsorption coefficient (m/s if SI units)
+KD = 6.04E+6	! Desorption coefficient (s^{-1} if SI units)
+
+GEOMTYPE = 1
+LOOPTYPE = 0
+LOOPSTEP = 0.1
+LOOPNB = 3
+
+DELTAXR = 0.5E-7	! distance between two nodes (m)
+NUR = 1.007E-6	! Kinematic viscosity of the fluid (m^2/s)
+RHOR = 1000	! Volumetric mass of the fluid (kg/m^3)
+RHOSR = 4970	! Volumetric mass of the solid (Kg/m^3)
+CI = 0.01	! Initial concentration of species in the fluid (Kg/m^3)

@@ -1,0 +1,94 @@
+&GLOBAL ! general options
+  RUN_TYPE MD
+&END GLOBAL
+&MOTION
+  &MD
+    STEPS 40000
+    TIMESTEP [fs] 0.5 ! typical given the vibrational motion present in the system
+    ENSEMBLE NVT ! Reflect the system to be simulated
+    TEMPERATURE [K] 298.0
+    &THERMOSTAT
+      TYPE CSVR ! \cite{10.1063/1.2408420} Canonical Sampling through velocity rescaling
+      &CSVR
+        TIMECON [fs] 100.0 ! time constants: We use 1000 fs to study temperature-induced processes
+      &END CSVR
+    &END THERMOSTAT
+  &END MD
+&END MOTION
+&FORCE_EVAL ! Parameters associated with the evaluation of forces on atoms.
+  METHOD Quickstep ! DFT using GPW and GAPW methods
+  STRESS_TENSOR ANALYTICAL
+  &DFT
+    BASIS_SET_FILE_NAME BASIS_SET_ALL.txt
+    POTENTIAL_FILE_NAME GTH_POTENTIALS
+    &MGRID ! Parameters needed to map gaussians.
+      NGRIDS 4
+      CUTOFF 300
+      REL_CUTOFF 60
+    &END MGRID
+    &QS
+      METHOD GAPW ! Gaussian Augmented Plane Wave method: electronic density is expanded in plane waves.
+      EPS_DEFAULT 1.0E-13
+      MAP_CONSISTENT TRUE ! Exact derivative of the energy with respect to the density matrix.
+      EXTRAPOLATION ASPC
+      EXTRAPOLATION_ORDER 4
+    &END QS
+    &SCF
+      SCF_GUESS ATOMIC ! First guess from atomic orbitals.
+      MAX_SCF 20 ! Max numbers of iterations
+      EPS_SCF 1.0E-6 ! Error allowed
+      &OT ON
+        MINIMIZER DIIS
+        PRECONDITIONER FULL_SINGLE_INVERSE ! Faster than default (only for well-behaving systems).
+      &END
+      &OUTER_SCF
+        EPS_SCF 1.0E-6 ! Error allowed.
+        MAX_SCF 1000 ! Max numbers of iterations.
+      &END
+    &END SCF
+    &XC
+      &XC_FUNCTIONAL PBE ! GGA-level functional.
+      &END XC_FUNCTIONAL
+      &vdW_POTENTIAL
+         DISPERSION_FUNCTIONAL PAIR_POTENTIAL ! dispersion corrections "D3" as proposed by Grimme \cite{10.1002/jcc.20495}
+         &PAIR_POTENTIAL
+            TYPE DFTD3
+            LONG_RANGE_CORRECTION .TRUE.
+            PARAMETER_FILE_NAME dftd3.dat
+            R_CUTOFF [angstrom] 15.0
+            REFERENCE_FUNCTIONAL PBE
+         &END PAIR_POTENTIAL
+      &END vdW_POTENTIAL
+    &END XC
+  &END DFT
+  &SUBSYS
+   &CELL
+     ABC 14.651300  14.651300  14.651300
+   &END CELL
+   &TOPOLOGY
+     COORD_FILE_FORMAT xyz
+     COORD_FILE_NAME RHO-run26-10.xyz ! Atoms' positions.
+   &END TOPOLOGY
+   &KIND Si
+     BASIS_SET TZV2P-GTH ! Chosen carefully
+     POTENTIAL GTH-PBE-q4 ! for each element.
+     GPW_TYPE ! To avoid the use of GAPW.
+   &END KIND
+   &KIND O
+     BASIS_SET TZV2P-GTH
+     POTENTIAL GTH-PBE-q6
+   &END KIND
+   &KIND Al
+     BASIS_SET TZV2P-GTH
+     POTENTIAL GTH-PBE-q3
+     GPW_TYPE
+   &END KIND
+   &KIND Na
+     BASIS_SET DZVP-MOLOPT-SR-GTH ! Chosen to avoid nonphysical charges.
+     POTENTIAL GTH-PBE-q9
+   &END KIND
+   &KIND C
+     BASIS_SET TZV2P-GTH
+     POTENTIAL GTH-PBE-q4
+   &END KIND
+&END FORCE_EVAL
