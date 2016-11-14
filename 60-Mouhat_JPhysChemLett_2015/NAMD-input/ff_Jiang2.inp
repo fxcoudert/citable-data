@@ -1,0 +1,99 @@
+! ZIF-8 forcefield from Jianwen Jian et al. (10.1063/1.4729314 and 10.1063/1.4737661)
+! Atom type C4 is methane
+
+BONDS
+!
+! V(bond) = Kb(b - b0)**2
+!
+! Kb: kcal/mole/A**2
+! b0: A
+!
+!  at1  at2   Kb          b0
+!
+    Zn1 N1     86.000     1.987
+    C1  N1    488.000     1.339
+    C2  N1    410.000     1.371
+    C1  H1    367.000     1.080
+    C2  C2    518.000     1.346
+    C2  H2    367.000     0.929
+
+
+ANGLES
+!
+! V(angle) = Ktheta(Theta - Theta0)**2
+!
+! Ktheta: kcal/mole/rad**2
+! Theta0: degrees
+!
+!   at1 at2 at3    Ktheta   Theta0
+!
+    N1  Zn1 N1     10.500   109.47
+    C1  N1  Zn1    50.000   127.50
+    C2  N1  Zn1    35.000   128.00
+    C1  N1  C2     70.000   105.24
+    N1  C1  N1     70.000   112.17
+    N1  C1  H1     50.000   123.89
+    C2  C2  N1     70.000   108.67
+    N1  C2  H2     50.000   125.66
+    C2  C2  H2     50.000   125.67
+
+
+
+DIHEDRALS
+!
+! V(dihedral) = Kchi(1 + cos(n(chi) - delta))
+!
+! Kchi: kcal/mole
+! n: multiplicity
+! delta: degrees
+!
+!  at1 at2 at3 at3     Kchi    n   delta
+!
+ Zn1   N1  C1  N1      0.100   2   180.0
+ Zn1   N1  C1  H1      0.100   2   180.0
+  C2   N1  C1  N1      4.800   2   180.0
+  C2   N1  C1  H1      4.150   2   180.0
+ Zn1   N1  C2  C2      0.100   2   180.0
+ Zn1   N1  C2  H2      0.100   2   180.0
+  C1   N1  C2  C2      4.800   2   180.0
+  C1   N1  C2  H2      4.800   2   180.0
+   X   C2  C2  X       4.000   2   180.0
+   X   Zn1 N1  X       0.174   3     0.0
+
+
+
+IMPROPER
+!
+! V(improper) = Kpsi(psi - psi0)**2
+!
+! Kpsi: kcal/mole/rad**2
+! psi0: degrees
+! note that the second column of numbers (0) is ignored
+!
+!  at1 at2 at3 at4      Kpsi               psi0
+!
+   N1  H1  C1  N1       0.191       0      180.0
+   C2  H2  C2  N1       2.200       0      180.0
+   C2  Zn1 N1  C1       2.200       0      180.0
+
+
+NONBONDED
+!
+! V(Lennard-Jones) = Eps,i,j[(Rmin,i,j/ri,j)**12 - 2(Rmin,i,j/ri,j)**6]
+!
+! epsilon: kcal/mole, Eps,i,j = sqrt(eps,i * eps,j)
+! Rmin/2: A, Rmin,i,j = Rmin/2,i + Rmin/2,j
+!
+!atom  ignored  epsilon    Rmin/2   ignored   eps,1-4     Rmin/2,1-4
+!
+C1     0.0   -0.0567       1.926       0.0    -0.0283     1.926
+C2     0.0   -0.0567       1.926       0.0    -0.0283     1.926
+C3     0.0   -0.0567       1.926       0.0    -0.0283     1.926
+H2     0.0   -0.0238       1.443       0.0    -0.0119     1.443
+H1     0.0   -0.0238       1.443       0.0    -0.0119     1.443
+N1     0.0   -0.0373       1.830       0.0    -0.0186     1.830
+Zn1    0.0   -0.0670       1.382       0.0    -0.0335     1.382
+C4     0.0   -2.2986       2.207       0.0    -1.1493     2.207
+
+
+END
