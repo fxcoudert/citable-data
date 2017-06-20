@@ -1,0 +1,3 @@
+Supporting information for: [“Kinetic accessibility of porous materials adsorption sites studied through Lattice Boltzmann method”](https://doi.org/10.1021/acs.langmuir.6b04472),  J.-M. Vanson, F.-X. Coudert, M. Klotz and A. Boutin, _Langmuir_, **2017**, 33, 1405–1411, DOI: [10.1021/acs.langmuir.6b04472](https://doi.org/10.1021/acs.langmuir.6b04472)
+
+- Simulations were performed using the open-source lattice Boltzmann code [laboetie](https://github.com/maxlevesque/laboetie). Simulations reported in this paper were performed with a modified version of the code, on branch [`jmvanson`](https://github.com/maxlevesque/laboetie/tree/jmvanson), commit [`809d0b7`](https://github.com/maxlevesque/laboetie/commit/809d0b7).
