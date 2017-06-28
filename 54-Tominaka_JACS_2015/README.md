@@ -1,4 +1,4 @@
-Supporting information for: [“Insulator-to-Proton-Conductor Transition in a Dense Metal–Organic Framework”](http://dx.doi.org/10.1021/jacs.5b02777), S. Tominaka, F.-X. Coudert, T. D. Dao, T. Nagao, and A. K. Cheetham, J. Am. Chem. Soc._, **2015**, 137, 6428–6431, DOI: [10.1021/jacs.5b02777](http://dx.doi.org/10.1021/jacs.5b02777)
+Supporting information for: [“Insulator-to-Proton-Conductor Transition in a Dense Metal–Organic Framework”](https://doi.org/10.1021/jacs.5b02777), S. Tominaka, F.-X. Coudert, T. D. Dao, T. Nagao, and A. K. Cheetham, _J. Am. Chem. Soc._, **2015**, 137, 6428–6431, DOI: [10.1021/jacs.5b02777](https://doi.org/10.1021/jacs.5b02777)
 
 **Results / data files:**
 

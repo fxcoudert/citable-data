@@ -1,4 +1,4 @@
-Supporting information for: [“Modelling photophysical properties of metal–organic frameworks: a density functional theory based approach”](http://dx.doi.org/10.1039/C6CP04056J), L. Wilbraham, F.-X. Coudert, and I. Ciofini, _Phys. Chem. Chem. Phys._, **2016**, DOI: [10.1039/C6CP04056J](http://dx.doi.org/10.1039/C6CP04056J)
+Supporting information for: [“Modelling photophysical properties of metal–organic frameworks: a density functional theory based approach”](https://doi.org/10.1039/C6CP04056J), L. Wilbraham, F.-X. Coudert, and I. Ciofini, _Phys. Chem. Chem. Phys._, **2016**, 18, 25176–25182, DOI: [10.1039/C6CP04056J](https://doi.org/10.1039/C6CP04056J)
 
 
 **Data:**

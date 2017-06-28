@@ -1,4 +1,4 @@
-Supporting information for: [“Controlled partial interpenetration in metal–organic frameworks”](http://dx.doi.org/10.1038/nchem.2430), A. Ferguson, L. Liu, S. J. Tapperwijn, D. Perl, F.-X. Coudert, S. Van Cleuvenbergen, T. Verbiest, M. A. van der Veen, and S. G. Telfer, _Nature Chem._, **2016**, 8, 250–257, DOI: [10.1038/nchem.2430](http://dx.doi.org/10.1038/nchem.2430)
+Supporting information for: [“Controlled partial interpenetration in metal–organic frameworks”](https://doi.org/10.1038/nchem.2430), A. Ferguson, L. Liu, S. J. Tapperwijn, D. Perl, F.-X. Coudert, S. Van Cleuvenbergen, T. Verbiest, M. A. van der Veen, and S. G. Telfer, _Nature Chem._, **2016**, 8, 250–257, DOI: [10.1038/nchem.2430](https://doi.org/10.1038/nchem.2430)
 
 **Results / data files:**
 

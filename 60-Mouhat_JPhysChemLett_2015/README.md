@@ -1,4 +1,4 @@
-Supporting information for: [“Softening upon Adsorption in Microporous Materials: A Counterintuitive Mechanical Response”](http://dx.doi.org/10.1021/acs.jpclett.5b01965), F. Mouhat, D. Bousquet, A. Boutin, L. Bouëssel du Bourg, F.-X. Coudert, and A. H. Fuchs, _J. Phys. Chem. Lett._, **2015**, 6, 4265–4269, DOI: [10.1021/acs.jpclett.5b01965](http://dx.doi.org/10.1021/acs.jpclett.5b01965)
+Supporting information for: [“Softening upon Adsorption in Microporous Materials: A Counterintuitive Mechanical Response”](https://doi.org/10.1021/acs.jpclett.5b01965), F. Mouhat, D. Bousquet, A. Boutin, L. Bouëssel du Bourg, F.-X. Coudert, and A. H. Fuchs, _J. Phys. Chem. Lett._, **2015**, 6, 4265–4269, DOI: [10.1021/acs.jpclett.5b01965](https://doi.org/10.1021/acs.jpclett.5b01965)
 
 **Input files:**
 

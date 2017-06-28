@@ -1,4 +1,4 @@
-Supporting information for: [“Microscopic Mechanism of Chiral Induction in a Metal–Organic Framework”](http://dx.doi.org/10.1021/jacs.6b02781), J. D. Evans, and F.-X. Coudert, _J. Am. Chem. Soc._, **2016**, DOI: [10.1021/jacs.6b02781](http://dx.doi.org/10.1021/jacs.6b02781)
+Supporting information for: [“Microscopic Mechanism of Chiral Induction in a Metal–Organic Framework”](https://doi.org/10.1021/jacs.6b02781), J. D. Evans, and F.-X. Coudert, _J. Am. Chem. Soc._, **2016**, 138, 6131–6134, DOI: [10.1021/jacs.6b02781](https://doi.org/10.1021/jacs.6b02781)
 
 
 **Input files:**

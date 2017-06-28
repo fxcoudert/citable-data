@@ -1,4 +1,4 @@
-Supporting information for: [Heterometallic Metal–Organic Frameworks of MOF-5 and UiO-66 Families: Insight from Computational Chemistry](http://dx.doi.org/10.1021/jacs.6b02781), F. Trousselet, A. Archereau, A. Boutin, and F.-X. Coudert, _J. Phys. Chem. C_, **2016**, DOI: [10.1021/acs.jpcc.6b08594](http://dx.doi.org/10.1021/acs.jpcc.6b08594)
+Supporting information for: [Heterometallic Metal–Organic Frameworks of MOF-5 and UiO-66 Families: Insight from Computational Chemistry](https://doi.org/10.1021/jacs.6b02781), F. Trousselet, A. Archereau, A. Boutin, and F.-X. Coudert, _J. Phys. Chem. C_, **2016**, 138, 6131–6134, DOI: [10.1021/acs.jpcc.6b08594](https://doi.org/10.1021/acs.jpcc.6b08594)
 
 
 Software used for the DFT calculations is [CRYSTAL14](http://www.crystal.unito.it/), version 1.0.2, parallel version on 64-bit GNU/Linux system. For some input files (`xxx.d12` suffix), an external geometry file is necessary and provided (`xxx.gui`).

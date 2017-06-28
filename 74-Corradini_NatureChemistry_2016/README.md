@@ -1,4 +1,4 @@
-Supporting information for: [“Carbon dioxide transport in molten calcium carbonate occurs through an oxo-Grotthuss mechanism via a pyrocarbonate anion”](http://dx.doi.org/10.1038/nchem.2450), D. Corradini,	F.-X. Coudert, and R. Vuilleumier, _Nature Chem._, **2016**, DOI: [10.1038/nchem.2450](http://dx.doi.org/10.1038/nchem.2450)
+Supporting information for: [“Carbon dioxide transport in molten calcium carbonate occurs through an oxo-Grotthuss mechanism via a pyrocarbonate anion”](https://doi.org/10.1038/nchem.2450), D. Corradini,	F.-X. Coudert, and R. Vuilleumier, _Nature Chem._, **2016**, 8, 454–460, DOI: [10.1038/nchem.2450](https://doi.org/10.1038/nchem.2450)
 
 **Results / data files:**
 

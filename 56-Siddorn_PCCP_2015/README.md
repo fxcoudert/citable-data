@@ -1,4 +1,4 @@
-Supporting information for: [“A systematic typology for negative Poisson's ratio materials and the prediction of complete auxeticity in pure silica zeolite JST”](http://dx.doi.org/10.1039/c5cp01168j), M. Siddorn, F.-X. Coudert, K. Evans, and A. Marmier, _Phys. Chem. Chem. Phys._, **2015**, 17, 17927–17933, DOI: [10.1039/c5cp01168j](http://dx.doi.org/10.1039/c5cp01168j)
+Supporting information for: [“A systematic typology for negative Poisson's ratio materials and the prediction of complete auxeticity in pure silica zeolite JST”](https://doi.org/10.1039/c5cp01168j), M. Siddorn, F.-X. Coudert, K. Evans, and A. Marmier, _Phys. Chem. Chem. Phys._, **2015**, 17, 17927–17933, DOI: [10.1039/c5cp01168j](https://doi.org/10.1039/c5cp01168j)
 
 **Results / data files:**
 

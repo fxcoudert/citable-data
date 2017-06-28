@@ -1,4 +1,4 @@
-Supporting information for: [“Origins of Negative Gas Adsorption”](http://dx.doi.org/10.1016/j.chempr.2016.11.004), J. D. Evans, L. Bocquet, and F.-X. Coudert, _Chem_, **2016**, DOI: [10.1016/j.chempr.2016.11.004](http://dx.doi.org/10.1016/j.chempr.2016.11.004)
+Supporting information for: [“Origins of Negative Gas Adsorption”](https://doi.org/10.1016/j.chempr.2016.11.004), J. D. Evans, L. Bocquet, and F.-X. Coudert, _Chem_, **2016**, 1, 873–886, DOI: [10.1016/j.chempr.2016.11.004](https://doi.org/10.1016/j.chempr.2016.11.004)
 
 
 **Input files:**
@@ -17,8 +17,8 @@ Classical molecular dynamics simulations were performed with [pydlpoly](http://c
 
 **Data:**
 
-- [DUT-49cp-DFT.cif](DUT-49cp-DFT.cif): DFT-optimized structure of DUT-49-cp, from the supporting information by [Krause et al.](http://dx.doi.org/10.1038/nature17430).
-- [DUT-49op-DFT.cif](DUT-49op-DFT.cif): DFT-optimized structure of DUT-49-op, from the supporting information by [Krause et al.](http://dx.doi.org/10.1038/nature17430).
+- [DUT-49cp-DFT.cif](DUT-49cp-DFT.cif): DFT-optimized structure of DUT-49-cp, from the supporting information by [Krause et al.](https://doi.org/10.1038/nature17430).
+- [DUT-49op-DFT.cif](DUT-49op-DFT.cif): DFT-optimized structure of DUT-49-op, from the supporting information by [Krause et al.](https://doi.org/10.1038/nature17430).
 
 - [ligandscan_energy.dat](ligandscan_energy.dat): Relative energy (kJ.mol<sup>-1</sup>) with respect to N-N distance (Å) for the DUT-49 ligand.
 - [freeenergy_DUT-49.dat](freeenergy_DUT-49.dat): Free energy (kJ.mol<sup>-1</sup>) with respect to unit cell volume (Å<sup>3</sup>) for the DUT-49 framework.

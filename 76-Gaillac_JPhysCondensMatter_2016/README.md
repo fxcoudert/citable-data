@@ -1,4 +1,4 @@
-Supporting information for: [“ELATE: An open-source online application for analysis and visualization of elastic tensors”](http://dx.doi.org/10.1088/0953-8984/28/27/275201), R. Gaillac, P. Pullumbi, and F.-X. Coudert, _J. Phys. Condens. Matter_, **2016**, _28_, 275201, DOI: [10.1088/0953-8984/28/27/275201](http://dx.doi.org/10.1088/0953-8984/28/27/275201)
+Supporting information for: [“ELATE: An open-source online application for analysis and visualization of elastic tensors”](https://doi.org/10.1088/0953-8984/28/27/275201), R. Gaillac, P. Pullumbi, and F.-X. Coudert, _J. Phys. Condens. Matter_, **2016**, _28_, 275201, DOI: [10.1088/0953-8984/28/27/275201](https://doi.org/10.1088/0953-8984/28/27/275201)
 
 
 **Source code:**

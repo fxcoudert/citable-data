@@ -1,4 +1,4 @@
-Supporting information for: [“A pressure-amplifying framework material with negative gas adsorption transitions”](http://dx.doi.org/10.1038/nature17430), S. Krause, V. Bon, I. Senkovska, U Stoeck, D. Wallacher, D. M. Többens, S. Zander, R. S. Pillai, G. Maurin, F.-X. Coudert, and S. Kaskel, _Nature_, **2016**, DOI: [10.1038/nature17430](http://dx.doi.org/10.1038/nature17430)
+Supporting information for: [“A pressure-amplifying framework material with negative gas adsorption transitions”](https://doi.org/10.1038/nature17430), S. Krause, V. Bon, I. Senkovska, U Stoeck, D. Wallacher, D. M. Többens, S. Zander, R. S. Pillai, G. Maurin, F.-X. Coudert, and S. Kaskel, _Nature_, **2016**, 532, 348–352, DOI: [10.1038/nature17430](https://doi.org/10.1038/nature17430)
 
 **Results / data files:**
 

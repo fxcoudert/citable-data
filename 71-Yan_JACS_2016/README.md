@@ -1,4 +1,4 @@
-Supporting information for: [“Non-Interpenetrated Metal–Organic Frameworks Based on Copper(II) Paddlewheel and Oligoparaxylene-Isophthalate Linkers: Synthesis, Structure, and Gas Adsorption”](http://dx.doi.org/10.1021/jacs.5b12312), Y. Yan, M. Juríček, F.-X. Coudert, N. A. Vermeulen, S. Grunder, A. Dailly, W. Lewis, A. J. Blake, J. F. Stoddart, and M. Schröder, _J. Am. Chem. Soc._, **2016**, DOI: [10.1021/jacs.5b12312](http://dx.doi.org/10.1021/jacs.5b12312)
+Supporting information for: [“Non-Interpenetrated Metal–Organic Frameworks Based on Copper(II) Paddlewheel and Oligoparaxylene-Isophthalate Linkers: Synthesis, Structure, and Gas Adsorption”](https://doi.org/10.1021/jacs.5b12312), Y. Yan, M. Juríček, F.-X. Coudert, N. A. Vermeulen, S. Grunder, A. Dailly, W. Lewis, A. J. Blake, J. F. Stoddart, and M. Schröder, _J. Am. Chem. Soc._, **2016**, 138, 3371–3381, DOI: [10.1021/jacs.5b12312](https://doi.org/10.1021/jacs.5b12312)
 
 **Results / data files:**
 
