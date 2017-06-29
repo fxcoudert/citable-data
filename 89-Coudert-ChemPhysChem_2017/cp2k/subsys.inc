@@ -1,0 +1,30 @@
+  &SUBSYS
+
+    &CELL
+      ABC [angstrom]  16.99322  16.99322  16.99322
+    &END CELL
+
+    &TOPOLOGY
+      COORD_FILE_FORMAT xyz
+      COORD_FILE_NAME ./zif8.xyz
+    &END TOPOLOGY
+
+    &KIND H
+      BASIS_SET DZVP-GTH
+      POTENTIAL GTH-BLYP-q1
+      MASS 2
+    &END KIND
+    &KIND N
+      BASIS_SET DZVP-GTH
+      POTENTIAL GTH-BLYP-q5
+    &END KIND
+    &KIND C
+      BASIS_SET DZVP-GTH
+      POTENTIAL GTH-BLYP-q4
+    &END KIND
+    &KIND Zn
+      BASIS_SET DZV-GTH-PADE
+      POTENTIAL GTH-BLYP-q12
+    &END KIND
+
+  &END SUBSYS

@@ -1,0 +1,60 @@
+&FORCE_EVAL
+
+  METHOD Quickstep
+
+  STRESS_TENSOR DIAGONAL_ANALYTICAL
+
+  &DFT
+    BASIS_SET_FILE_NAME /smphome/rech/drd/rdrd001/workdir/GTH_BASIS_SETS 
+    POTENTIAL_FILE_NAME /smphome/rech/drd/rdrd001/workdir/GTH_POTENTIALS 
+
+    CHARGE 0
+
+    &MGRID
+      CUTOFF 400
+      NGRIDS 6
+      REL_CUTOFF 35
+    &END MGRID
+    &QS
+      EPS_DEFAULT 1.0E-13
+      MAP_CONSISTENT TRUE
+      EXTRAPOLATION ASPC
+      EXTRAPOLATION_ORDER 4
+    &END QS
+    &SCF
+      MAX_SCF 20
+      SCF_GUESS RESTART
+      EPS_SCF 1.0E-6
+      &OUTER_SCF
+        EPS_SCF 1.0E-6
+        MAX_SCF 1000
+      &END
+      &OT ON
+        PRECONDITIONER FULL_SINGLE_INVERSE
+        MINIMIZER DIIS
+      &END OT
+    &END SCF
+    &XC
+      &XC_FUNCTIONAL BLYP
+      &END XC_FUNCTIONAL
+      &XC_GRID
+        XC_SMOOTH_RHO NN50
+        XC_DERIV NN50_SMOOTH
+      &END XC_GRID
+   
+      &vdW_POTENTIAL
+         DISPERSION_FUNCTIONAL PAIR_POTENTIAL
+         &PAIR_POTENTIAL
+            TYPE DFTD3
+            LONG_RANGE_CORRECTION .TRUE.
+            PARAMETER_FILE_NAME /smphome/rech/drd/rdrd001/workdir/dftd3.dat
+            REFERENCE_FUNCTIONAL BLYP
+            R_CUTOFF [angstrom] 15.0
+            EPS_CN 1.0E-6
+         &END PAIR_POTENTIAL
+      &END vdW_POTENTIAL
+    &END XC
+  &END DFT
+ 
+@INCLUDE 'subsys.inc'
+&END FORCE_EVAL

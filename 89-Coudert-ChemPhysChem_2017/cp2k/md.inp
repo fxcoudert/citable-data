@@ -1,0 +1,88 @@
+! -*- cp2k -*-
+
+@SET SYSTEM zif8
+@SET PRINT_STEP 5
+@SET RESTART_STEP 200
+@SET RESTART 1
+
+
+&GLOBAL
+  PROJECT $SYSTEM
+  RUN_TYPE MD
+  PRINT_LEVEL LOW
+  WALLTIME 8370000
+&END GLOBAL
+
+&MOTION
+  &MD
+    STEPS 5000000
+    ENSEMBLE NVT
+    TIMESTEP [fs] 0.5
+    TEMPERATURE [K] 77.0
+
+    &THERMOSTAT
+      &NOSE
+        LENGTH 4
+        YOSHIDA 9
+        TIMECON [fs] 400.0
+        MULTIPLE_TIME_STEPS 2
+      &END NOSE
+    &END THERMOSTAT
+
+  &END MD
+
+  &PRINT
+    &TRAJECTORY  SILENT
+      FILENAME =${SYSTEM}-1.xyz
+      &EACH
+        MD $PRINT_STEP
+      &END EACH
+    &END TRAJECTORY
+    &CELL
+      FILENAME =${SYSTEM}-1.cell
+      &EACH
+        MD $PRINT_STEP
+      &END EACH
+    &END CELL
+    &STRESS  SILENT
+      FILENAME =${SYSTEM}-1.stress
+      &EACH
+        MD $PRINT_STEP
+      &END EACH
+    &END STRESS
+    &VELOCITIES  SILENT
+      FILENAME =${SYSTEM}-1.vel
+      &EACH
+        MD $PRINT_STEP
+      &END EACH
+    &END VELOCITIES
+    &FORCES  SILENT
+      FILENAME =${SYSTEM}-1.force
+      &EACH
+        MD $PRINT_STEP
+      &END EACH
+    &END FORCES
+    &RESTART
+      FILENAME =${SYSTEM}-1.restart
+      &EACH
+        MD $RESTART_STEP
+      &END EACH
+    &END RESTART
+  &END PRINT
+&END MOTION
+
+@INCLUDE 'force_eval.inc'
+
+@IF ${RESTART} == 1
+&EXT_RESTART
+  EXTERNAL_FILE ${SYSTEM}-1.restart
+  RESTART_COUNTERS    T
+  RESTART_AVERAGES    T
+  RESTART_POS         T
+  RESTART_VEL         T
+  RESTART_THERMOSTAT  T
+  RESTART_BAROSTAT    T
+  RESTART_CELL        T
+&END EXT_RESTART
+@ENDIF
+
