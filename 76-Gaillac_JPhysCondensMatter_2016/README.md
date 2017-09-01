@@ -8,7 +8,7 @@ The repository with the ELATE source code is available [right here on GitHub](ht
 
 **Data:**
 
-- The elastic tensor for Ag₃Co(CN)₆, used to plot Figure 2, comes from DFT calculations in [H. Fang, M. T. Dove, and K. Refson, _Phys. Rev. B_, **2014**, 90, 054302](http://dx.doi.org/10.1103/PhysRevB.90.054302). It is (in units of GPa):
+- The elastic tensor for Ag₃Co(CN)₆, used to plot Figure 2, comes from DFT calculations in [H. Fang, M. T. Dove, and K. Refson, _Phys. Rev. B_, **2014**, 90, 054302](https://doi.org/10.1103/PhysRevB.90.054302). It is (in units of GPa):
 ```
     34.3     13.1     47.1     -8.5        0        0  
     13.1     34.3     47.1      8.5        0        0  

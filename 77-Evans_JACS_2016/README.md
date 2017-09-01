@@ -22,8 +22,8 @@ Monte Carlo simulations were performed with the [RASPA](https://github.com/numat
 
 **Data:**
 
-- [ja5b11150_si_002_cleaned.cif](ja5b11150_si_002_cleaned.cif): Structure for Δ-CMOF-5, taken from the supporting information by [Zaworotko et al.](http://dx.doi.org/10.1021/jacs.5b11150), with disorder removed.
-- [ja5b11150_si_003_cleaned.cif](ja5b11150_si_003_cleaned.cif): Structure for Λ-CMOF-5, taken from the supporting information by [Zaworotko et al.](http://dx.doi.org/10.1021/jacs.5b11150), with disorder removed.
+- [ja5b11150_si_002_cleaned.cif](ja5b11150_si_002_cleaned.cif): Structure for Δ-CMOF-5, taken from the supporting information by [Zaworotko et al.](https://doi.org/10.1021/jacs.5b11150), with disorder removed.
+- [ja5b11150_si_003_cleaned.cif](ja5b11150_si_003_cleaned.cif): Structure for Λ-CMOF-5, taken from the supporting information by [Zaworotko et al.](https://doi.org/10.1021/jacs.5b11150), with disorder removed.
 - [CMOF5_NMP12mol.cif](CMOF5_NMP12mol.cif): Energy-minimized structure for CMOF-5 with 12 NMP molecules per unit cell.
 - [CMOF5_NMP24mol.cif](CMOF5_NMP24mol.cif): Energy-minimized structure for CMOF-5 with 24 NMP molecules per unit cell.
 - [CMOF5_DMF12mol.cif](CMOF5_DMF12mol.cif): Energy-minimized structure for CMOF-5 with 12 DMF molecules per unit cell.
