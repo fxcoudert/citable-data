@@ -1,5 +1,12 @@
 Supporting information for: [“A pressure-amplifying framework material with negative gas adsorption transitions”](https://doi.org/10.1038/nature17430), S. Krause, V. Bon, I. Senkovska, U Stoeck, D. Wallacher, D. M. Többens, S. Zander, R. S. Pillai, G. Maurin, F.-X. Coudert, and S. Kaskel, _Nature_, **2016**, 532, 348–352, DOI: [10.1038/nature17430](https://doi.org/10.1038/nature17430)
 
+
+**Videos:**
+
+- [`supplementary video 1.wmv`](supplementary video 1.wmv): Visualization of a framework material during NGA. This video clip shows macroscopic movement of a DUT-49 sample bed filmed in a glass capillary during adsorption of _n_-butane at 298—299 K.
+- [`supplementary video 2.wmv`](supplementary video 2.wmv): Visualization of the framework’s structural transition. This video clip illustrates in an animation the framework structural transition including visualization of ligand deformation and changes of pore size occurring upon contraction of DUT-49op to DUT-49cp.
+
+
 **Results / data files:**
 
 - [`DUT-49op-DFT.cif`](DUT-49op-DFT.cif): DFT-optimized structure of DUT-49op (open-pore structure).
