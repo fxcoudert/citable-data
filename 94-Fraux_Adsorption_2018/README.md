@@ -1,4 +1,4 @@
-Supporting information for: [“On the use of the IAST method for gas separation studies in porous materials with gate-opening behavior”](https://doi.org/10.1007/s10450-018-9942-5), G. Fraux, A. Boutin, A. H. Fuchs and F.-X. Coudert, _Adsorption_, **2018**, DOI: [10.1007/s10450-018-9942-5](https://doi.org/10.1007/s10450-018-9942-5)
+Supporting information for: [“On the use of the IAST method for gas separation studies in porous materials with gate-opening behavior”](https://doi.org/10.1007/s10450-018-9942-5), G. Fraux, A. Boutin, A. H. Fuchs and F.-X. Coudert, _Adsorption_, **2018**, 24, 233–241, DOI: [10.1007/s10450-018-9942-5](https://doi.org/10.1007/s10450-018-9942-5)
 
 - [`references.bib`](references.bib): a BibTeX file with all references
 - [`OFAST.m`](OFAST.m): a Wolfran Mathematica module for performing OFAST computations

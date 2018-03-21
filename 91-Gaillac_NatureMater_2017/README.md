@@ -1,4 +1,4 @@
-Supporting information for: [Liquid metal-organic frameworks”](https://doi.org/10.1038/nmat4998), R. Gaillac, P. Pullumbi, K. A. Beyer, K. W. Chapman, D. A. Keen, T. D. Bennett, and F.-X. Coudert, Nature Mater._, **2017**, DOI: [10.1038/nmat4998](https://doi.org/10.1038/nmat4998)
+Supporting information for: [“Liquid metal-organic frameworks”](https://doi.org/10.1038/nmat4998), R. Gaillac, P. Pullumbi, K. A. Beyer, K. W. Chapman, D. A. Keen, T. D. Bennett, and F.-X. Coudert, _Nature Mater._, **2017**, 16, 1149–1154, DOI: [10.1038/nmat4998](https://doi.org/10.1038/nmat4998)
 
 
 
