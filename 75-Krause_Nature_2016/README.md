@@ -3,8 +3,8 @@ Supporting information for: [“A pressure-amplifying framework material with ne
 
 **Videos:**
 
-- [`supplementary video 1.wmv`](supplementary video 1.wmv): Visualization of a framework material during NGA. This video clip shows macroscopic movement of a DUT-49 sample bed filmed in a glass capillary during adsorption of _n_-butane at 298—299 K.
-- [`supplementary video 2.wmv`](supplementary video 2.wmv): Visualization of the framework’s structural transition. This video clip illustrates in an animation the framework structural transition including visualization of ligand deformation and changes of pore size occurring upon contraction of DUT-49op to DUT-49cp.
+- [`supplementary video 1.wmv`](supplementary%20video%201.wmv): Visualization of a framework material during NGA. This video clip shows macroscopic movement of a DUT-49 sample bed filmed in a glass capillary during adsorption of _n_-butane at 298—299 K.
+- [`supplementary video 2.wmv`](supplementary%20video%202.wmv): Visualization of the framework’s structural transition. This video clip illustrates in an animation the framework structural transition including visualization of ligand deformation and changes of pore size occurring upon contraction of DUT-49op to DUT-49cp.
 
 
 **Results / data files:**
