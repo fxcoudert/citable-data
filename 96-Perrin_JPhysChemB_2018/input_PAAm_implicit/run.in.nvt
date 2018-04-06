@@ -1,0 +1,33 @@
+include         "system.init"
+read_data       "in.data"
+include         "system.settings"
+
+
+# ------------------------------- Run Section -------------------------------
+
+group           wall type 2
+group           poly type 1 3
+group           mobile subtract all wall
+group           C type 1
+group           A type 3
+
+
+velocity        mobile create 300.0 12245 mom yes rot yes dist gaussian
+
+# -- the surface is fixed --
+velocity        wall zero linear
+velocity        wall zero angular
+fix             zeroforceWALL wall setforce 0 0 0
+
+
+timestep        10.0
+dump            1 all custom 500 traj_nvt.lammpstrj id mol type x y z ix iy iz
+fix             fxnvtMobile mobile nvt temp 300.0 300.0 100.0
+fix             fxmom all momentum 1 angular #eliminate drift due to non-zero total momentum
+thermo          100
+thermo_modify   flush yes
+
+
+run             5000000
+
+write_data      end.data

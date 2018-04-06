@@ -1,0 +1,7 @@
+    units           real
+    boundary        p p p
+    atom_style      full
+    bond_style      harmonic
+    pair_style      lj/charmm/coul/charmm 9 12 0.0001 12
+    angle_style     cosine/squared
+    special_bonds   lj 0.0 0.0 1.0
