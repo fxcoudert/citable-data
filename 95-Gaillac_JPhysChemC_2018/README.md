@@ -1,4 +1,4 @@
-Supporting information for: [“Melting of Zeolitic Imidazolate Frameworks with Different Topologies: Insight from First-Principles Molecular Dynamics”](https://doi.org/10.1021/acs.jpcc.8b00385), R. Gaillac, P. Pullumbi, and F.-X. Coudert, _J. Phys. Chem. C_, **2018**, DOI: [10.1021/acs.jpcc.8b00385](https://doi.org/10.1021/acs.jpcc.8b00385)
+Supporting information for: [“Melting of Zeolitic Imidazolate Frameworks with Different Topologies: Insight from First-Principles Molecular Dynamics”](https://doi.org/10.1021/acs.jpcc.8b00385), R. Gaillac, P. Pullumbi, and F.-X. Coudert, _J. Phys. Chem. C_, **2018**, 122, 6730–6736, DOI: [10.1021/acs.jpcc.8b00385](https://doi.org/10.1021/acs.jpcc.8b00385)
 
 
 

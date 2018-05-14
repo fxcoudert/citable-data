@@ -1,4 +1,4 @@
-Supporting information for: [“Structure and Dynamics of Solvated Polymers Near a Silica Surface: on the Different Roles Played by Solvent”](https://doi.org/10.1021/acs.jpcb.7b11753), R. Gaillac, P. Pullumbi, and F.-X. Coudert, _J. Phys. Chem. C_, **2018**, DOI: [10.1021/acs.jpcb.7b11753](https://doi.org/acs.jpcb.7b11753)
+Supporting information for: [“Structure and Dynamics of Solvated Polymers Near a Silica Surface: on the Different Roles Played by Solvent”](https://doi.org/10.1021/acs.jpcb.7b11753), E. Perrin, M. Schoen, F.-X. Coudert, and A. Boutin, _J. Phys. Chem. C_, **2018**, 122, 4573–4582, DOI: [10.1021/acs.jpcb.7b11753](https://doi.org/acs.jpcb.7b11753)
 
 
 
