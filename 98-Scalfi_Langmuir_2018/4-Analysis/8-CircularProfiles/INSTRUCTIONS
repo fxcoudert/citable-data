@@ -1,0 +1,5 @@
+1- Run 'nt_to_flat.py' indicating the box dimensions and the trajectory name by editing the script
+
+2- Run 'cfiles.sh' changing the trajectory name
+
+3- Run 'gnuplot gnu.sh' to visualize the results

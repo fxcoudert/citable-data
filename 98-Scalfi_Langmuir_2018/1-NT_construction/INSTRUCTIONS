@@ -1,0 +1,6 @@
+Create a nanotube from the optimized slab coordinates (in 'slab_crys_HB1')
+
+1- Run the following command and replace $n by the number of gibbsite units in the circumference
+./file_to_xyz.sh $n
+
+2- Visualize 'nanotube_$n_HB1.xyz'

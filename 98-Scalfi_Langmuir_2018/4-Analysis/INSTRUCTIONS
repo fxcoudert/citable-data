@@ -1,0 +1,7 @@
+Here are the cfiles commands to compute several analysis. You should download and compile cfiles from 
+https://github/com/chemfiles/cfiles
+and copy the executable in your path.
+
+These scripts are built to run all analysis for nanotubes of different diameters
+
+To accelerate the computations, I use a topology.pdb file that contains the topology (name, type and bonds) of the system. This topology file can be created by the script 'create_topology.sh'

@@ -1,0 +1,19 @@
+Script to generate GIBBS input for adsorption isotherms.
+Source files are indicated in SOURCE
+
+1- Run python script 'create.py'
+
+The GIBBS input files are:
+nt12.opt.cris
+sioh.coord
+aloh.coord
+
+Other xyz files are generated for visualisation purposes:
+    nt12.opt.slice.xyz
+corresponds to the data written in nt12.opt.cris from which grids are computed
+    nt12.opt.framework.xyz
+same with 5 periodic replicas
+    nt12.opt.gibbs.xyz
+nanotube shifted for visualisation of certain GIBBS configuration files (confs.res)
+    nt12.opt.sioh.xyz and nt12.opt.aloh.xyz
+show only the adsorbates SiOH and AlOH

@@ -1,0 +1,96 @@
+&potVersion version = 9.30 /
+
+&cf
+  cf_type          = 'Si'
+  pdb_type         = 'Si'
+  ff_cf_type       = 'LJ'
+  aua_displacement = 0.0
+  mass             = 28085     
+  polarisability   = 0.0
+/
+
+&ff_cf_LJ
+  sigma            = 0   
+  epsilon          = 0   
+/  
+
+&cf
+  cf_type          = 'Oint'
+  pdb_type         = 'O'
+  ff_cf_type       = 'LJ'
+  aua_displacement = 0.0
+  mass             = 15.9994   
+  polarisability   = 0.0
+/
+
+&ff_cf_LJ
+  sigma            = 3.1655     
+  epsilon          = 78.2008     
+/  
+
+&cf
+  cf_type          = 'Hint'
+  pdb_type         = 'H'
+  ff_cf_type       = 'LJ'
+  aua_displacement = 0.0
+  mass             = 1.0094  
+  polarisability   = 0.0
+/
+
+&ff_cf_LJ
+  sigma            = 0     
+  epsilon          = 0     
+/  
+
+&cf
+  cf_type          = 'H2O-SPC'
+  pdb_type         = 'O'
+  ff_cf_type       = 'LJ'
+  aua_displacement = 0.0
+  mass             = 18.03  
+  polarisability   = 0.0
+/
+
+&ff_cf_LJ
+  sigma            = 3.1655     
+  epsilon          = 78.2008     
+/
+
+&bond
+  cf1_type         = 'Si'
+  cf2_type         = 'Oint'
+  flexible_bonding = 0
+  ff_bond_type     = 'harmonic'
+/  
+
+&ff_bond_harmonic
+  bonding_constant = 0
+  bond_length      = 1.6
+/
+
+&bond
+  cf1_type         = 'Oint'
+  cf2_type         = 'Hint'
+  flexible_bonding = 1
+  ff_bond_type     = 'harmonic'
+/  
+
+&ff_bond_harmonic
+  bonding_constant = 557706.54
+  bond_length      = 1
+/
+
+&bend
+  cf1_type         = 'Si'
+  cf2_type         = 'Oint'
+  cf3_type         = 'Hint'
+  flexible_bending = 1
+  ff_bend_type     = 'harmonic'
+/  
+
+&ff_bend_harmonic
+  bending_constant = 30200
+  bending_angle    = 109.47
+/
+
+

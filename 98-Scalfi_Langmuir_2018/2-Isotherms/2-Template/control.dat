@@ -1,0 +1,115 @@
+&controlVersion
+  version = 9
+/
+
+&controlDimSystem
+  nmoltype = 2
+  nbox     = 1
+/
+
+&controlMolecules
+  file_moltype(1) = 'sioh.dat'
+  Flexible(1)     = 1
+  Elect_mol(1)    = T
+  file_moltype(2) = 'H2O-SPC.dat'
+  Flexible(2)     = 0
+  Elect_mol(2)    = T
+/
+
+&controlForceField
+  aua          = F
+  mix_rule     = 1
+  mindist      = 0.5
+  ewald        = T
+  kmax_ew      = 10
+  nalpha_ew    = 2.
+  LJ_intra     = .true.
+  el_intra     = .true.
+/
+
+&controlSimul
+  grid_choice = 1
+  simul_type  = 3
+  temperature = 300.
+  Fugacity(1) = 0.
+  Fugacity(2) = XXXX
+/
+
+&controlRuns
+  num_run             = 1
+  Num_step(1)         = 100000000
+  Prob_translation(1) = 0.05
+  Prob_rotation(1)    = 0.35
+  Prob_stretch(1)     = 0.1
+  Prob_gcmc(1)        = 0.5
+  Average_step(1)     = 2000000
+  Average_step_cp(1)  = 20000000
+  Save_step(1)        = 500000
+  Adjust_step(1)      = 2000000
+  Save_confFile(1)    = 200000
+  Calc_press(1)       = F
+  calc_deriv_props    = T
+/
+
+&controlWeights
+  weight_translation(1) = 0
+  weight_translation(2) = 1
+  weight_stretch(1)     = 1
+  weight_stretch(2)     = 0
+  weight_rotation(1)    = 0.7
+  weight_rotation(2)    = 0.3
+  weight_gcmc(1)        = 0
+  weight_gcmc(2)        = 1
+/
+
+&controlInitConf
+  create_config       = T
+  indexmax_initconf   = 500
+  File_conf(1,1)      = 'sioh.coord'
+  read_full_conf      = .true.
+  Nmoltype_phase(1,2) = 0
+  orthorhombic        = .false.
+  Boxlength(1,1)      = 24.2
+  Boxlength(1,2)      = 24.2
+  Boxlength(1,3)      = 42.43
+  Boxangles(1,1)      = 90.0
+  Boxangles(1,2)      = 90.0
+  Boxangles(1,3)      = 120.0
+  
+/
+
+&controlAdjustMoves
+  Angle_max           = 0.1
+  Stretch_max         = 0.05
+/
+
+&controlBias
+  nbktrial  = 10
+  nbkincr   = 5
+  nbkinsert = 15
+/
+
+&controlGrid
+  ngridtype               = 2
+  neltype                 = 1
+  nindtype                = 0
+  ndivis_grid_x           = 250
+  ndivis_grid_y           = 250
+  ndivis_grid_z           = 80
+  ngrid_cell_x            = 1
+  ngrid_cell_y            = 1
+  ngrid_cell_z            = 5
+  gridnames(1)            = 'Imo-O.grid'
+  gridnames(2)            = 'Imo-null.grid'
+  gridname_electro        = 'Imo-el.grid'
+  num_cf_grid(1)          = 2
+  num_cf_grid(2)          = 2
+  list_cf_label_grid(1,1) = 'Oint'
+  list_cf_label_grid(1,2) = 'H2O-SPC'
+  list_cf_label_grid(2,1) = 'Hint'
+  list_cf_label_grid(2,2) = 'Si'
+/
+
+&controlPrintMol
+  mol_suffix             = 'pdb'
+/

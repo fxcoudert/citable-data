@@ -1,0 +1,12 @@
+&species species_type = 'molecule' /
+
+&molecule flexible_type = 'flexible', ncenters = 3, ncharges = 2/
+
+&center cf_type = 'Si', l1 = 2, pdb_type = 'Si' /
+&center cf_type = 'Oint', l1 = 1, l2 = 3, pdb_type = 'O' /
+&center cf_type = 'Hint', l1 = 2, pdb_type = 'H' /
+
+&charge q = -0.9500, ch_type = 0, l_cf1 = 2, pdb_type = 'Oint' /
+&charge q = 0.4250, ch_type = 0, l_cf1 = 3, pdb_type = 'Hint' /
+
+&insertionBiasCfType cf_type = 'Si' /
