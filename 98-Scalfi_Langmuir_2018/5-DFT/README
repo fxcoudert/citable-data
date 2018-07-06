@@ -1,0 +1,4 @@
+# CRYSTAL14 input and output for DFT optimizations of the structures
+
+- full-opt-small: slab geometry optimization
+- nt12-fullopt-dzvp: nanotube geometry optimization

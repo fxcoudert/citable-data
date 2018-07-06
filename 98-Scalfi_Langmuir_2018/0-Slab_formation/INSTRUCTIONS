@@ -1,0 +1,4 @@
+Scripts to generate a flat slab from Cradwick's data (in 'polar10')
+
+1- Run 'file_to_xyz.sh'
+2- Visualize 'flat_cell.xyz'

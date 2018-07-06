@@ -1,0 +1,11 @@
+&species species_type = 'molecule' /
+
+&molecule flexible_type = 'rigid', ncenters = 1, ncharges = 3 /
+
+&center cf_type = 'H2O-SPC', x = 0, y = 0, z = 0, pdb_type = 'O' /
+
+&charge q = 0.41, x = 0.5773, y = 0.8165, z = 0, pdb_type = 'Hw' /
+&charge q = 0.41, x = 0.5773, y = -0.8165, z = 0, pdb_type = 'Hw' /
+&charge q = -0.82, x = 0, y = 0, z = 0, pdb_type = 'Ow' /
+
+&insertionBiasCfType cf_type = 'H2O-SPC' /

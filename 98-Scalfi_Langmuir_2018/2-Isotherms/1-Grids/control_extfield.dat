@@ -1,0 +1,79 @@
+&gridInfo
+  zeofile                 = 'nt12.opt.cris'
+  lj_grid                 = .true.
+  electrostatic_grid      = .false.
+  gridname                = 'Imo-O.grid'
+  potential               = 1
+
+  natomtype_zeo           = 5
+  sigma_zeo(1)            = 3.71835
+  epsilon_zeo(1)          = 0.22876
+  sigma_zeo(2)            = 3.1655
+  epsilon_zeo(2)          = 78.2008
+  sigma_zeo(3)            = 3.1655
+  epsilon_zeo(3)          = 78.2008
+  sigma_zeo(4)            = 1.58275
+  epsilon_zeo(4)          = 0.0
+  sigma_zeo(5)            = 3.43595
+  epsilon_zeo(5)          = 0.26912
+
+  ndivis_grid_x           = 250
+  ndivis_grid_y           = 250
+  ndivis_grid_z           = 80
+
+  cutoff                  = 0
+  kmax_ew                 = 10
+  alpha_ew                = 2.0
+  mindist                 = 0.5
+  orthorhombic_grid       = .false.
+/
+
+&gridInfo
+  zeofile                 = 'nt12.opt.cris'
+  lj_grid                 = .true.
+  electrostatic_grid      = .false.
+  gridname                = 'Imo-null.grid'
+  potential               = 1
+
+  natomtype_zeo           = 5
+  sigma_zeo(1)            = 0
+  epsilon_zeo(1)          = 0
+  sigma_zeo(2)            = 0
+  epsilon_zeo(2)          = 0
+  sigma_zeo(3)            = 0
+  epsilon_zeo(3)          = 0
+  sigma_zeo(4)            = 0
+  epsilon_zeo(4)          = 0
+  sigma_zeo(5)            = 0
+  epsilon_zeo(5)          = 0
+
+  ndivis_grid_x           = 250
+  ndivis_grid_y           = 250
+  ndivis_grid_z           = 80
+
+  cutoff                  = 0
+  kmax_ew                 = 10
+  alpha_ew                = 2.0
+  mindist                 = 0.5
+  orthorhombic_grid       = .false.
+/
+
+&gridInfo
+  zeofile                 = 'nt12.opt.cris'
+  lj_grid                 = .false.
+  electrostatic_grid      = .true.
+  gridname                = 'Imo-el.grid'
+  potential               = 1
+
+  natomtype_zeo           = 5
+  
+  ndivis_grid_x           = 250
+  ndivis_grid_y           = 250
+  ndivis_grid_z           = 80
+
+  cutoff                  = 0
+  kmax_ew                 = 10
+  alpha_ew                = 2.0
+  mindist                 = 0.5
+  orthorhombic_grid       = .false.
+/

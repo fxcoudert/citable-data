@@ -1,0 +1,7 @@
+Example of input files for running MD:
+
+    nt12-24-cp2k.inp
+input for CP2K MD simulation
+
+    nt12-24-lammps.in and nt12-24-full.lmp
+inputs for LAMMPS simulation

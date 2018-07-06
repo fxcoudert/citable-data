@@ -1,0 +1,131 @@
+# Les lignes qui commencent avec # sont des commentaires.
+
+### Initialisation
+####################################
+# Création d'une variable sim_file qui contient le nom de la simul
+variable sim_file index nt12-24-full
+
+units real
+atom_style full
+# p pour periodic selon x y z
+boundary p p p
+
+# Lecture des coordonnées du système
+read_data ${sim_file}.lmp
+
+### Variables
+##################################
+# Association des atomes avec les numéros dans le fichier .lmp
+variable Al index 1
+variable H index 2
+variable Hw index 3
+variable Obr index 4
+variable Oh index 5
+variable Ow index 6
+variable Si index 7
+
+# Association des liaisons et angles avec les numéros dans le fichier .lmp
+variable bOhH index 1
+variable bOwHw index 2
+variable aSiOhH index 1
+variable aAlOhH index 2
+variable aHwOwHw index 3
+
+### Force Fields
+#----------------------------------
+### CLAYFF potential
+#----------------------------------
+
+mass ${Al} 26.981539
+mass ${H} 1.00794
+mass ${Obr} 15.9994
+mass ${Oh} 15.9994
+mass ${Si} 28.085501
+
+mass ${Hw} 1.00794
+mass ${Ow} 15.9994
+
+set type ${Al} charge 1.5750
+set type ${H} charge 0.4250
+set type ${Obr} charge -1.050
+set type ${Oh} charge -0.950
+set type ${Si} charge 2.10
+
+set type ${Hw} charge 0.4100
+set type ${Ow} charge -0.8200
+
+### Pair potential
+##################################
+variable d_OH equal 1.0
+variable ks_OH equal 554.1349
+variable kb_HOH equal 45.7696
+variable kb_MOH equal 30.0
+variable HOH equal 109.47
+variable MOH equal 109.47
+variable cutoff equal 8.5
+
+# Définition du type de potentiel de paire, tout est expliqué dans la doc
+# http://lammps.sandia.gov/doc/pair_lj.html
+pair_style lj/cut/coul/long ${cutoff}
+# Traitement des interactions à longue distance
+kspace_style ewald 1e-5
+
+# Coefficients à utiliser pour les potentiels
+pair_coeff ${Al} ${Al} 0.0000013298 4.2712
+pair_coeff ${H} ${H} 0.0 0.0
+pair_coeff ${Hw} ${Hw} 0.0 0.0
+pair_coeff ${Oh} ${Oh} 0.1554 3.1655
+pair_coeff ${Obr} ${Obr} 0.1554 3.1655
+pair_coeff ${Ow} ${Ow} 0.1554 3.1655
+pair_coeff ${Si} ${Si} 0.0000018405 3.3020
+pair_modify mix arithmetic
+
+# Potentiels de liaison
+bond_style harmonic
+bond_coeff ${bOhH} ${ks_OH} ${d_OH}
+bond_coeff ${bOwHw} ${ks_OH} ${d_OH}
+
+angle_style harmonic
+angle_coeff ${aSiOhH} ${kb_MOH} ${MOH}
+angle_coeff ${aAlOhH} ${kb_MOH} ${MOH}
+angle_coeff ${aHwOwHw} ${kb_HOH} ${HOH}
+
+write_coeff ${sim_file}.ff
+
+## Pression et température pour les barostats/thermostats
+variable T_ext equal 300
+
+
+### Thermodynamics
+##################################
+
+# Intégrateur utilisé, ici nvt
+# Voir lammps.sandia.gov/doc/Section_commands.html, section fix styles
+fix NVT all nvt temp ${T_ext} ${T_ext} 500.0
+
+### Outputs
+##################################
+# Affichage des informations thermodynamiques
+thermo_style one
+thermo 200
+
+### Run
+##################################
+# Réglage du pas de temps. 0.5 ou 1 sont de bonnes valeurs
+timestep 0.5
+
+# Lancement de la simulation pour 1000000 pas de temps
+dump eq all xyz 500 ${sim_file}.eq.xyz
+dump_modify eq element Al H Hw Obr Oh Ow Si # Il faut redonner les noms d'atoms
+run 2000000
+undump eq
+
+
+dump trj all xyz 500 ${sim_file}.trj.xyz
+dump_modify trj element Al H Hw Obr Oh Ow Si # Il faut redonner les noms d'atoms
+run 2000000
+
+# Écriture d'un fichier de restart pour pouvoir relancer la simulation
+write_restart ${sim_file}-*.rst
+
+
