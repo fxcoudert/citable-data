@@ -1,0 +1,33 @@
+SimulationType                MonteCarlo
+NumberOfCycles                100000
+NumberOfInitializationCycles  50000
+PrintEvery                    5000
+RestartFile                   no
+
+Movies  yes
+WriteMoviesEvery                 100
+
+ContinueAfterCrash no
+WriteBinaryRestartFileEvery 5000
+
+Forcefield                    DUT
+CutOffVDW                     12.0
+RemoveAtomNumberCodeFromLabel no
+
+Framework             0
+FrameworkName         DUT-48op_opt
+UseChargesFromCIFFile no
+UnitCells             1 1 1
+HeliumVoidFraction    0.8404
+ExternalTemperature   303
+ExternalPressure    100000
+
+
+Component 0 MoleculeName              butane
+            StartingBead              0
+            MoleculeDefinition        TraPPE-UA
+            IdealGasRosenbluthWeight  0.136326
+            TranslationProbability    0.5
+            ReinsertionProbability    0.5
+            SwapProbability           1.0
+            CreateNumberOfMolecules   0
