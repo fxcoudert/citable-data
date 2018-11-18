@@ -12,3 +12,4 @@ Supporting information for: [“Emissive Azobenzenes Delivered on a Silver Coord
   - [AgAzoAEoP](9_AgAzoAEoP.xyz)
   - [AgAzoAEpP](10_AgAzoAEpP.xyz)
 
+- Experimental structures and complete X-ray data (CCDC ref. 1854329 to 1854336) are in folder [CCDC](CCDC/)
