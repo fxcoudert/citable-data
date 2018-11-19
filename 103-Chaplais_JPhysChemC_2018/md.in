@@ -1,0 +1,73 @@
+# Adapt the two following lines to the actual system
+@SET SYSNAME ZIF-CH3
+# ZIF8-CH3: 16.991  ZIF8-Cl: 16.998  ZIF8-Br: 16.985
+@SET CELL 16.991
+
+&GLOBAL
+    PRINT_LEVEL MEDIUM
+    PROJECT_NAME ${SYSNAME}
+    RUN_TYPE MD
+&END GLOBAL
+
+# Edit the file created by the minimization run by removing the GLOBAL and
+# MOTION sections.
+@INCLUDE ${SYSNAME}.min.rst
+
+&MOTION
+    &MD
+        ENSEMBLE NVT
+        &THERMOSTAT
+            TYPE CSVR
+            &CSVR
+                TIMECON 1000
+            &END CSVR
+        &END THERMOSTAT
+        STEPS 100000
+        TEMPERATURE 77
+        TIMESTEP 1.0
+    &END MD
+    &PRINT
+        &RESTART
+            FILENAME =${SYSNAME}.rst
+            &EACH
+                MD 10
+            &END EACH
+        &END RESTART
+        &STRESS
+            FILENAME =${SYSNAME}.stress
+            &EACH
+                MD 10
+            &END EACH
+        &END STRESS
+        &TRAJECTORY
+            FILENAME =${SYSNAME}.pos.xyz
+            FORMAT XYZ
+            UNIT angstrom
+            &EACH
+                MD 10
+            &END EACH
+        &END TRAJECTORY
+        &VELOCITIES
+            FILENAME =${SYSNAME}.vel.xyz
+            FORMAT XYZ
+            UNIT angstrom/fs
+            &EACH
+                MD 10
+            &END EACH
+        &END VELOCITIES
+        &FORCES
+            FILENAME =${SYSNAME}.frc.xyz
+            FORMAT XYZ
+            UNIT amu*angstrom/fs^2
+            &EACH
+                MD 10
+            &END EACH
+        &END FORCES
+        &CELL
+            FILENAME =${SYSNAME}.cell
+            &EACH
+                MD 10
+            &END EACH
+        &END CELL
+    &END PRINT
+&END MOTION
