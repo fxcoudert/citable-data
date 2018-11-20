@@ -13,3 +13,8 @@ Supporting information for: [“Impacts of the Imidazolate Linker Substitution (
   and `CELL` at the beggining of both files, and run the energy minimization.
   Then remove the `GLOBAL` and `MOTION` sections from the `*.min.rst` file that
   was created, and run the molecular dynamics.
+- Simulation output for each system in a `*.tar.xz` file, containing four files:
+    - `*.pos.xyz`: trajectory in XYZ format
+    - `*.vel.xyz`: velocities at each step in XYZ format
+    - `*.frc.xyz`: forces at each step in XYZ format
+    - `*.stress`: stress matrix at each step
