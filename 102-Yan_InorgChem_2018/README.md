@@ -1,4 +1,4 @@
-Supporting information for: [“Emissive Azobenzenes Delivered on a Silver Coordination Polymer”](https://doi.org/10.1021/acs.inorgchem.8b02845), J. Yan, L. Wilbraham, P. N. Basa, M. Schuettel, J. C. MacDonald, I. Ciofini, F.-X. Coudert, and S. C. Burdette, _Inorg. Chem._, **2018**, DOI: [10.1021/acs.inorgchem.8b02845](https://doi.org/10.1021/acs.inorgchem.8b02845)
+Supporting information for: [“Emissive Azobenzenes Delivered on a Silver Coordination Polymer”](https://doi.org/10.1021/acs.inorgchem.8b02845), J. Yan, L. Wilbraham, P. N. Basa, M. Schuettel, J. C. MacDonald, I. Ciofini, F.-X. Coudert, and S. C. Burdette, _Inorg. Chem._, **2018**, 57, 15009–15022, DOI: [10.1021/acs.inorgchem.8b02845](https://doi.org/10.1021/acs.inorgchem.8b02845)
 
 - Structures on which the Gaussian 09 TDDFT calculations were performed:
   - [AzoAMoP](1_AzoAMoP.xyz)
