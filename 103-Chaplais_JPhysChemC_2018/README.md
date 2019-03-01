@@ -1,5 +1,11 @@
 Supporting information for: [“Impacts of the Imidazolate Linker Substitution (CH3, Cl or Br) on the Structural and Adsorptive Properties of ZIF-8”](https://doi.org/10.1021/acs.jpcc.8b08706), G. Chaplais, G. Fraux, J.-L. Paillaud, C. Marichal, H. Nouali, A. H. Fuchs, F.-X. Coudert, and J. Patarin, _J. Phys. Chem. C_, **2018**, 122, 26945–26955, DOI: [10.1021/acs.jpcc.8b08706](https://doi.org/10.1021/acs.jpcc.8b08706)
 
+# Error in the published version
+
+There is a small error in the published article − page 26951; page 26952; and in the legend of figure 4 − the swing angle is described as the Zn−Zn−C−X dihedral angle. It should read as the Zn−Zn−Zn−X dihedral angle.
+
+# Supporting information
+
 - Experimental structures and complete X-ray data, CCDC refs. [1860456](1860456.cif) and [1860457](1860457.cif)
 - Initial conformation for ab initio simulations: [ZIF8-CH3](ZIF-CH3.pdb) with
   [10](ZIF-CH3-10.pdb), [25](ZIF-CH3-25.pdb), [40](ZIF-CH3-40.pdb), and
