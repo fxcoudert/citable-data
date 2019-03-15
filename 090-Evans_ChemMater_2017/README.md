@@ -1,5 +1,7 @@
 Supporting information for: [“Predicting the Mechanical Properties of Zeolite Frameworks by Machine Learning”](https://doi.org/10.1021/acs.chemmater.7b02532), J. D. Evans, and F.-X. Coudert, _Chem. Mater._, **2017**, 29, 7833–7839, DOI: [10.1021/acs.chemmater.7b02532](https://doi.org/10.1021/acs.chemmater.7b02532)
 
+- This paper was published as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv.5349151.v1)
+
 **Datasets:**
 
 - [`datasets/dft_trainingset.csv`](datasets/dft_trainingset.csv): DFT training set used to learn the predictive model from [F.-X. Coudert, _Phys. Chem. Chem. Phys._, **2013**, 15, 16012–16018.](https://doi.org/10.1039/C3CP51817E) including values predicted from the machine learning model.
