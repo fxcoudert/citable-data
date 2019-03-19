@@ -1,6 +1,6 @@
 Supporting information for: [ “Structure and Dynamics of Water Confined in Imogolite Nanotubes”](https://doi.org/10.1021/acs.langmuir.8b01115), L. Scalfi, G. Fraux, A. Boutin and F.-X. Coudert, _Langmuir_, **2018**, 34, 6748–6756, DOI: [10.1021/acs.langmuir.8b01115](https://doi.org/10.1021/acs.langmuir.8b01115)
 
-This paper was published as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv.6287810.v1)
+This paper was first posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv.6287810.v1)
 
 Here are various input and analysis scripts for this paper. Most of the directories contains an `INSTRUCTION` file to follow to reproduce the simulations.
 
