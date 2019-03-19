@@ -1,0 +1,115 @@
+clear
+units real
+boundary p p p
+atom_style full
+box tilt large
+read_data ZIF8_CH3.data
+
+neighbor 2.0 bin
+
+
+# ------------------------ MOF-FF FORCE FIELD ------------------------------
+
+pair_style buck6d/coul/gauss/dsf     0.9000    12.0000
+
+pair_coeff     1     1          139840       2.6200873       15782.979        39.94184      0.34105377    # buck6d->(zn4_n4@zn4tet)|ZIF8_CH3/gaussian->(zn4_n4@zn4tet)|ZIF8_CH3 <--> buck6d->(zn4_n4@zn4tet)|ZIF8_CH3/gaussian->(zn4_n4@zn4tet)|ZIF8_CH3
+pair_coeff     1     2       22685.044       3.1662269       822.12825       2.8200727      0.45538243    # buck6d->(zn4_n4@zn4tet)|ZIF8_CH3/gaussian->(zn4_n4@zn4tet)|ZIF8_CH3 <--> buck6d->(h1_c1@me)|ZIF8_CH3/gaussian->(h1_c1@me)|ZIF8_CH3
+pair_coeff     1     3       22685.044       3.1662269       822.12825       2.8200727      0.45538243    # buck6d->(zn4_n4@zn4tet)|ZIF8_CH3/gaussian->(zn4_n4@zn4tet)|ZIF8_CH3 <--> buck6d->(h1_c1@imid)|ZIF8_CH3/gaussian->(h1_c1@imid)|ZIF8_CH3
+pair_coeff     1     4       37959.338       2.8235294       2735.3752        14.02027      0.42066187    # buck6d->(zn4_n4@zn4tet)|ZIF8_CH3/gaussian->(zn4_n4@zn4tet)|ZIF8_CH3 <--> buck6d->(c3_c1h1n1@imid)|ZIF8_CH3/gaussian->(c3_c1h1n1@imid)|ZIF8_CH3
+pair_coeff     1     5       37959.338       2.8235294       2735.3752        14.02027      0.42066187    # buck6d->(zn4_n4@zn4tet)|ZIF8_CH3/gaussian->(zn4_n4@zn4tet)|ZIF8_CH3 <--> buck6d->(c3_c1n2@imid)|ZIF8_CH3/gaussian->(c3_c1n2@imid)|ZIF8_CH3
+pair_coeff     1     6       26357.639       2.7713626       2124.2155       18.202956      0.42066187    # buck6d->(zn4_n4@zn4tet)|ZIF8_CH3/gaussian->(zn4_n4@zn4tet)|ZIF8_CH3 <--> buck6d->(c4_c1h3@me)|ZIF8_CH3/gaussian->(c4_c1h3@me)|ZIF8_CH3
+pair_coeff     1     7       33262.803       2.8436019        2297.197       12.696549      0.42393446    # buck6d->(zn4_n4@zn4tet)|ZIF8_CH3/gaussian->(zn4_n4@zn4tet)|ZIF8_CH3 <--> buck6d->(n3_c2zn1@imid)|ZIF8_CH3/gaussian->(n3_c2zn1@imid)|ZIF8_CH3
+pair_coeff     2     2            3680               4          32.805      0.10690769       0.9771554    # buck6d->(h1_c1@me)|ZIF8_CH3/gaussian->(h1_c1@me)|ZIF8_CH3 <--> buck6d->(h1_c1@me)|ZIF8_CH3/gaussian->(h1_c1@me)|ZIF8_CH3
+pair_coeff     2     3            3680               4          32.805      0.10690769       0.9771554    # buck6d->(h1_c1@me)|ZIF8_CH3/gaussian->(h1_c1@me)|ZIF8_CH3 <--> buck6d->(h1_c1@imid)|ZIF8_CH3/gaussian->(h1_c1@imid)|ZIF8_CH3
+pair_coeff     2     4       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(h1_c1@me)|ZIF8_CH3/gaussian->(h1_c1@me)|ZIF8_CH3 <--> buck6d->(c3_c1h1n1@imid)|ZIF8_CH3/gaussian->(c3_c1h1n1@imid)|ZIF8_CH3
+pair_coeff     2     5       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(h1_c1@me)|ZIF8_CH3/gaussian->(h1_c1@me)|ZIF8_CH3 <--> buck6d->(c3_c1n2@imid)|ZIF8_CH3/gaussian->(c3_c1n2@imid)|ZIF8_CH3
+pair_coeff     2     6       4275.7736       3.3898305       102.89611       1.0848184      0.73006542    # buck6d->(h1_c1@me)|ZIF8_CH3/gaussian->(h1_c1@me)|ZIF8_CH3 <--> buck6d->(c4_c1h3@me)|ZIF8_CH3/gaussian->(c4_c1h3@me)|ZIF8_CH3
+pair_coeff     2     7       5395.9392       3.4985423       107.44754      0.69731507       0.7475861    # buck6d->(h1_c1@me)|ZIF8_CH3/gaussian->(h1_c1@me)|ZIF8_CH3 <--> buck6d->(n3_c2zn1@imid)|ZIF8_CH3/gaussian->(n3_c2zn1@imid)|ZIF8_CH3
+pair_coeff     3     3            3680               4          32.805      0.10690769       0.9771554    # buck6d->(h1_c1@imid)|ZIF8_CH3/gaussian->(h1_c1@imid)|ZIF8_CH3 <--> buck6d->(h1_c1@imid)|ZIF8_CH3/gaussian->(h1_c1@imid)|ZIF8_CH3
+pair_coeff     3     4       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(h1_c1@imid)|ZIF8_CH3/gaussian->(h1_c1@imid)|ZIF8_CH3 <--> buck6d->(c3_c1h1n1@imid)|ZIF8_CH3/gaussian->(c3_c1h1n1@imid)|ZIF8_CH3
+pair_coeff     3     5       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(h1_c1@imid)|ZIF8_CH3/gaussian->(h1_c1@imid)|ZIF8_CH3 <--> buck6d->(c3_c1n2@imid)|ZIF8_CH3/gaussian->(c3_c1n2@imid)|ZIF8_CH3
+pair_coeff     3     6       4275.7736       3.3898305       102.89611       1.0848184      0.73006542    # buck6d->(h1_c1@imid)|ZIF8_CH3/gaussian->(h1_c1@imid)|ZIF8_CH3 <--> buck6d->(c4_c1h3@me)|ZIF8_CH3/gaussian->(c4_c1h3@me)|ZIF8_CH3
+pair_coeff     3     7       5395.9392       3.4985423       107.44754      0.69731507       0.7475861    # buck6d->(h1_c1@imid)|ZIF8_CH3/gaussian->(h1_c1@imid)|ZIF8_CH3 <--> buck6d->(n3_c2zn1@imid)|ZIF8_CH3/gaussian->(n3_c2zn1@imid)|ZIF8_CH3
+pair_coeff     4     4           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c1h1n1@imid)|ZIF8_CH3/gaussian->(c3_c1h1n1@imid)|ZIF8_CH3 <--> buck6d->(c3_c1h1n1@imid)|ZIF8_CH3/gaussian->(c3_c1h1n1@imid)|ZIF8_CH3
+pair_coeff     4     5           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c1h1n1@imid)|ZIF8_CH3/gaussian->(c3_c1h1n1@imid)|ZIF8_CH3 <--> buck6d->(c3_c1n2@imid)|ZIF8_CH3/gaussian->(c3_c1n2@imid)|ZIF8_CH3
+pair_coeff     4     6       7154.7377               3       358.35904               6      0.60800971    # buck6d->(c3_c1h1n1@imid)|ZIF8_CH3/gaussian->(c3_c1h1n1@imid)|ZIF8_CH3 <--> buck6d->(c4_c1h3@me)|ZIF8_CH3/gaussian->(c4_c1h3@me)|ZIF8_CH3
+pair_coeff     4     7       9029.1333       3.0848329       382.56776       4.0607457      0.61801895    # buck6d->(c3_c1h1n1@imid)|ZIF8_CH3/gaussian->(c3_c1h1n1@imid)|ZIF8_CH3 <--> buck6d->(n3_c2zn1@imid)|ZIF8_CH3/gaussian->(n3_c2zn1@imid)|ZIF8_CH3
+pair_coeff     5     5           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c1n2@imid)|ZIF8_CH3/gaussian->(c3_c1n2@imid)|ZIF8_CH3 <--> buck6d->(c3_c1n2@imid)|ZIF8_CH3/gaussian->(c3_c1n2@imid)|ZIF8_CH3
+pair_coeff     5     6       7154.7377               3       358.35904               6      0.60800971    # buck6d->(c3_c1n2@imid)|ZIF8_CH3/gaussian->(c3_c1n2@imid)|ZIF8_CH3 <--> buck6d->(c4_c1h3@me)|ZIF8_CH3/gaussian->(c4_c1h3@me)|ZIF8_CH3
+pair_coeff     5     7       9029.1333       3.0848329       382.56776       4.0607457      0.61801895    # buck6d->(c3_c1n2@imid)|ZIF8_CH3/gaussian->(c3_c1n2@imid)|ZIF8_CH3 <--> buck6d->(n3_c2zn1@imid)|ZIF8_CH3/gaussian->(n3_c2zn1@imid)|ZIF8_CH3
+pair_coeff     6     6            4968       2.9411765       280.22525       7.9168726      0.60800971    # buck6d->(c4_c1h3@me)|ZIF8_CH3/gaussian->(c4_c1h3@me)|ZIF8_CH3 <--> buck6d->(c4_c1h3@me)|ZIF8_CH3/gaussian->(c4_c1h3@me)|ZIF8_CH3
+pair_coeff     6     7       6269.5148         3.02267        300.1523       5.3998098      0.61801895    # buck6d->(c4_c1h3@me)|ZIF8_CH3/gaussian->(c4_c1h3@me)|ZIF8_CH3 <--> buck6d->(n3_c2zn1@imid)|ZIF8_CH3/gaussian->(n3_c2zn1@imid)|ZIF8_CH3
+pair_coeff     7     7            7912       3.1088083       320.01829       3.6436247      0.62853936    # buck6d->(n3_c2zn1@imid)|ZIF8_CH3/gaussian->(n3_c2zn1@imid)|ZIF8_CH3 <--> buck6d->(n3_c2zn1@imid)|ZIF8_CH3/gaussian->(n3_c2zn1@imid)|ZIF8_CH3
+
+bond_style hybrid class2 morse harmonic
+
+bond_coeff     2 class2     1.100000   359.700000  -917.235000  1364.387062    # mm3->(c4_c1h3@me,h1_c1@me)|ZIF8_CH3
+bond_coeff     7 class2     1.363136   461.335493 -1176.405508  1749.903193    # mm3->(c3_c1n2@imid,n3_c2zn1@imid)|ZIF8_CH3
+bond_coeff     1 class2     1.985134   113.479176  -289.371899   430.440700    # mm3->(n3_c2zn1@imid,zn4_n4@zn4tet)|ZIF8_CH3
+bond_coeff     5 class2     1.387373   441.564555 -1125.989614  1674.909551    # mm3->(c3_c1h1n1@imid,n3_c2zn1@imid)|ZIF8_CH3
+bond_coeff     6 class2     1.488754   380.947410  -971.415895  1444.981144    # mm3->(c3_c1n2@imid,c4_c1h3@me)|ZIF8_CH3
+bond_coeff     3 class2     1.101557   381.423764  -972.630597  1446.788013    # mm3->(c3_c1h1n1@imid,h1_c1@imid)|ZIF8_CH3
+bond_coeff     4 class2     1.385677   532.030116 -1356.676796  2018.056734    # mm3->(c3_c1h1n1@imid,c3_c1h1n1@imid)|ZIF8_CH3
+
+angle_style hybrid class2/p6 cosine/buck6d
+
+angle_coeff     4 class2/p6      105.865231   106.894391   -85.744365    19.651161   -14.074107    25.343590    # mm3->(c3_c1h1n1@imid,c3_c1h1n1@imid,n3_c2zn1@imid)|ZIF8_CH3
+angle_coeff     4 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     4 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     8 class2/p6      110.940000    43.164000   -34.623610     7.935147    -5.683130    10.233752    # mm3->(c3_c1n2@imid,c4_c1h3@me,h1_c1@me)|ZIF8_CH3
+angle_coeff     8 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     8 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     5 class2/p6      124.160000    43.164000   -34.623610     7.935147    -5.683130    10.233752    # mm3->(c4_c1h3@me,c3_c1n2@imid,n3_c2zn1@imid)|ZIF8_CH3
+angle_coeff     5 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     5 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    10 class2/p6      114.814370     0.004383    -0.003516     0.000806    -0.000577     0.001039    # mm3->(c3_c1n2@imid,n3_c2zn1@imid,zn4_n4@zn4tet)|ZIF8_CH3
+angle_coeff    10 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    10 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     6 class2/p6      112.584066   108.514295   -87.043755    19.948959   -14.287390    25.727653    # mm3->(n3_c2zn1@imid,c3_c1n2@imid,n3_c2zn1@imid)|ZIF8_CH3
+angle_coeff     6 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     6 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     3 class2/p6      127.822879    29.788731   -23.894760     5.476276    -3.922093     7.062610    # mm3->(h1_c1@imid,c3_c1h1n1@imid,n3_c2zn1@imid)|ZIF8_CH3
+angle_coeff     3 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     3 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     7 class2/p6      107.965000    43.164000   -34.623610     7.935147    -5.683130    10.233752    # mm3->(h1_c1@me,c4_c1h3@me,h1_c1@me)|ZIF8_CH3
+angle_coeff     7 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     7 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    11 class2/p6      106.202996    92.314276   -74.049057    16.970794   -12.154436    21.886790    # mm3->(c3_c1h1n1@imid,n3_c2zn1@imid,c3_c1n2@imid)|ZIF8_CH3
+angle_coeff    11 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    11 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     9 class2/p6      154.547110     4.681928    -3.755566     0.860712    -0.616440     1.110038    # mm3->(c3_c1h1n1@imid,n3_c2zn1@imid,zn4_n4@zn4tet)|ZIF8_CH3
+angle_coeff     9 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     9 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     1 class2/p6      109.471200    15.037858   -12.062481     2.764517    -1.979939     3.565325    # mm3->(n3_c2zn1@imid,zn4_n4@zn4tet,n3_c2zn1@imid)|ZIF8_CH3
+angle_coeff     1 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     1 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     2 class2/p6      145.199561    12.624067   -10.126281     2.320773    -1.662131     2.993040    # mm3->(c3_c1h1n1@imid,c3_c1h1n1@imid,h1_c1@imid)|ZIF8_CH3
+angle_coeff     2 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     2 class2/p6 ba 0.0 0.0 1.0 1.0
+
+dihedral_style opls
+
+dihedral_coeff    13     0.000000     0.006208     0.000000     0.000000    # cos3->(n3_c2zn1@imid,c3_c1n2@imid,n3_c2zn1@imid,zn4_n4@zn4tet)|ZIF8_CH3
+dihedral_coeff    14     0.000000    10.009672     0.000000     0.000000    # cos3->(n3_c2zn1@imid,c3_c1n2@imid,n3_c2zn1@imid,c3_c1h1n1@imid)|ZIF8_CH3
+dihedral_coeff     1     0.000000     0.000000    -0.153462     0.000000    # cos3->(c3_c1h1n1@imid,n3_c2zn1@imid,zn4_n4@zn4tet,n3_c2zn1@imid)|ZIF8_CH3
+dihedral_coeff     8     0.000000     4.921258     0.000000     0.000000    # cos3->(c3_c1h1n1@imid,c3_c1h1n1@imid,n3_c2zn1@imid,zn4_n4@zn4tet)|ZIF8_CH3
+dihedral_coeff     2     0.000000     0.000000    -0.899915     0.000000    # cos3->(c3_c1n2@imid,n3_c2zn1@imid,zn4_n4@zn4tet,n3_c2zn1@imid)|ZIF8_CH3
+dihedral_coeff     4     0.000000     1.006427     0.000000     0.000000    # cos3->(h1_c1@imid,c3_c1h1n1@imid,c3_c1h1n1@imid,n3_c2zn1@imid)|ZIF8_CH3
+dihedral_coeff     9     0.000000    22.802956     0.000000     0.000000    # cos3->(c3_c1h1n1@imid,c3_c1h1n1@imid,n3_c2zn1@imid,c3_c1n2@imid)|ZIF8_CH3
+dihedral_coeff     3     0.000000     0.203658     0.000000     0.000000    # cos3->(h1_c1@imid,c3_c1h1n1@imid,c3_c1h1n1@imid,h1_c1@imid)|ZIF8_CH3
+dihedral_coeff    12     0.000000     7.744819     0.000000     0.000000    # cos3->(c4_c1h3@me,c3_c1n2@imid,n3_c2zn1@imid,c3_c1h1n1@imid)|ZIF8_CH3
+dihedral_coeff     7     0.000000    15.486819     0.000000     0.000000    # cos3->(h1_c1@imid,c3_c1h1n1@imid,n3_c2zn1@imid,c3_c1n2@imid)|ZIF8_CH3
+dihedral_coeff    10     0.000000     0.000000     0.000000     0.000000    # cos3->(n3_c2zn1@imid,c3_c1n2@imid,c4_c1h3@me,h1_c1@me)|ZIF8_CH3
+dihedral_coeff     5     0.000000    25.692190     0.000000     0.000000    # cos3->(n3_c2zn1@imid,c3_c1h1n1@imid,c3_c1h1n1@imid,n3_c2zn1@imid)|ZIF8_CH3
+dihedral_coeff     6     0.000000     0.026523     0.000000     0.000000    # cos3->(h1_c1@imid,c3_c1h1n1@imid,n3_c2zn1@imid,zn4_n4@zn4tet)|ZIF8_CH3
+dihedral_coeff    11     0.000000     0.339638     0.000000     0.000000    # cos3->(c4_c1h3@me,c3_c1n2@imid,n3_c2zn1@imid,zn4_n4@zn4tet)|ZIF8_CH3
+
+improper_style inversion/harmonic
+
+improper_coeff     1     0.056858     0.000000    # harm->(c3_c1h1n1@imid,c3_c1h1n1@imid,h1_c1@imid,n3_c2zn1@imid)|ZIF8_CH3
+improper_coeff     3     0.225981     0.000000    # harm->(n3_c2zn1@imid,c3_c1h1n1@imid,c3_c1n2@imid,zn4_n4@zn4tet)|ZIF8_CH3
+improper_coeff     2   149.418986     0.000000    # harm->(c3_c1n2@imid,c4_c1h3@me,n3_c2zn1@imid,n3_c2zn1@imid)|ZIF8_CH3
+
+special_bonds lj 0.00 0.00 1.00 coul 1.00 1.00 1.00
+
+# ------------------------ MOF-FF FORCE FIELD END --------------------------
