@@ -1,0 +1,17 @@
+# This is the data from Figure 2
+#
+# First column: strain in percent (%) applied along the a axis of PDAC-MOF
+# Second column: energy from DFT calculations, in kJ/mol, relative to the lowest-energy structure
+#
+0	84.970944
+-2	68.992834
+-4	52.73688
+-6	37.675639
+-8	23.334058
+-10	11.686452
+-12	3.1670067
+-14	0.0
+-16	1.9784482
+-18	13.083956
+-20	33.133201
+-22	64.343722
