@@ -1,0 +1,98 @@
+diff -pur NAMD_2.9_Source-orig/src/Controller.C NAMD_2.9_Source/src/Controller.C
+--- NAMD_2.9_Source-orig/src/Controller.C	2012-02-24 02:25:01.000000000 +0100
++++ NAMD_2.9_Source/src/Controller.C	2014-02-06 15:47:53.000000000 +0100
+@@ -704,14 +704,14 @@ void Controller::langevinPiston1(int ste
+       BigReal f2 = sqrt( ( 1. - f1*f1 ) * kT / mass );
+       strainRate *= f1;
+       if ( simParams->useFlexibleCell ) {
+-        // We only use on-diagonal terms (for now)
+         if ( simParams->useConstantRatio ) {
+ 	  BigReal r = f2 * random->gaussian();
+ 	  strainRate.xx += r;
+ 	  strainRate.yy += r;
+ 	  strainRate.zz += f2 * random->gaussian();
+         } else {
+-	  strainRate += f2 * Tensor::diagonal(random->gaussian_vector());
++	  // FXC
++	  strainRate += f2 * Tensor::symmetric(random->gaussian_vector(), random->gaussian_vector());
+         }
+       } else {
+ 	strainRate += f2 * Tensor::identity(random->gaussian());
+@@ -746,17 +746,28 @@ void Controller::langevinPiston1(int ste
+ 
+     if ( ! ( (step-1-slowFreq/2) % slowFreq ) )
+     {
+-      // We only use on-diagonal terms (for now)
+       Tensor factor;
+-      if ( !simParams->useConstantArea ) {
+-        factor.xx = exp( dt_long * strainRate.xx );
+-        factor.yy = exp( dt_long * strainRate.yy );
+-      } else {
++      if ( simParams->useConstantArea ) {
+         factor.xx = factor.yy = 1;
++        factor.zz = exp( dt_long * strainRate.zz );
++      } else {
++	// FXC
++	// Matrix exponential... we approximate to second order
++	Tensor t2;
++	t2.xx = strainRate.xx*strainRate.xx + strainRate.xy*strainRate.xy + strainRate.xz*strainRate.xz;
++	t2.yy = strainRate.xy*strainRate.xy + strainRate.yy*strainRate.yy + strainRate.yz*strainRate.yz;
++	t2.zz = strainRate.xz*strainRate.xz + strainRate.yz*strainRate.yz + strainRate.zz*strainRate.zz;
++	t2.xy = strainRate.xx*strainRate.xy + strainRate.xy*strainRate.yy + strainRate.xz*strainRate.yz;
++	t2.xz = strainRate.xx*strainRate.xz + strainRate.xy*strainRate.yz + strainRate.xz*strainRate.zz;
++	t2.yz = strainRate.xy*strainRate.xz + strainRate.yy*strainRate.yz + strainRate.yz*strainRate.zz;
++	t2.yx = t2.xy;
++	t2.zx = t2.xz;
++	t2.zy = t2.yz;
++	factor = Tensor::identity() + dt_long * strainRate + 0.5 * dt_long * dt_long * t2;
+       }
+-      factor.zz = exp( dt_long * strainRate.zz );
+       broadcast->positionRescaleFactor.publish(step,factor);
+       state->lattice.rescale(factor);
++
+ #ifdef DEBUG_PRESSURE
+       iout << iINFO << "rescaling by: " << factor << "\n";
+ #endif
+@@ -854,14 +864,14 @@ void Controller::langevinPiston2(int ste
+       BigReal f2 = sqrt( ( 1. - f1*f1 ) * kT / mass );
+       strainRate *= f1;
+       if ( simParams->useFlexibleCell ) {
+-        // We only use on-diagonal terms (for now)
+         if ( simParams->useConstantRatio ) {
+ 	  BigReal r = f2 * random->gaussian();
+ 	  strainRate.xx += r;
+ 	  strainRate.yy += r;
+ 	  strainRate.zz += f2 * random->gaussian();
+         } else {
+-	  strainRate += f2 * Tensor::diagonal(random->gaussian_vector());
++	  // FXC
++	  strainRate += f2 * Tensor::symmetric(random->gaussian_vector(), random->gaussian_vector());
+         }
+       } else {
+ 	strainRate += f2 * Tensor::identity(random->gaussian());
+@@ -1211,16 +1221,17 @@ void Controller::receivePressure(int ste
+     }
+ 
+     if ( simParameters->useFlexibleCell ) {
++      // FXC
+       // use symmetric pressure to control rotation
+-      // controlPressure_normal = symmetric(controlPressure_normal);
+-      // controlPressure_nbond = symmetric(controlPressure_nbond);
+-      // controlPressure_slow = symmetric(controlPressure_slow);
+-      // controlPressure = symmetric(controlPressure);
++      controlPressure_normal = symmetric(controlPressure_normal);
++      controlPressure_nbond = symmetric(controlPressure_nbond);
++      controlPressure_slow = symmetric(controlPressure_slow);
++      controlPressure = symmetric(controlPressure);
+       // only use on-diagonal components for now
+-      controlPressure_normal = Tensor::diagonal(diagonal(controlPressure_normal));
+-      controlPressure_nbond = Tensor::diagonal(diagonal(controlPressure_nbond));
+-      controlPressure_slow = Tensor::diagonal(diagonal(controlPressure_slow));
+-      controlPressure = Tensor::diagonal(diagonal(controlPressure));
++      // controlPressure_normal = Tensor::diagonal(diagonal(controlPressure_normal));
++      // controlPressure_nbond = Tensor::diagonal(diagonal(controlPressure_nbond));
++      // controlPressure_slow = Tensor::diagonal(diagonal(controlPressure_slow));
++      // controlPressure = Tensor::diagonal(diagonal(controlPressure));
+       if ( simParameters->useConstantRatio ) {
+ #define AVGXY(T) T.xy = T.yx = 0; T.xx = T.yy = 0.5 * ( T.xx + T.yy );\
+ 		 T.xz = T.zx = T.yz = T.zy = 0.5 * ( T.xz + T.yz );
