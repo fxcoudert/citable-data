@@ -9,3 +9,8 @@ Supporting information for: [“Rich Polymorphism of a Metal-Organic Framework i
 - [`ZIF4-RelaxedCell.cif`](ZIF4-RelaxedCell.cif): DFT-optimized structure for ZIF-4 with relaxed united cell parameters.
 - [`ZIF4-CP-II-FixedCell.cif`](ZIF4-CP-II-FixedCell.cif): DFT-optimized structure for ZIF-4-cp-II with fixed united cell parameters.
 - [`ZIF4-CP-II-RelaxedCell.cif`](ZIF4-CP-II-RelaxedCell.cif): DFT-optimized structure for ZIF-4-cp-II with relaxed united cell parameters.
+
+**Experimental structures:**
+
+- [`ZIF-4-cp-II.cif`](ZIF-4-cp-II.cif): structure of ZIF-4-cp-II (closed pore)
+- [`ZIF-4-hPT-II.cif`](ZIF-4-hPT-II.cif): structure of ZIF-hPT-II
