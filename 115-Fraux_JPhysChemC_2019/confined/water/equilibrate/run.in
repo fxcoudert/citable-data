@@ -1,0 +1,25 @@
+log run.log
+shell rm -f log.lammps
+
+variable simulation index zif8-water
+variable minimization equal false
+
+read_restart rst/${simulation}.min.rst
+# read_restart rst/${simulation}.*.rst
+include ../potential.in
+
+variable T_ext equal 300
+
+velocity all create ${T_ext} 42 rot yes mom yes dist gaussian
+fix NVT all nvt temp ${T_ext} ${T_ext} 1000.0
+
+dump trj all netcdf 100 ${simulation}.nc type x y z vx vy vz
+
+thermo_style one
+thermo 100
+
+
+timestep 1
+run 10000 upto
+
+write_restart rst/${simulation}.10000.rst

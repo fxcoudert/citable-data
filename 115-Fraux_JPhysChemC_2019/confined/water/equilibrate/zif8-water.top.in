@@ -1,0 +1,58 @@
+# Pair Coeffs
+variable C1 index 1
+variable C2 index 2
+variable C3 index 3
+variable H2 index 4
+variable H3 index 5
+variable Hw index 6
+variable N index 7
+variable Ow index 8
+variable Zn index 9
+
+# Bond Coeffs
+variable C1_C3 index 1
+variable C1_N index 2
+variable C2_C2 index 3
+variable C2_H2 index 4
+variable C2_N index 5
+variable C3_H3 index 6
+variable Hw_Ow index 7
+variable N_Zn index 8
+
+# Angle Coeffs
+variable C1_C3_H3 index 1
+variable C1_N_C2 index 2
+variable C1_N_Zn index 3
+variable C2_C2_H2 index 4
+variable C2_C2_N index 5
+variable C2_N_Zn index 6
+variable C3_C1_N index 7
+variable H2_C2_N index 8
+variable H3_C3_H3 index 9
+variable Hw_Ow_Hw index 10
+variable N_C1_N index 11
+variable N_Zn_N index 12
+
+# Dihedrals Coeffs
+variable C1_N_Zn_N index 1
+variable C2_C2_N_C1 index 2
+variable C2_C2_N_Zn index 3
+variable C2_N_Zn_N index 4
+variable C3_C1_N_C2 index 5
+variable C3_C1_N_Zn index 6
+variable H2_C2_C2_H2 index 7
+variable H2_C2_C2_N index 8
+variable H2_C2_N_C1 index 9
+variable H2_C2_N_Zn index 10
+variable H3_C3_C1_N index 11
+variable N_C1_N_C2 index 12
+variable N_C1_N_Zn index 13
+variable N_C2_C2_N index 14
+
+# Impropers Coeffs
+variable C1_C3_H3_H3 index 1
+variable C1_N_C2_Zn index 2
+variable C2_C2_H2_N index 3
+variable C3_C1_N_N index 4
+variable H3_C3_H3_H3 index 5
+variable N_Zn_N_N index 6

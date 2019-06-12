@@ -1,0 +1,20 @@
+# f-SPC/E potential
+group water type ${Ow} ${Hw}
+
+mass ${Hw} 1.00794
+mass ${Ow} 15.9994
+
+set type ${Hw} charge 0.4238
+set type ${Ow} charge -0.8476
+
+pair_coeff ${Ow} ${Ow} lj/cut/coul/long 0.155354 3.166
+
+if "${minimization}" then &
+    "pair_coeff ${Hw} ${Hw} lj/cut/coul/long 0.1 2.0" &
+    "bond_coeff ${Hw_Ow} 1000.0 1.0" &
+    "angle_coeff ${Hw_Ow_Hw} 1000.0 109.47" &
+else &
+    "pair_coeff ${Hw} * lj/cut/coul/long 0.0 0.0" &
+    "bond_coeff ${Hw_Ow} 0.0 1.0" &
+    "angle_coeff ${Hw_Ow_Hw} 0.0 109.47" &
+    "fix rigid all shake 1e-5 100 0 b ${Hw_Ow} a ${Hw_Ow_Hw}"

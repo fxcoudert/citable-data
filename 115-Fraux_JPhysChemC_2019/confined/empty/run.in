@@ -1,0 +1,27 @@
+log run.log
+shell rm -f log.lammps
+
+units real
+atom_style full
+boundary p p p
+
+variable simulation index supercell
+variable minimization equal false
+
+read_data ../${simulation}.lmp
+include ../potential.in
+
+variable T_ext equal 300
+
+fix NPT all npt temp ${T_ext} ${T_ext} 1000.0 tri ${P_ext} ${P_ext} 10000.0
+
+dump trj all netcdf 1000 ${simulation}.nc type x y z vx vy vz
+dump_modify trj append yes
+
+thermo_style one
+thermo 1000
+
+restart 10000 rst/${simulation}.*.rst
+
+timestep 1
+run 10000000 upto

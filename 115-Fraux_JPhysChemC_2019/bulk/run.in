@@ -1,0 +1,24 @@
+log run.log
+shell "rm -f log.lammps"
+
+variable simulation index bulk
+variable minimization equal false
+
+shell "mkdir -p rst"
+shell cp ../equilibrate/rst/bulk.500000.rst rst
+read_restart rst/${simulation}.*.rst
+include potential.in
+
+variable T_ext equal 300
+
+fix NPT all npt temp ${T_ext} ${T_ext} 100.0 iso ${P_ext} ${P_ext} 1000.0
+
+dump trj all netcdf 100 ${simulation}.nc type x y z vx vy vz
+
+thermo_style one
+thermo 100
+
+restart 10000 rst/${simulation}.*.rst
+
+timestep 1
+run 1500000 upto

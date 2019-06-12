@@ -1,0 +1,77 @@
+group ZIF type ${C1} ${C2} ${C3} ${H2} ${H3} ${N} ${Zn}
+
+dihedral_style charmm
+improper_style harmonic
+
+# set type ${Zn} charge 0.7362
+# set type ${N} charge -0.3008
+# set type ${C1} charge 0.4339
+# set type ${C2} charge -0.1924
+# set type ${C3} charge -0.6024
+# set type ${H2} charge 0.1585
+# set type ${H3} charge 0.1572
+
+# The charges given in the paper leads to a non null net charge for the system.
+# This additional charge was reparted equally on all the atom
+set type ${Zn} charge 0.736043478261
+set type ${N} charge -0.300956521739
+set type ${C1} charge 0.433743478261
+set type ${C2} charge -0.192556521739
+set type ${C3} charge -0.602556521739
+set type ${H2} charge 0.158343478261
+set type ${H3} charge 0.157043478261
+
+# Using Lorentz-Berthelot mixing rules
+pair_modify pair lj/cut/coul/long mix arithmetic
+
+pair_coeff ${Zn} ${Zn} lj/cut/coul/long 0.0125 1.960
+pair_coeff ${N} ${N} lj/cut/coul/long 0.1700 3.250
+pair_coeff ${C1} ${C1} lj/cut/coul/long 0.0860 3.400
+pair_coeff ${C2} ${C2} lj/cut/coul/long 0.0860 3.400
+pair_coeff ${C3} ${C3} lj/cut/coul/long 0.1094 3.400
+pair_coeff ${H2} ${H2} lj/cut/coul/long 0.0150 2.511
+pair_coeff ${H3} ${H3} lj/cut/coul/long 0.0157 2.650
+
+bond_coeff ${C1_C3} 346.543 1.490
+bond_coeff ${C1_N} 488.000 1.335
+bond_coeff ${C2_C2} 540.249 1.350
+bond_coeff ${C2_H2} 367.000 1.080
+bond_coeff ${C2_N} 440.2210 1.370
+bond_coeff ${C3_H3} 340.000 1.090
+bond_coeff ${N_Zn} 78.500 2.011
+
+angle_coeff ${C1_C3_H3} 48.088 109.32
+angle_coeff ${C1_N_C2} 71.254 105.27
+angle_coeff ${C1_N_Zn} 48.680 128.33
+angle_coeff ${C2_C2_H2} 49.451 125.67
+angle_coeff ${C2_C2_N} 76.750 108.65
+angle_coeff ${C2_N_Zn} 32.477 126.40
+angle_coeff ${C3_C1_N} 66.015 123.92
+angle_coeff ${H2_C2_N} 49.954 125.68
+angle_coeff ${H3_C3_H3} 35.000 109.50
+angle_coeff ${N_C1_N} 75.484 112.16
+angle_coeff ${N_Zn_N} 35.240 109.48
+
+variable X_C2_N_X equal 2.325
+variable X_C2_C2_X equal 5.150
+variable X_C1_N_X equal 5.000
+
+dihedral_coeff * 0.0 0 0 0.0
+dihedral_coeff ${C2_C2_N_C1} ${X_C2_N_X} 2 180 0.0
+dihedral_coeff ${C2_C2_N_Zn} ${X_C2_N_X} 2 180 0.0
+dihedral_coeff ${H2_C2_N_Zn} ${X_C2_N_X} 2 180 0.0
+dihedral_coeff ${H2_C2_N_C1} ${X_C2_N_X} 2 180 0.0
+dihedral_coeff ${C3_C1_N_C2} ${X_C1_N_X} 2 180 0.0
+dihedral_coeff ${C3_C1_N_Zn} ${X_C1_N_X} 2 180 0.0
+dihedral_coeff ${N_C1_N_C2} ${X_C1_N_X} 2 180 0.0
+dihedral_coeff ${N_C1_N_Zn} ${X_C1_N_X} 2 180 0.0
+dihedral_coeff ${H2_C2_C2_H2} ${X_C2_C2_X} 2 180 0.0
+dihedral_coeff ${H2_C2_C2_N} ${X_C2_C2_X} 2 180 0.0
+dihedral_coeff ${N_C2_C2_N} ${X_C2_C2_X} 2 180 0.0
+
+# Set missing improper coeffs to 0
+improper_coeff * 0 0
+
+improper_coeff ${C1_N_C2_Zn} 2.0 180.0
+improper_coeff ${C2_C2_H2_N} 2.0 180.0
+improper_coeff ${C3_C1_N_N} 2.0 180.0

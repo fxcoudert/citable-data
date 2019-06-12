@@ -1,0 +1,4 @@
+# 0.3 GPa
+variable P_ext equal 2960.769
+
+include ../../run.in

@@ -1,0 +1,21 @@
+include ../${simulation}.top.in
+
+variable cutoff equal 8.5
+
+special_bonds amber
+
+pair_style hybrid lj/cut/coul/long ${cutoff}
+kspace_style ewald 1e-5
+
+bond_style harmonic
+angle_style harmonic
+dihedral_style charmm
+improper_style harmonic
+
+include ../../../zif8.pot.in
+include ../../../water.pot.in
+
+# Using Lorentz-Berthelot mixing rules
+pair_modify mix arithmetic
+
+group solvent union water

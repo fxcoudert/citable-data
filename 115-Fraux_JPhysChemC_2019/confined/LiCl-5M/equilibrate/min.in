@@ -1,0 +1,24 @@
+log min.log
+shell rm -f log.lammps
+
+variable simulation index zif8-licl
+variable minimization equal true
+
+units real
+atom_style full
+boundary p p p
+
+read_data ../generate/${simulation}.lmp
+include ../potential.in
+
+dump trj all netcdf 100 ${simulation}.min.nc type x y z vx vy vz
+
+thermo_style one
+thermo 1
+
+min_style fire
+
+neigh_modify delay 0 every 1 check yes
+minimize 1.0e-5 1.0e-5 1000 100000
+
+write_restart rst/${simulation}.min.rst

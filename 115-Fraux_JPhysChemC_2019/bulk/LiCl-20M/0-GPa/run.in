@@ -1,0 +1,4 @@
+# 0 GPa
+variable P_ext equal 0
+
+include ../../run.in

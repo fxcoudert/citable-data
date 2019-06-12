@@ -1,0 +1,30 @@
+include ../equilibrate/${simulation}.top.in
+
+variable cutoff equal 8.5
+
+special_bonds amber
+
+pair_style hybrid lj/cut/coul/long ${cutoff}
+kspace_style ewald 1e-5
+
+bond_style harmonic
+angle_style harmonic
+dihedral_style charmm
+improper_style harmonic
+
+include ../../../zif8.pot.in
+include ../../../water.pot.in
+
+# Values for Li Cl
+# from http://www.sciencedirect.com/science/article/pii/S0022286006008349
+pair_coeff ${Li} ${Li} lj/cut/coul/long 0.165 1.505
+pair_coeff ${Cl} ${Cl} lj/cut/coul/long 0.100 4.401
+
+set type ${Li} charge +1.0
+set type ${Cl} charge -1.0
+
+# Using Lorentz-Berthelot mixing rules
+pair_modify mix arithmetic
+
+group licl type ${Li} ${Cl}
+group solvent union water licl
