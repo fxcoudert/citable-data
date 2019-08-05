@@ -1,4 +1,4 @@
-Supporting information for: [“MOF Decomposition and Introduction of Repairable Defects Using a Photodegradable Strut”](https://doi.org/10.1002/chem.201901213), J. Yan, J. C. MacDonald, A. R. Maag, F.-X. Coudert and S. Burdette,  _Chem. Eur. J._, **2019**, DOI: [10.1002/chem.201901213](https://doi.org/10.1002/chem.201901213)
+Supporting information for: [“MOF Decomposition and Introduction of Repairable Defects Using a Photodegradable Strut”](https://doi.org/10.1002/chem.201901213), J. Yan, J. C. MacDonald, A. R. Maag, F.-X. Coudert and S. Burdette,  _Chem. Eur. J._, **2019**, 25, 8393–8400, DOI: [10.1002/chem.201901213](https://doi.org/10.1002/chem.201901213)
 
 
 A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv.7081151.v1).
