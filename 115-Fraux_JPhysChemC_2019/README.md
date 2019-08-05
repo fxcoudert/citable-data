@@ -1,4 +1,9 @@
-Supporting information for: [“Structure, Dynamics and Thermodynamics of Intruded Electrolytes in ZIF-8”](https://doi.org/10.1021/acs.jpcc.9b02718), G. Fraux, A. Boutin, A. H. Fuchs and F.-X. Coudert, _J. Phys. Chem. C_, **2019**, DOI: [10.1021/acs.jpcc.9b02718](https://doi.org/10.1021/acs.jpcc.9b02718)
+Supporting information for: [“Structure, Dynamics and Thermodynamics of Intruded Electrolytes in ZIF-8”](https://doi.org/10.1021/acs.jpcc.9b02718), G. Fraux, A. Boutin, A. H. Fuchs and F.-X. Coudert, _J. Phys. Chem. C_, **2019**, 123 (25), 15589–15598, DOI: [10.1021/acs.jpcc.9b02718](https://doi.org/10.1021/acs.jpcc.9b02718)
+
+
+**Paper history**
+
+This paper was first posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv.8052716).
 
 
 **LAMMPS input files:**
