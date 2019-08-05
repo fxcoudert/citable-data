@@ -1,4 +1,4 @@
-Supporting information for: [“Rich Polymorphism of a Metal-Organic Framework in Pressure-Temperature Space”](https://doi.org/10.1021/jacs.9b03234), R. N. Widmer, G. I. Lampronti, S. Chibani, C. W. Wilson, S. Anzellini, S. Farsang, A. K. Kleppe, N. P. M. Casati, S. G. MacLeod, S. A. T. Redfern, F.-X. Coudert and T. D. Bennett, _J. Am. Chem. Soc._, **2019**, DOI: [10.1021/jacs.9b03234](https://doi.org/10.1021/jacs.9b03234)
+Supporting information for: [“Rich Polymorphism of a Metal-Organic Framework in Pressure-Temperature Space”](https://doi.org/10.1021/jacs.9b03234), R. N. Widmer, G. I. Lampronti, S. Chibani, C. W. Wilson, S. Anzellini, S. Farsang, A. K. Kleppe, N. P. M. Casati, S. G. MacLeod, S. A. T. Redfern, F.-X. Coudert and T. D. Bennett, _J. Am. Chem. Soc._, **2019**, 141 (23), 9330–9337, DOI: [10.1021/jacs.9b03234](https://doi.org/10.1021/jacs.9b03234)
 
 
 **DFT-optimized structures:**
