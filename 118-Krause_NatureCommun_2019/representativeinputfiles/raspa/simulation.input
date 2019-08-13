@@ -1,0 +1,31 @@
+SimulationType                MonteCarlo
+NumberOfCycles                100000
+NumberOfInitializationCycles  50000
+PrintEvery                    5000
+RestartFile                   no
+
+ContinueAfterCrash no
+WriteBinaryRestartFileEvery 5000
+
+Forcefield                    DUT
+CutOffVDW                     12.0
+RemoveAtomNumberCodeFromLabel no
+
+Framework             0
+FrameworkName         DUT-50op_opt
+UseChargesFromCIFFile no
+UnitCells             1 1 1
+HeliumVoidFraction    0.75388
+ExternalTemperature   111
+ExternalPressure    51794.7
+
+
+Component 0 MoleculeName              methane
+            StartingBead              0
+            MoleculeDefinition        TraPPE
+            IdealGasRosenbluthWeight  1
+            FugacityCoefficient       1.0
+            TranslationProbability    0.5
+            ReinsertionProbability    0.5
+            SwapProbability           1.0
+            CreateNumberOfMolecules   0
