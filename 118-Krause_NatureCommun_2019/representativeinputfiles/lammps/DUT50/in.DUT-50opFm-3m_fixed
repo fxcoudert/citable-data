@@ -1,0 +1,67 @@
+log             log.DUT-50opFm-3m_fixed append
+units           real
+atom_style      full
+boundary        p p p
+
+pair_style      hybrid/overlay buck 12.500 table linear 5000 ewald
+bond_style      hybrid class2 morse
+angle_style     hybrid cosine/periodic class2
+dihedral_style  fourier
+improper_style  harmonic
+kspace_style    ewald 0.000001
+
+dielectric      1.0
+pair_modify     tail yes
+special_bonds   lj 0 0 1 coul 1 1 1 #!!! Note: Gaussian charges have to be used!
+box tilt        large
+read_data       data.DUT-50opFm-3m_fixed
+#### Pair Coefficients ####
+pair_coeff      1    1                            buck    10304.000000        0.323333      429.893520 # 168 168
+pair_coeff      1    1                           table table.DUT-50opFm-3m_fixed GAUSS_168_168 12.50 # 168 168
+pair_coeff      1    2                            buck    10304.000000        0.325000      443.361714 # 168 2
+pair_coeff      1    2                           table table.DUT-50opFm-3m_fixed GAUSS_168_2 12.50 # 168 2
+pair_coeff      1    3                            buck    23689.598055        0.350000     1590.076904 # 168 165
+pair_coeff      1    3                           table table.DUT-50opFm-3m_fixed GAUSS_168_165 12.50 # 168 165
+pair_coeff      1    4                            buck     6157.817795        0.286667      124.779197 # 168 5
+pair_coeff      1    4                           table table.DUT-50opFm-3m_fixed GAUSS_168_5 12.50 # 168 5
+pair_coeff      1    5                            buck     9029.133292        0.322500      370.916839 # 168 40
+pair_coeff      1    5                           table table.DUT-50opFm-3m_fixed GAUSS_168_40 12.50 # 168 40
+pair_coeff      1    6                            buck    10576.399387        0.313333      365.451381 # 168 167
+pair_coeff      1    6                           table table.DUT-50opFm-3m_fixed GAUSS_168_167 12.50 # 168 167
+pair_coeff      2    2                            buck    10304.000000        0.326667      457.179709 # 2 2
+pair_coeff      2    2                           table table.DUT-50opFm-3m_fixed GAUSS_2_2 12.50 # 2 2
+pair_coeff      2    3                            buck    23689.598055        0.351667     1636.051962 # 2 165
+pair_coeff      2    3                           table table.DUT-50opFm-3m_fixed GAUSS_2_165 12.50 # 2 165
+pair_coeff      2    4                            buck     6157.817795        0.288333      129.195719 # 2 5
+pair_coeff      2    4                           table table.DUT-50opFm-3m_fixed GAUSS_2_5 12.50 # 2 5
+pair_coeff      2    5                            buck     9029.133292        0.324167      382.567759 # 2 40
+pair_coeff      2    5                           table table.DUT-50opFm-3m_fixed GAUSS_2_40 12.50 # 2 40
+pair_coeff      2    6                            buck    10576.399387        0.315000      377.270925 # 2 167
+pair_coeff      2    6                           table table.DUT-50opFm-3m_fixed GAUSS_2_167 12.50 # 2 167
+pair_coeff      3    3                            buck    54464.000000        0.376667     5679.431136 # 165 165
+pair_coeff      3    3                           table table.DUT-50opFm-3m_fixed GAUSS_165_165 12.50 # 165 165
+pair_coeff      3    4                            buck    14157.242669        0.313333      489.181969 # 165 5
+pair_coeff      3    4                           table table.DUT-50opFm-3m_fixed GAUSS_165_5 12.50 # 165 5
+pair_coeff      3    5                            buck    20758.592631        0.349167     1373.557167 # 165 40
+pair_coeff      3    5                           table table.DUT-50opFm-3m_fixed GAUSS_165_40 12.50 # 165 40
+pair_coeff      3    6                            buck    24315.862806        0.340000     1371.561728 # 165 167
+pair_coeff      3    6                           table table.DUT-50opFm-3m_fixed GAUSS_165_167 12.50 # 165 167
+pair_coeff      4    4                            buck     3680.000000        0.250000       32.805000 # 5 5
+pair_coeff      4    4                           table table.DUT-50opFm-3m_fixed GAUSS_5_5 12.50 # 5 5
+pair_coeff      4    5                            buck     5395.939214        0.285833      107.447537 # 5 40
+pair_coeff      4    5                           table table.DUT-50opFm-3m_fixed GAUSS_5_40 12.50 # 5 40
+pair_coeff      4    6                            buck     6320.607566        0.276667      103.502782 # 5 167
+pair_coeff      4    6                           table table.DUT-50opFm-3m_fixed GAUSS_5_167 12.50 # 5 167
+pair_coeff      5    5                            buck     7912.000000        0.321667      320.018291 # 40 40
+pair_coeff      5    5                           table table.DUT-50opFm-3m_fixed GAUSS_40_40 12.50 # 40 40
+pair_coeff      5    6                            buck     9267.829951        0.312500      315.159468 # 40 167
+pair_coeff      5    6                           table table.DUT-50opFm-3m_fixed GAUSS_40_167 12.50 # 40 167
+pair_coeff      6    6                            buck    10856.000000        0.303333      308.775499 # 167 167
+pair_coeff      6    6                           table table.DUT-50opFm-3m_fixed GAUSS_167_167 12.50 # 167 167
+#### END Pair Coefficients ####
+
+
+#### Atom Groupings ####
+group           fram     id   1:1968
+#### END Atom Groupings ####
+
