@@ -7,4 +7,4 @@ This paper was first posted as a [preprint on chemRxiv](https://doi.org/10.26434
 
 **Structures**
 
-- CIF files for the four structures displayed in Figure 1: [`Figure 1a.cif`](Figure 1a.cif), [`Figure 1b.cif`](Figure 1b.cif), [`Figure 1c.cif`](Figure 1c.cif), [`Figure 1d.cif`](Figure 1d.cif)
+- CIF files for the four structures displayed in Figure 1: [`Figure 1a.cif`](Figure%201a.cif), [`Figure 1b.cif`](Figure%201b.cif), [`Figure 1c.cif`](Figure%201c.cif), [`Figure 1d.cif`](Figure%201d.cif)
