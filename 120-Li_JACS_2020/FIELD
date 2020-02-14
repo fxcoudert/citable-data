@@ -1,0 +1,42 @@
+Sodium Silicate Glass Na66Si67O167
+UNITS eV
+MOLECULES 5
+Oxygen
+NUMMOLS  195
+ATOMS    1
+O        15.9994      -1.2000
+FINISH
+Sodium
+NUMMOLS   78
+ATOMS   1
+Na      22.9897       0.60000
+FINISH
+Silicon
+NUMMOLS   78
+ATOMS      1
+Si        28.0855     2.4000
+FINISH
+Selenium
+NUMMOLS   33
+ATOMS      1
+Se        78.9718    -1.2000
+FINISH
+Cadmium
+NUMMOLS   33
+ATOMS      1
+Cd       112.4144     1.2000 
+FINISH
+VDW         12
+Na   O     tab
+Si   O     tab
+O    O     tab
+Cd   O     12-6    949.6638361      3.200207
+Cd   Se    12-6    7619.389868      6.446148
+Cd   Cd    12-6    21.0245          0.348926
+Se   O     12-6    344163.1911      59.12145
+Se   Se    12-6    2761307.14       119.0878
+Se   Na    12-6    163962.0402      110.8043
+Se   Si    12-6    31899.36197      0
+Na   Cd    12-6    452.4272906      5.9977682
+Si   Cd    12-6    88.02123889      0
+CLOSE
