@@ -9,6 +9,7 @@ This paper was first posted as a [preprint on chemRxiv](https://doi.org/10.26434
 - [`datasets/iza.csv`](datasets/iza.csv): Features and predicted bulk and shear moduli for IZA zeolite structures.
 - [`datasets/pcod2.csv`](datasets/pcod2.csv): Features and predicted bulk and shear moduli for hypothetical PCOD2 zeolite structures.
 
+For complete datasets of the PCOD2 zeolite structures please refer to the comprehensive dataset [repository](https://github.com/jackevansadl/10.1021_acs.chemmater.7b02532), hosted seperatly owing to the dataset size.
 
 **Sci-kit learn example scripts:**
 
