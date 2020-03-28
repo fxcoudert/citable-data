@@ -1,4 +1,4 @@
-Supporting information for: [“Ab Initio Molecular Dynamics of CdSe Quantum-Dot-Doped Glasses”](https://doi.org/10.1021/jacs.9b12073), W. Li, X. Zhao, C. Liu and F.-X. Coudert, _J. Am. Chem. Soc._, **2020**, DOI: [10.1021/jacs.9b12073](https://doi.org/10.1021/jacs.9b12073)
+Supporting information for: [“Ab Initio Molecular Dynamics of CdSe Quantum-Dot-Doped Glasses”](https://doi.org/10.1021/jacs.9b12073), W. Li, X. Zhao, C. Liu and F.-X. Coudert, _J. Am. Chem. Soc._, **2020**, 142, 3905–3912, DOI: [10.1021/jacs.9b12073](https://doi.org/10.1021/jacs.9b12073)
 
 
 **Paper history**

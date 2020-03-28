@@ -1,4 +1,4 @@
-Supporting information for: [“Systematic exploration of the mechanical properties of 13,621 inorganic compounds”](https://doi.org/10.1039/C9SC01682A), S. Chibani and F.-X. Coudert, _J. Phys. Chem. C_, **2019**, DOI: [10.1039/C9SC01682A](https://doi.org/10.1039/C9SC01682A)
+Supporting information for: [“Systematic exploration of the mechanical properties of 13,621 inorganic compounds”](https://doi.org/10.1039/C9SC01682A), S. Chibani and F.-X. Coudert, _J. Phys. Chem. C_, **2019**, 10, 8589–8599, DOI: [10.1039/C9SC01682A](https://doi.org/10.1039/C9SC01682A)
 
 
 **Paper history**
