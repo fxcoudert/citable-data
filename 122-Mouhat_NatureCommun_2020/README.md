@@ -12,5 +12,5 @@ This paper was first posted as a [preprint on arXiv](https://arxiv.org/abs/1911.
 
 **Structures**
 
-- The models of graphene oxide created in this work are found in the [`GO`](GO) directory. As in the paper, they are classified in [random](GO/random) and [semi-ordered](GO/semi_ordered), and 5 models of each type were created. For each model, we provide coordinates in an `GO.xyz` file (in XYZ format) and cell parameters in a `cell_parameters.dat` file (in ångströms).
-- The most stable models were then hydrated by adding H<sub>2</sub>O molecules, the resulting models are found in the [`GO_with_water`](GO_with_water) directory. The layout is the same as above.
+- The models of graphene oxide created in this work are found in the [`models/GO`](models/GO) directory. As in the paper, they are classified in [random](models/GO/random) and [semi-ordered](models/GO/semi_ordered), and 5 models of each type were created. For each model, we provide coordinates in an `GO.xyz` file (in XYZ format) and cell parameters in a `cell_parameters.dat` file (in ångströms).
+- The most stable models were then hydrated by adding H<sub>2</sub>O molecules, the resulting models are found in the [`models/GO_with_water`](models/GO_with_water) directory. The layout is the same as above.
