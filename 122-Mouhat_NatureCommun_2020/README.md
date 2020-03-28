@@ -7,5 +7,5 @@ This paper was first posted as a [preprint on arXiv](https://arxiv.org/abs/1911.
 
 **Movies**
 
-- [`movie1.mp4`](movie1.mp4): Movie showing several proton exchanges between the surface hydroxyl groups and the surrounding H<sub>2</sub>O molecules present in the bulk.
-- [`movie2.mp4`](movie2.mp4): Movie showing the dehydration reaction that is observed in the trajectory of the semi-ordered 4 graphene oxide model in liquid water.
+- [`movie_1.mp4`](movie_1.mp4): Movie showing several proton exchanges between the surface hydroxyl groups and the surrounding H<sub>2</sub>O molecules present in the bulk.
+- [`movie_2.mp4`](movie_2.mp4): Movie showing the dehydration reaction that is observed in the trajectory of the semi-ordered 4 graphene oxide model in liquid water.
