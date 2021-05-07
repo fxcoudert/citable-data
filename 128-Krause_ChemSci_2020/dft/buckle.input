@@ -1,0 +1,38 @@
+start molecule
+
+title "l12_opt"
+charge 0
+
+geometry units angstrom noautoz
+load molecule_load.xyz
+end
+
+geometry units angstrom adjust      
+  zcoord
+  bond 61 62 12.486 cccc constant
+        end
+end
+
+
+basis
+  * library 6-31+G*
+end
+
+dft
+  xc pbe0
+  mult 1
+disp vdw 3
+direct
+maxiter 200
+noio
+end
+
+driver
+default
+maxiter 200
+xyz molecule_0
+end
+
+task dft optimize
+
+

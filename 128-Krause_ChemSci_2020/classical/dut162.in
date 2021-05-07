@@ -1,0 +1,397 @@
+clear
+units real
+boundary p p p
+atom_style full
+read_data dut162.data
+
+neighbor 2.0 bin
+
+
+# ------------------------ MOF-FF FORCE FIELD ------------------------------
+
+pair_style buck6d/coul/gauss/dsf     0.9000    12.0000
+
+pair_coeff     1     1           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162
+pair_coeff     1     2           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162
+pair_coeff     1     3           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162
+pair_coeff     1     4           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW
+pair_coeff     1     5           10304       3.0769231       443.36171       4.2093581      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW
+pair_coeff     1     6           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162
+pair_coeff     1     7           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene
+pair_coeff     1     8           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162
+pair_coeff     1     9       7154.7377               3       358.35904               6      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162
+pair_coeff     1    10       23689.598       2.8436019        1636.052       12.696549      0.42066711    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff     1    11       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff     1    12       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff     1    13       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff     1    14       9029.1333       3.0848329       382.56776       4.0607457      0.61801895    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff     1    15       10576.399       3.1746032       377.27092       2.7176691      0.61999948    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c2h1@carbazol)|DUT162 <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff     2     2           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162
+pair_coeff     2     3           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162
+pair_coeff     2     4           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW
+pair_coeff     2     5           10304       3.0769231       443.36171       4.2093581      0.60800971    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW
+pair_coeff     2     6           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162
+pair_coeff     2     7           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene
+pair_coeff     2     8           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162
+pair_coeff     2     9       7154.7377               3       358.35904               6      0.60800971    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162
+pair_coeff     2    10       23689.598       2.8436019        1636.052       12.696549      0.42066711    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff     2    11       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff     2    12       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff     2    13       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff     2    14       9029.1333       3.0848329       382.56776       4.0607457      0.61801895    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff     2    15       10576.399       3.1746032       377.27092       2.7176691      0.61999948    # buck6d->(c3_c2n1@carbazol)|DUT162/gaussian->(c3_c2n1@carbazol)|DUT162 <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff     3     3           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162
+pair_coeff     3     4           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW
+pair_coeff     3     5           10304       3.0769231       443.36171       4.2093581      0.60800971    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW
+pair_coeff     3     6           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162
+pair_coeff     3     7           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene
+pair_coeff     3     8           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162
+pair_coeff     3     9       7154.7377               3       358.35904               6      0.60800971    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162
+pair_coeff     3    10       23689.598       2.8436019        1636.052       12.696549      0.42066711    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff     3    11       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff     3    12       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff     3    13       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff     3    14       9029.1333       3.0848329       382.56776       4.0607457      0.61801895    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff     3    15       10576.399       3.1746032       377.27092       2.7176691      0.61999948    # buck6d->(c3_c3@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|DUT162 <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff     4     4           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW
+pair_coeff     4     5           10304       3.0769231       443.36171       4.2093581      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW
+pair_coeff     4     6           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162
+pair_coeff     4     7           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene
+pair_coeff     4     8           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162
+pair_coeff     4     9       7154.7377               3       358.35904               6      0.60800971    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162
+pair_coeff     4    10       23689.598       2.8436019        1636.052       12.696549      0.42066711    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff     4    11       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff     4    12       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff     4    13       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff     4    14       9029.1333       3.0848329       382.56776       4.0607457      0.61801895    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff     4    15       10576.399       3.1746032       377.27092       2.7176691      0.61999948    # buck6d->(c3_c2h1@carbazol)|DUT162/gaussian->(c3_c3@carbazol)|CuPW <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff     5     5           10304       3.0927835       429.89352       3.9170177      0.60800971    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW
+pair_coeff     5     6           10304       3.0769231       443.36171       4.2093581      0.60800971    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162
+pair_coeff     5     7           10304       3.0769231       443.36171       4.2093581      0.60800971    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene
+pair_coeff     5     8           10304       3.0769231       443.36171       4.2093581      0.60800971    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162
+pair_coeff     5     9       7154.7377       3.0150754       347.74176       5.5933807      0.60800971    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162
+pair_coeff     5    10       23689.598       2.8571429       1590.0769        11.87959      0.42066711    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff     5    11       6157.8178       3.4883721        124.7792      0.72632262      0.73006542    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff     5    12       6157.8178       3.4883721        124.7792      0.72632262      0.73006542    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff     5    13       6157.8178       3.4883721        124.7792      0.72632262      0.73006542    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff     5    14       9029.1333       3.1007752       370.91684       3.7780255      0.61801895    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff     5    15       10576.399       3.1914894       365.45138       2.5231391      0.61999948    # buck6d->(c3_c1o2@co2)|CuPW/gaussian->(c3_c1o2@co2)|CuPW <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff     6     6           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162
+pair_coeff     6     7           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene
+pair_coeff     6     8           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162
+pair_coeff     6     9       7154.7377               3       358.35904               6      0.60800971    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162
+pair_coeff     6    10       23689.598       2.8436019        1636.052       12.696549      0.42066711    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff     6    11       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff     6    12       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff     6    13       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff     6    14       9029.1333       3.0848329       382.56776       4.0607457      0.61801895    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff     6    15       10576.399       3.1746032       377.27092       2.7176691      0.61999948    # buck6d->(c3_c2n1@ph)|DUT162/gaussian->(c3_c2n1@ph)|DUT162 <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff     7     7           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene <--> buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene
+pair_coeff     7     8           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene <--> buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162
+pair_coeff     7     9       7154.7377               3       358.35904               6      0.60800971    # buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene <--> buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162
+pair_coeff     7    10       23689.598       2.8436019        1636.052       12.696549      0.42066711    # buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff     7    11       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff     7    12       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff     7    13       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff     7    14       9029.1333       3.0848329       382.56776       4.0607457      0.61801895    # buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff     7    15       10576.399       3.1746032       377.27092       2.7176691      0.61999948    # buck6d->(c3_c2h1@ph)|benzene/gaussian->(c3_c2h1@ph)|benzene <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff     8     8           10304       3.0612245       457.17971       4.5218516      0.60800971    # buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162 <--> buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162
+pair_coeff     8     9       7154.7377               3       358.35904               6      0.60800971    # buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162 <--> buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162
+pair_coeff     8    10       23689.598       2.8436019        1636.052       12.696549      0.42066711    # buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162 <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff     8    11       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162 <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff     8    12       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162 <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff     8    13       6157.8178       3.4682081       129.19572      0.78772886      0.73006542    # buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162 <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff     8    14       9029.1333       3.0848329       382.56776       4.0607457      0.61801895    # buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162 <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff     8    15       10576.399       3.1746032       377.27092       2.7176691      0.61999948    # buck6d->(c3_c3@ph)|DUT162/gaussian->(c3_c3@ph)|DUT162 <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff     9     9            4968       2.9411765       280.22525       7.9168726      0.60800971    # buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162 <--> buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162
+pair_coeff     9    10        16449.23       2.7906977       1271.5135       16.514664      0.42066711    # buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162 <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff     9    11       4275.7736       3.3898305       102.89611       1.0848184      0.73006542    # buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162 <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff     9    12       4275.7736       3.3898305       102.89611       1.0848184      0.73006542    # buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162 <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff     9    13       4275.7736       3.3898305       102.89611       1.0848184      0.73006542    # buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162 <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff     9    14       6269.5148         3.02267        300.1523       5.3998098      0.61801895    # buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162 <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff     9    15       7343.8824       3.1088083       297.03952       3.6436247      0.61999948    # buck6d->(c4_c2h2@me)|DUT162/gaussian->(c4_c2h2@me)|DUT162 <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff    10    10           54464       2.6548673       5679.4311       33.208515      0.34105936    # buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW <--> buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW
+pair_coeff    10    11       14157.243       3.1914894       489.18197       2.5231391      0.45538909    # buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff    10    12       14157.243       3.1914894       489.18197       2.5231391      0.45538909    # buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff    10    13       14157.243       3.1914894       489.18197       2.5231391      0.45538909    # buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff    10    14       20758.593       2.8639618       1373.5572       11.489674      0.42393983    # buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff    10    15       24315.863       2.9411765       1371.5617       7.9168726      0.42457748    # buck6d->(cu5_cu1o4@cu2)|CuPW/gaussian->(cu5_cu1o4@cu2)|CuPW <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff    11    11            3680               4          32.805      0.10690769       0.9771554    # buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162 <--> buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162
+pair_coeff    11    12            3680               4          32.805      0.10690769       0.9771554    # buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162 <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff    11    13            3680               4          32.805      0.10690769       0.9771554    # buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162 <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff    11    14       5395.9392       3.4985423       107.44754      0.69731507       0.7475861    # buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162 <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff    11    15       6320.6076       3.6144578       103.50278      0.44181916      0.75109952    # buck6d->(h1_c1@carbazol)|DUT162/gaussian->(h1_c1@carbazol)|DUT162 <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff    12    12            3680               4          32.805      0.10690769       0.9771554    # buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene <--> buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene
+pair_coeff    12    13            3680               4          32.805      0.10690769       0.9771554    # buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff    12    14       5395.9392       3.4985423       107.44754      0.69731507       0.7475861    # buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff    12    15       6320.6076       3.6144578       103.50278      0.44181916      0.75109952    # buck6d->(h1_c1@ph)|benzene/gaussian->(h1_c1@ph)|benzene <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff    13    13            3680               4          32.805      0.10690769       0.9771554    # buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162 <--> buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162
+pair_coeff    13    14       5395.9392       3.4985423       107.44754      0.69731507       0.7475861    # buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162 <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff    13    15       6320.6076       3.6144578       103.50278      0.44181916      0.75109952    # buck6d->(h1_c1@me)|DUT162/gaussian->(h1_c1@me)|DUT162 <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff    14    14            7912       3.1088083       320.01829       3.6436247      0.62853936    # buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162 <--> buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162
+pair_coeff    14    15         9267.83             3.2       315.15947       2.4307994      0.63062312    # buck6d->(n3_c3@carbazol)|DUT162/gaussian->(n3_c3@carbazol)|DUT162 <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+pair_coeff    15    15           10856       3.2967033        308.7755       1.6022517      0.63272774    # buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW <--> buck6d->(o2_c1cu1@co2)|CuPW/gaussian->(o2_c1cu1@co2)|CuPW
+
+bond_style hybrid class2 morse
+
+bond_coeff     6 class2     1.458000   390.058680  -994.649634  1479.541331    # mm3->(c3_c2h1@carbazol,c3_c3@carbazol)|DUT162
+bond_coeff    19 morse    50.000000    1.451345     1.914000    # morse->(cu5_cu1o4@cu2,o2_c1cu1@co2)|CuPW
+bond_coeff    14 class2     1.394000   509.335200 -1298.804760  1931.972080    # mm3->(c3_c2h1@ph,c3_c3@ph)|DUT162
+bond_coeff    13 class2     1.094000   390.634200  -996.117210  1481.724350    # mm3->(c3_c2h1@ph,h1_c1@ph)|benzene
+bond_coeff     3 class2     1.458000   390.058680  -994.649634  1479.541331    # mm3->(c3_c2h1@carbazol,c3_c2n1@carbazol)|DUT162
+bond_coeff     5 class2     1.266000   797.814600 -2034.427230  3026.210505    # mm3->(c3_c2n1@carbazol,n3_c3@carbazol)|DUT162
+bond_coeff     9 class2     1.278000   585.591600 -1493.258580  2221.222138    # mm3->(c3_c1o2@co2,o2_c1cu1@co2)|CuPW
+bond_coeff    10 class2     1.458000   390.058680  -994.649634  1479.541331    # mm3->(c3_c2h1@ph,c3_c2n1@ph)|DUT162
+bond_coeff    11 class2     1.266000   797.814600 -2034.427230  3026.210505    # mm3->(c3_c2n1@ph,n3_c3@carbazol)|DUT162
+bond_coeff     4 class2     1.458000   390.058680  -994.649634  1479.541331    # mm3->(c3_c2n1@carbazol,c3_c3@carbazol)|DUT162
+bond_coeff     2 class2     1.094000   390.634200  -996.117210  1481.724350    # mm3->(c3_c2h1@carbazol,h1_c1@carbazol)|DUT162
+bond_coeff    12 class2     1.394000   509.335200 -1298.804760  1931.972080    # mm3->(c3_c2h1@ph,c3_c2h1@ph)|benzene
+bond_coeff    16 class2     1.524700   323.010600  -823.677030  1225.219582    # mm3->(c4_c2h2@me,c4_c2h2@me)|DUT162
+bond_coeff    15 class2     1.509000   345.312000  -880.545600  1309.811580    # mm3->(c3_c3@ph,c4_c2h2@me)|DUT162
+bond_coeff     1 class2     1.458000   390.058680  -994.649634  1479.541331    # mm3->(c3_c2h1@carbazol,c3_c2h1@carbazol)|DUT162
+bond_coeff     8 class2     1.485000   360.635220  -919.619811  1367.934469    # mm3->(c3_c1o2@co2,c3_c3@carbazol)|CuPW
+bond_coeff    17 class2     1.112000   340.995600  -869.538780  1293.438935    # mm3->(c4_c2h2@me,h1_c1@me)|DUT162
+bond_coeff     7 class2     1.458000   390.058680  -994.649634  1479.541331    # mm3->(c3_c3@carbazol,c3_c3@carbazol)|DUT162
+bond_coeff    18 class2     2.536000    75.465060  -192.435903   286.248406    # mm3->(cu5_cu1o4@cu2,cu5_cu1o4@cu2)|CuPW
+
+angle_style hybrid class2/p6 cosine/buck6d
+
+angle_coeff    23 class2/p6      120.350000    36.185820   -29.026127     6.652298    -4.764358     8.579296    # mm3->(c3_c3@ph,c3_c2h1@ph,h1_c1@ph)|DUT162
+angle_coeff    23 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    23 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    17 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2h1@ph,c3_c2n1@ph,c3_c2h1@ph)|DUT162
+angle_coeff    17 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    17 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    15 class2/p6      123.490000   111.075360   -89.098091    20.419778   -14.624589    26.334856    # mm3->(o2_c1cu1@co2,c3_c1o2@co2,o2_c1cu1@co2)|CuPW
+angle_coeff    15 class2/p6 bb    14.244120     1.278000     1.278000
+angle_coeff    15 class2/p6 ba     3.309240     3.309240     1.278000     1.278000
+angle_coeff    19 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2h1@ph,c3_c2h1@ph,c3_c2n1@ph)|DUT162
+angle_coeff    19 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    19 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     8 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2h1@carbazol,c3_c3@carbazol,c3_c2n1@carbazol)|DUT162
+angle_coeff     8 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     8 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    21 class2/p6      120.350000    36.185820   -29.026127     6.652298    -4.764358     8.579296    # mm3->(c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
+angle_coeff    21 class2/p6 bb    93.378120     1.394000     1.094000
+angle_coeff    21 class2/p6 ba   -25.179000    53.523360     1.394000     1.094000
+angle_coeff     9 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2n1@carbazol,c3_c3@carbazol,c3_c3@carbazol)|DUT162
+angle_coeff     9 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     9 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    25 class2/p6      114.600000    71.940000   -57.706017    13.225245    -9.471884    17.056254    # mm3->(c3_c2h1@ph,c3_c3@ph,c4_c2h2@me)|DUT162
+angle_coeff    25 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    25 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    26 class2/p6      110.600000    57.552000   -46.164814    10.580196    -7.577507    13.645003    # mm3->(c3_c3@ph,c4_c2h2@me,c4_c2h2@me)|DUT162
+angle_coeff    26 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    26 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    13 class2/p6      117.711000    57.408120   -46.049402    10.553745    -7.558563    13.610890    # mm3->(c3_c1o2@co2,c3_c3@carbazol,c3_c2h1@carbazol)|CuPW
+angle_coeff    13 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    13 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    34 class2/p6      126.814000    13.740540   -11.021849     2.526022    -1.809130     3.257744    # mm3->(c3_c1o2@co2,o2_c1cu1@co2,cu5_cu1o4@cu2)|CuPW
+angle_coeff    34 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    34 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     3 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2n1@carbazol)|DUT162
+angle_coeff     3 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     3 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     4 class2/p6      120.350000    36.185820   -29.026127     6.652298    -4.764358     8.579296    # mm3->(c3_c2n1@carbazol,c3_c2h1@carbazol,h1_c1@carbazol)|DUT162
+angle_coeff     4 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     4 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     1 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol)|DUT162
+angle_coeff     1 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     1 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    11 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c3@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol)|DUT162
+angle_coeff    11 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    11 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    27 class2/p6      109.490000    38.847600   -31.161249     7.141632    -5.114817     9.210377    # mm3->(c3_c3@ph,c4_c2h2@me,h1_c1@me)|DUT162
+angle_coeff    27 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    27 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    10 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2h1@carbazol,c3_c3@carbazol,c3_c3@carbazol)|DUT162
+angle_coeff    10 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    10 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    33 class2/p6      124.000000    30.934200   -24.813587     5.686855    -4.072910     7.334189    # mm3->(c3_c2n1@carbazol,n3_c3@carbazol,c3_c2n1@ph)|DUT162
+angle_coeff    33 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    33 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    24 class2/p6      112.212000    59.134680   -47.434346    10.871151    -7.785889    14.020240    # mm3->(c3_c2h1@ph,c3_c3@ph,c3_c2h1@ph)|DUT162
+angle_coeff    24 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    24 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     7 class2/p6      119.000000    47.480400   -38.085971     8.728662    -6.251443    11.257127    # mm3->(c3_c3@carbazol,c3_c2n1@carbazol,n3_c3@carbazol)|DUT162
+angle_coeff     7 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     7 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    30 class2/p6       84.336000    29.351520   -23.544055     5.395900    -3.864529     6.958951    # mm3->(cu5_cu1o4@cu2,cu5_cu1o4@cu2,o2_c1cu1@co2)|CuPW
+angle_coeff    30 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    30 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    16 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol)|DUT162
+angle_coeff    16 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    16 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    14 class2/p6      115.098000    79.493700   -63.765149    14.613896   -10.466432    18.847160    # mm3->(c3_c3@carbazol,c3_c1o2@co2,o2_c1cu1@co2)|CuPW
+angle_coeff    14 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    14 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     2 class2/p6      120.350000    36.185820   -29.026127     6.652298    -4.764358     8.579296    # mm3->(c3_c2h1@carbazol,c3_c2h1@carbazol,h1_c1@carbazol)|DUT162
+angle_coeff     2 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     2 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    12 class2/p6      120.350000    36.185820   -29.026127     6.652298    -4.764358     8.579296    # mm3->(c3_c3@carbazol,c3_c2h1@carbazol,h1_c1@carbazol)|DUT162
+angle_coeff    12 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    12 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     5 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2h1@carbazol,c3_c2n1@carbazol,c3_c3@carbazol)|DUT162
+angle_coeff     5 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     5 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    20 class2/p6      120.350000    36.185820   -29.026127     6.652298    -4.764358     8.579296    # mm3->(c3_c2n1@ph,c3_c2h1@ph,h1_c1@ph)|DUT162
+angle_coeff    20 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    20 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff     6 class2/p6      119.000000    47.480400   -38.085971     8.728662    -6.251443    11.257127    # mm3->(c3_c2h1@carbazol,c3_c2n1@carbazol,n3_c3@carbazol)|DUT162
+angle_coeff     6 class2/p6 bb 0.0 1.0 1.0
+angle_coeff     6 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    18 class2/p6      119.000000    47.480400   -38.085971     8.728662    -6.251443    11.257127    # mm3->(c3_c2h1@ph,c3_c2n1@ph,n3_c3@carbazol)|DUT162
+angle_coeff    18 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    18 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    28 class2/p6      109.800000    42.444600   -34.046550     7.802895    -5.588412    10.063190    # mm3->(c4_c2h2@me,c4_c2h2@me,h1_c1@me)|DUT162
+angle_coeff    28 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    28 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    32 class2/p6      124.000000    30.934200   -24.813587     5.686855    -4.072910     7.334189    # mm3->(c3_c2n1@carbazol,n3_c3@carbazol,c3_c2n1@carbazol)|DUT162
+angle_coeff    32 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    32 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    29 class2/p6      107.600000    39.567000   -31.738310     7.273885    -5.209536     9.380939    # mm3->(h1_c1@me,c4_c2h2@me,h1_c1@me)|DUT162
+angle_coeff    29 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    29 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    22 class2/p6      127.050000    53.307540   -42.760159     9.799907    -7.018666    12.638684    # mm3->(c3_c2h1@ph,c3_c2h1@ph,c3_c3@ph)|DUT162
+angle_coeff    22 class2/p6 bb 0.0 1.0 1.0
+angle_coeff    22 class2/p6 ba 0.0 0.0 1.0 1.0
+angle_coeff    31 cosine/buck6d       1.978350     4   180.000000    # fourier->(o2_c1cu1@co2,cu5_cu1o4@cu2,o2_c1cu1@co2)|CuPW
+
+dihedral_style opls
+
+dihedral_coeff    18     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c3@carbazol,c3_c2n1@carbazol,n3_c3@carbazol,c3_c2n1@carbazol)|DUT162
+dihedral_coeff    23     0.000000     6.325000     0.000000     0.000000    # cos3->(h1_c1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol,c3_c3@carbazol)|DUT162
+dihedral_coeff    20     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol,c3_c2n1@carbazol)|DUT162
+dihedral_coeff    31     0.000000     4.528000     0.000000     0.000000    # cos3->(o2_c1cu1@co2,c3_c1o2@co2,o2_c1cu1@co2,cu5_cu1o4@cu2)|CuPW
+dihedral_coeff    38     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2n1@ph,c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|DUT162
+dihedral_coeff    26     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c3@carbazol,c3_c3@carbazol,c3_c2h1@carbazol)|DUT162
+dihedral_coeff    39     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c3@ph,c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|DUT162
+dihedral_coeff    50     0.000000     0.000000     0.000000     0.609000    # cos4->(o2_c1cu1@co2,cu5_cu1o4@cu2,cu5_cu1o4@cu2,o2_c1cu1@co2)|CuPW
+dihedral_coeff    34     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@ph,c3_c2h1@ph,c3_c2n1@ph,n3_c3@carbazol)|DUT162
+dihedral_coeff    22     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol,c3_c3@carbazol)|DUT162
+dihedral_coeff    33     0.000000     6.325000     0.000000     0.000000    # cos3->(h1_c1@ph,c3_c2h1@ph,c3_c2n1@ph,c3_c2h1@ph)|DUT162
+dihedral_coeff    42     0.000000     4.525000     0.000000     0.000000    # cos3->(c3_c2h1@ph,c3_c2h1@ph,c3_c3@ph,c4_c2h2@me)|DUT162
+dihedral_coeff    46     0.000000     0.000000     0.500000     0.000000    # cos3->(c3_c2h1@ph,c3_c3@ph,c4_c2h2@me,h1_c1@me)|DUT162
+dihedral_coeff    32     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@ph,c3_c2h1@ph,c3_c2n1@ph,c3_c2h1@ph)|DUT162
+dihedral_coeff    12     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2n1@carbazol,c3_c3@carbazol,c3_c2h1@carbazol)|DUT162
+dihedral_coeff    16     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2n1@carbazol,n3_c3@carbazol,c3_c2n1@carbazol)|DUT162
+dihedral_coeff     5     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol)|DUT162
+dihedral_coeff    19     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c3@carbazol,c3_c2n1@carbazol,n3_c3@carbazol,c3_c2n1@ph)|DUT162
+dihedral_coeff     8     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2n1@carbazol,c3_c3@carbazol)|DUT162
+dihedral_coeff    17     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2n1@carbazol,n3_c3@carbazol,c3_c2n1@ph)|DUT162
+dihedral_coeff    25     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2n1@carbazol,c3_c3@carbazol,c3_c3@carbazol,c3_c2n1@carbazol)|DUT162
+dihedral_coeff    41     0.000000     7.790000     0.000000     0.000000    # cos3->(c3_c2h1@ph,c3_c2h1@ph,c3_c3@ph,c3_c2h1@ph)|DUT162
+dihedral_coeff    43     0.000000     6.325000     0.000000     0.000000    # cos3->(h1_c1@ph,c3_c2h1@ph,c3_c3@ph,c3_c2h1@ph)|DUT162
+dihedral_coeff     9     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2n1@carbazol,n3_c3@carbazol)|DUT162
+dihedral_coeff    44    -0.700000     9.800000     0.000000     0.000000    # cos3->(h1_c1@ph,c3_c2h1@ph,c3_c3@ph,c4_c2h2@me)|DUT162
+dihedral_coeff     3     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2n1@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol,h1_c1@carbazol)|DUT162
+dihedral_coeff    51     0.000000     0.000000     0.000000     0.000000    # cos3->(cu5_cu1o4@cu2,cu5_cu1o4@cu2,o2_c1cu1@co2,c3_c1o2@co2)|CuPW
+dihedral_coeff     1     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2n1@carbazol)|DUT162
+dihedral_coeff    35     0.000000     6.325000     0.000000     0.000000    # cos3->(h1_c1@ph,c3_c2h1@ph,c3_c2n1@ph,n3_c3@carbazol)|DUT162
+dihedral_coeff     2     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol,h1_c1@carbazol)|DUT162
+dihedral_coeff    27     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol)|DUT162
+dihedral_coeff    24     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c3@carbazol,c3_c3@carbazol,c3_c2n1@carbazol)|DUT162
+dihedral_coeff     6     0.000000     0.000000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol,c3_c1o2@co2)|CuPW
+dihedral_coeff    10     0.000000     6.325000     0.000000     0.000000    # cos3->(h1_c1@carbazol,c3_c2h1@carbazol,c3_c2n1@carbazol,c3_c3@carbazol)|DUT162
+dihedral_coeff     7     0.000000     0.000000     0.000000     0.000000    # cos3->(h1_c1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol,c3_c1o2@co2)|CuPW
+dihedral_coeff    48     0.000000     0.000000     0.180000     0.000000    # cos3->(c3_c3@ph,c4_c2h2@me,c4_c2h2@me,h1_c1@me)|DUT162
+dihedral_coeff    36     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@ph,c3_c2n1@ph,n3_c3@carbazol,c3_c2n1@carbazol)|DUT162
+dihedral_coeff    52     0.000000     0.000000     0.000000     0.000000    # cos3->(o2_c1cu1@co2,cu5_cu1o4@cu2,o2_c1cu1@co2,c3_c1o2@co2)|CuPW
+dihedral_coeff    21     0.000000     6.325000     0.000000     0.000000    # cos3->(h1_c1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol,c3_c2n1@carbazol)|DUT162
+dihedral_coeff    28     0.000000     0.000000     0.000000     0.000000    # cos3->(c3_c3@carbazol,c3_c2h1@carbazol,c3_c3@carbazol,c3_c1o2@co2)|CuPW
+dihedral_coeff     4     0.000000     6.325000     0.000000     0.000000    # cos3->(h1_c1@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol,h1_c1@carbazol)|DUT162
+dihedral_coeff    29     0.000000     1.741000     0.000000     0.000000    # cos3->(o2_c1cu1@co2,c3_c1o2@co2,c3_c3@carbazol,c3_c2h1@carbazol)|CuPW
+dihedral_coeff    13     0.000000     6.325000     0.000000     0.000000    # cos3->(c3_c2h1@carbazol,c3_c2n1@carbazol,c3_c3@carbazol,c3_c3@carbazol)|DUT162
+dihedral_coeff    30     0.000000     0.000000     0.000000     0.000000    # cos3->(c3_c3@carbazol,c3_c1o2@co2,o2_c1cu1@co2,cu5_cu1o4@cu2)|CuPW
+dihedral_coeff    45     0.655000     0.266000     0.474000     0.000000    # cos3->(c3_c2h1@ph,c3_c3@ph,c4_c2h2@me,c4_c2h2@me)|DUT162
+dihedral_coeff    15     0.000000     6.325000     0.000000     0.000000    # cos3->(n3_c3@carbazol,c3_c2n1@carbazol,c3_c3@carbazol,c3_c3@carbazol)|DUT162
+dihedral_coeff    37     0.000000     4.525000     0.000000     0.000000    # cos3->(c3_c2n1@ph,c3_c2h1@ph,c3_c2h1@ph,c3_c3@ph)|DUT162
+dihedral_coeff    11     0.000000     6.325000     0.000000     0.000000    # cos3->(h1_c1@carbazol,c3_c2h1@carbazol,c3_c2n1@carbazol,n3_c3@carbazol)|DUT162
+dihedral_coeff    14     0.000000     6.325000     0.000000     0.000000    # cos3->(n3_c3@carbazol,c3_c2n1@carbazol,c3_c3@carbazol,c3_c2h1@carbazol)|DUT162
+dihedral_coeff    47     0.000000     0.000000     0.100000     0.000000    # cos3->(c3_c3@ph,c4_c2h2@me,c4_c2h2@me,c3_c3@ph)|DUT162
+dihedral_coeff    40     0.000000     5.972000     0.000000     0.000000    # cos3->(h1_c1@ph,c3_c2h1@ph,c3_c2h1@ph,h1_c1@ph)|benzene
+dihedral_coeff    49     0.000000     0.000000     0.238000     0.000000    # cos3->(h1_c1@me,c4_c2h2@me,c4_c2h2@me,h1_c1@me)|DUT162
+
+improper_style inversion/harmonic
+
+improper_coeff     5    12.517560     0.000000    # harm->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol,h1_c1@carbazol)|DUT162
+improper_coeff    10    12.517560     0.000000    # harm->(c3_c2h1@ph,c3_c2h1@ph,c3_c3@ph,h1_c1@ph)|DUT162
+improper_coeff    12    14.891580     0.000000    # harm->(n3_c3@carbazol,c3_c2n1@carbazol,c3_c2n1@carbazol,c3_c2n1@ph)|DUT162
+improper_coeff     4    14.891580     0.000000    # harm->(c3_c3@carbazol,c3_c2h1@carbazol,c3_c2n1@carbazol,c3_c3@carbazol)|DUT162
+improper_coeff     1    12.517560     0.000000    # harm->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol,h1_c1@carbazol)|DUT162
+improper_coeff     6    18.776340     0.000000    # harm->(c3_c3@carbazol,c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c1o2@co2)|CuPW
+improper_coeff     8    14.891580     0.000000    # harm->(c3_c2n1@ph,c3_c2h1@ph,c3_c2h1@ph,n3_c3@carbazol)|DUT162
+improper_coeff     7    41.005800     0.000000    # harm->(c3_c1o2@co2,c3_c3@carbazol,o2_c1cu1@co2,o2_c1cu1@co2)|CuPW
+improper_coeff     2    12.517560     0.000000    # harm->(c3_c2h1@carbazol,c3_c2h1@carbazol,c3_c2n1@carbazol,h1_c1@carbazol)|DUT162
+improper_coeff     9    12.517560     0.000000    # harm->(c3_c2h1@ph,c3_c2h1@ph,c3_c2n1@ph,h1_c1@ph)|DUT162
+improper_coeff     3    14.891580     0.000000    # harm->(c3_c2n1@carbazol,c3_c2h1@carbazol,c3_c3@carbazol,n3_c3@carbazol)|DUT162
+improper_coeff    11    12.517560    0.000000    # harm->(c3_c3@ph,c3_c2h1@ph,c3_c2h1@ph,c4_c2h2@me)|DUT162
+
+special_bonds lj 0.0 0.0 1.0 coul 1.0 1.0 1.0
+
+# ------------------------ MOF-FF FORCE FIELD END --------------------------
+
+
+thermo_style custom step temp pe etotal press vol cella cellb cellc cellalpha cellbeta cellgamma
+thermo 100
+
+minimize 1e-8 1e-8 1000 1000
+
+reset_timestep 0
+
+variable        ndelta equal 100
+variable        dt          equal 1.0
+variable        pdamp       equal 2000*${dt}
+variable        tdamp       equal 100*${dt}
+variable        temperature equal 300.0
+variable        pressure    equal 0
+timestep        ${dt}
+
+change_box all x scale 1.05 y scale 1.05 z scale 1.05 remap units box
+
+minimize 1e-8 1e-8 1000 1000
+
+reset_timestep 0
+print '***step*** 0'
+
+fix             1 all nvt temp ${temperature} ${temperature} ${tdamp}
+dump positions all atom 2000 step_0.lammpstrj
+variable ra_etotal equal etotal
+variable ra_temp equal temp
+variable ra_press equal press
+variable ra_volume equal vol
+fix runningavgs all ave/time 1 1000 1000 v_ra_etotal v_ra_temp v_ra_press v_ra_volume ave running file running_averages_0.out format %20.10f
+
+
+run 600000
+
+undump positions
+unfix runningavgs
+write_data deform_0.data
+
+# loop over range of volumes
+
+label           loop
+variable        i loop ${ndelta}
+
+change_box all x scale 0.995 y scale 0.995 z scale 0.995 remap units box
+
+reset_timestep 0
+
+print '***step*** ${i}'
+dump positions all atom 2000 step_${i}.lammpstrj
+variable ra_etotal equal etotal
+variable ra_temp equal temp
+variable ra_press equal press
+variable ra_volume equal vol
+fix runningavgs all ave/time 1 1000 1000 v_ra_etotal v_ra_temp v_ra_press v_ra_volume ave running file running_averages_${i}.out format %20.10f
+
+run 600000
+undump positions
+unfix runningavgs
+write_data deform_${i}.data
+
+
+next            i
+jump            SELF loop
+
