@@ -13,4 +13,4 @@ This paper was first posted as a [preprint on ChemRxiv](https://doi.org/10.26434
 
 **Optimized structures**
 
-- The optimized structures obtained by DFT calculations under pressure are found in the folder [`optimized_structures`](optimized_structures/) folder, with subfolder for each metal ion. The structures are in CIF format.
+- The optimized structures obtained by DFT calculations under pressure are found in the [`optimized_structures`](optimized_structures/) folder, with one subfolder for each metal ion. The structures are in CIF format.
