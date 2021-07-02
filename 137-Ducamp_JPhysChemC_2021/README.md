@@ -1,4 +1,4 @@
-Supporting information for: [”Systematic Study of the Thermal Properties of Zeolitic Frameworks”](https://doi.org/xxxxx), M. Ducamp and F.-X. Coudert, _J. Phys. Chem. C_, **2021**, DOI: [xxxxx](https://doi.org/xxxxx)
+Supporting information for: [”Systematic Study of the Thermal Properties of Zeolitic Frameworks”](https://doi.org/10.1021/acs.jpcc.1c03975), M. Ducamp and F.-X. Coudert, _J. Phys. Chem. C_, **2021**, DOI: [10.1021/acs.jpcc.1c03975](https://doi.org/10.1021/acs.jpcc.1c03975)
 
 
 A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.33774/chemrxiv-2021-g285c-v2).
