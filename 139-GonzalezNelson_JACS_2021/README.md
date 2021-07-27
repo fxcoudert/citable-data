@@ -5,3 +5,13 @@ Supporting information for: [”Emergence of Coupled Rotor Dynamics in Metal−O
 **Supporting Information on the publisher website:**
 
 - [MD simulation of supercell NO<sub>2</sub>-MIL-53(Al) at 700 K](MD_video.mp4), in MP4 format.
+
+
+**CP2K input files and structures:**
+
+- [`CP2K/geo_opt/NO2MIL53_111.inp`](CP2K/geo_opt/NO2MIL53_111.inp): input file for geometry optimization of a single unit cell
+- [`CP2K/geo_opt/NO2MIL53_111_optimised.xyz`](CP2K/geo_opt/NO2MIL53_111_optimised.xyz): optimized geometry of a single unit cell
+- [`CP2K/geo_opt/NO2MIL53_211.inp`](CP2K/geo_opt/NO2MIL53_211.inp): input file for geometry optimization of a supercell
+- [`CP2K/geo_opt/NO2MIL53_211_optimised.xyz`](CP2K/geo_opt/NO2MIL53_211_optimised.xyz): optimized geometry of a supercell
+- [`CP2K/MD/NO2MIL53_MD_111.inp`](CP2K/MD/NO2MIL53_MD_111.inp): input file for MD of a single unit cell
+- [`CP2K/MD/NO2MIL53_MD_211.inp`](CP2K/MD/NO2MIL53_MD_211.inp): input file for MD of a supercell
