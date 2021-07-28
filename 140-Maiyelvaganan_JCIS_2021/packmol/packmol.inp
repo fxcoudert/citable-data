@@ -1,0 +1,14 @@
+tolerance 2.1
+output system.xyz
+filetype xyz
+
+structure water.xyz
+  number 54
+  inside cube 0. 0. 0. 10.
+end structure
+
+structure Poss-H.xyz
+  number 1
+  center
+  fixed 5. 5. 5. 0. 0. 0.
+end structure
