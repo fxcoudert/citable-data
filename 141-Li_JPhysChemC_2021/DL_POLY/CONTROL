@@ -1,0 +1,44 @@
+50Na2O-75SiO2-33CdSe
+integration velocity verlet
+
+# System state information
+temperature      300
+pressure         0.0000
+
+# Ensemble specification
+ensemble nve
+
+
+# Startup options
+
+# Simulation controls
+timestep         0.0010
+steps           200000
+equilibration   200000
+multiple step         1
+scale                 1
+collect
+print                10
+stack               100
+stats                10
+trajectory     180000     50       0
+
+# RDF/Z-density controls
+rdf                  10
+print rdf
+
+# Force cut-offs and controls
+primary cutoff   7.6000
+cutoff           7.6000
+delr width       0.5000
+rvdw cutoff      7.6000
+
+# Electrostatics controls
+ewald precision  1.0E-5
+
+
+# Job running time and closedown time
+job time         1.0E10
+close time       100000
+
+finish
