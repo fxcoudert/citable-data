@@ -1,4 +1,4 @@
-Supporting information for: [“Melting of hybrid organic–inorganic perovskites”](https://doi.org/10.1038/s41557-021-00681-7), B. K. Shaw, A. R. Hughes, M. Ducamp, S. Moss, A. Debnath, A. F. Sapnik, M. F. Thorne, L. N. McHugh, A. Pugliese, D. S. Keeble, P. Chater, J. M. Bermudez-Garcia, X. Moya, S. K. Saha, D. A. Keen, F.-X. Coudert, F. Blanc, and T. D. Bennett, _Nature Chem._, **2021**, DOI: [10.1038/s41557-021-00681-7](https://doi.org/10.1038/s41557-021-00681-7)
+Supporting information for: [“Melting of hybrid organic–inorganic perovskites”](https://doi.org/10.1038/s41557-021-00681-7), B. K. Shaw, A. R. Hughes, M. Ducamp, S. Moss, A. Debnath, A. F. Sapnik, M. F. Thorne, L. N. McHugh, A. Pugliese, D. S. Keeble, P. Chater, J. M. Bermudez-Garcia, X. Moya, S. K. Saha, D. A. Keen, F.-X. Coudert, F. Blanc, and T. D. Bennett, _Nature Chem._, **2021**, 13 (8), 778–785, DOI: [10.1038/s41557-021-00681-7](https://doi.org/10.1038/s41557-021-00681-7)
 
 
 A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv.11956599)

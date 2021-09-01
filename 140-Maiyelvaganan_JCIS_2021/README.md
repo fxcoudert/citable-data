@@ -1,4 +1,4 @@
-Supporting information for: [”Identification of a Grotthuss Proton Hopping Mechanism at Protonated Polyhedral Oligomeric Silsesquioxane (POSS)–Water Interface”](https://doi.org/10.1016/j.jcis.2021.07.115), K. R. Maiyelvaganan, S. Kamalakannan, S. Shanmugan, M. Prakash, F.-X. Coudert and M. Hochlaf, _J. Colloid Interface Sci._, **2021**, DOI: [10.1016/j.jcis.2021.07.115](https://doi.org/10.1016/j.jcis.2021.07.115)
+Supporting information for: [”Identification of a Grotthuss Proton Hopping Mechanism at Protonated Polyhedral Oligomeric Silsesquioxane (POSS)–Water Interface”](https://doi.org/10.1016/j.jcis.2021.07.115), K. R. Maiyelvaganan, S. Kamalakannan, S. Shanmugan, M. Prakash, F.-X. Coudert and M. Hochlaf, _J. Colloid Interface Sci._, **2021**, 605, 701–709, DOI: [10.1016/j.jcis.2021.07.115](https://doi.org/10.1016/j.jcis.2021.07.115)
 
 
 
