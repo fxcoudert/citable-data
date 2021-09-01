@@ -1,4 +1,4 @@
-Supporting information for: [“Machine learning approaches for the prediction of materials properties”](https://doi.org/10.1063/5.0018384), S. Chibani and F.-X. Coudert, _APL Mater._, 8, 080701, **2020**, DOI: [10.1063/5.0018384](https://doi.org/10.1063/5.0018384)
+Supporting information for: [“Machine learning approaches for the prediction of materials properties”](https://doi.org/10.1063/5.0018384), S. Chibani and F.-X. Coudert, _APL Mater._, **2020**, 8, 080701, DOI: [10.1063/5.0018384](https://doi.org/10.1063/5.0018384)
 
 
 **Figures**
