@@ -1,4 +1,4 @@
-Supporting information for: [”Emergence of Coupled Rotor Dynamics in Metal−Organic Frameworks via Tuned Steric Interactions”](https://doi.org/10.1021/jacs.1c03630), A. Gonzalez-Nelson, S. Mula, M. Šimėnas, S. Balčiūnas, A. R. Altenhof, C. S. Vojvodin, S. Canossa, J. Banys, R. W. Schurko, F.-X. Coudert and M. A. van der Veen, _J. Am. Chem. Soc._, **2021**, 143 (31), 12053–12062, DOI: [10.1021/jacs.1c03630](https://doi.org/10.1021/jacs.1c03630)
+Supporting information for: [“Emergence of Coupled Rotor Dynamics in Metal−Organic Frameworks via Tuned Steric Interactions”](https://doi.org/10.1021/jacs.1c03630), A. Gonzalez-Nelson, S. Mula, M. Šimėnas, S. Balčiūnas, A. R. Altenhof, C. S. Vojvodin, S. Canossa, J. Banys, R. W. Schurko, F.-X. Coudert and M. A. van der Veen, _J. Am. Chem. Soc._, **2021**, 143 (31), 12053–12062, DOI: [10.1021/jacs.1c03630](https://doi.org/10.1021/jacs.1c03630)
 
 
 
