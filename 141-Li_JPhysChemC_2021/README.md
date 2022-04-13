@@ -1,4 +1,4 @@
-Supporting information for: [“Influence of Glass Composition on the Luminescence Mechanisms of CdSe Quantum-Dot-Doped Glasses”](https://doi.org/10.1021/acs.jpcc.1c04665), W. Li, X. Zhao, C. Liu and F.-X. Coudert, _J. Phys. Chem. C_, **2021**, DOI: [10.1021/jacs.9b12073](https://doi.org/10.1021/acs.jpcc.1c04665)
+Supporting information for: [“Influence of Glass Composition on the Luminescence Mechanisms of CdSe Quantum-Dot-Doped Glasses”](https://doi.org/10.1021/acs.jpcc.1c04665), W. Li, X. Zhao, C. Liu and F.-X. Coudert, _J. Phys. Chem. C_, **2021**, 125 (34), 18916–18926, DOI: [10.1021/jacs.9b12073](https://doi.org/10.1021/acs.jpcc.1c04665)
 
 
 **Paper history**

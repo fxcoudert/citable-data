@@ -1,4 +1,4 @@
-Supporting information for: [“Flexibility of a Metal–Organic Framework Enhances Gas Separation and Enables Quantum Sieving”](https://doi.org/10.1021/acs.chemmater.1c03170), O. T. Qazvini, V.-J. Scott, L. Bondorf, M. Ducamp, M. Hirscher, F.-X. Coudert and S. G. Telfer, _Chem. Mater._, **2021**, DOI: [10.1021/acs.chemmater.1c03170](https://doi.org/10.1021/acs.chemmater.1c03170)
+Supporting information for: [“Flexibility of a Metal–Organic Framework Enhances Gas Separation and Enables Quantum Sieving”](https://doi.org/10.1021/acs.chemmater.1c03170), O. T. Qazvini, V.-J. Scott, L. Bondorf, M. Ducamp, M. Hirscher, F.-X. Coudert and S. G. Telfer, _Chem. Mater._, **2021**, 33 (22), 8886–8894, DOI: [10.1021/acs.chemmater.1c03170](https://doi.org/10.1021/acs.chemmater.1c03170)
 
 
 A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.33774/chemrxiv-2021-g285c-v2).
