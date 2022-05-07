@@ -13,3 +13,12 @@ Calculations were performed with CRYSTAL17, version 1.0.2.
 
 - [`DFT-P6222.d12`](DFT-P6222.d12): CRYSTAL17 input file for minimization of the <em>P</em>622 model.
 - [`DFT-P6_mmm.d12`](DFT-P6_mmm.d12): CRYSTAL17 input file for minimization of the <em>P</em>6/<em>mmm</em> model.
+
+
+**Experimental crystallographic data:**
+
+- [CCDC 2155881](2155881.cif)
+- [CCDC 2155882](2155882.cif)
+- [CCDC 2155883](2155883.cif)
+- [CCDC 2155884](2155884.cif)
+- [CCDC 2155886](2155886.cif)
