@@ -1,4 +1,4 @@
-Supporting information for: [“How Reproducible are Surface Areas Calculated from the BET Equation?”](https://doi.org/10.1002/adma.202201502), J. W. M. Osterrieth et al., _Adv. Mater._, **2022**, DOI: [10.1002/adma.202201502](https://doi.org/10.1002/adma.202201502)
+Supporting information for: [“How Reproducible are Surface Areas Calculated from the BET Equation?”](https://doi.org/10.1002/adma.202201502), J. W. M. Osterrieth et al., _Adv. Mater._, **2022**, 34 (27), 2201502, DOI: [10.1002/adma.202201502](https://doi.org/10.1002/adma.202201502)
 
 
 A first version of this paper was posted as a [preprint on ChemRxiv](https://doi.org/10.26434/chemrxiv-2022-8rhph-v3).

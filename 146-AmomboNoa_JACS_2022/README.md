@@ -1,4 +1,4 @@
-Supporting information for: [“Chiral Lanthanum Metal-Organic Framework with Gated CO<sub>2</sub> Sorption and Concerted Framework Flexibility”](https://doi.org/10.1021/jacs.2c02351), F. M. Amombo Noa, E. Svensson Grape, M. Åhlén, W. E. Reinholdsson, C. R. Göb, F.-X. Coudert, O. Cheung, A. K. Inge and L. Öhrström, _J. Phys. Chem. C_, **2022**, DOI: [10.1021/jacs.2c02351](https://doi.org/10.1021/jacs.2c02351)
+Supporting information for: [“Chiral Lanthanum Metal-Organic Framework with Gated CO<sub>2</sub> Sorption and Concerted Framework Flexibility”](https://doi.org/10.1021/jacs.2c02351), F. M. Amombo Noa, E. Svensson Grape, M. Åhlén, W. E. Reinholdsson, C. R. Göb, F.-X. Coudert, O. Cheung, A. K. Inge and L. Öhrström, _J. Phys. Chem. C_, **2022**, 144 (19), 8725–8733, DOI: [10.1021/jacs.2c02351](https://doi.org/10.1021/jacs.2c02351)
 
 
 **Computed structures:**

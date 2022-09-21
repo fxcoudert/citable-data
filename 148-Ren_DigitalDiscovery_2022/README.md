@@ -1,4 +1,4 @@
-Supporting information for: [“High-throughput computational screening of nanoporous materials in targeted applications”](https://doi.org/10.1039/d2dd00018k), E. Ren, P. Guilbaud and F.-X. Coudert, _Digital Discovery_, **2021**, DOI: [10.1039/d2dd00018k](https://doi.org/10.1039/d2dd00018k)
+Supporting information for: [“High-throughput computational screening of nanoporous materials in targeted applications”](https://doi.org/10.1039/d2dd00018k), E. Ren, P. Guilbaud and F.-X. Coudert, _Digital Discovery_, **2022**, 1 (4), 355–374, DOI: [10.1039/d2dd00018k](https://doi.org/10.1039/d2dd00018k)
 
 
 A first version of this paper was posted as a [preprint on arXiv](https://arxiv.org/abs/2202.09886)

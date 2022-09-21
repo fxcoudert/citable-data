@@ -1,4 +1,4 @@
-Supporting information for: [“Defective Nature of CdSe Quantum Dots Embedded in Inorganic Matrices”](https://doi.org/10.1021/jacs.2c03039), W. Li, K. Li, X. Zhao, C. Liu and F.-X. Coudert, _J. Am. Chem. Soc._, **2022**, DOI: [10.1021/jacs.2c03039](https://doi.org/10.1021/jacs.2c03039)
+Supporting information for: [“Defective Nature of CdSe Quantum Dots Embedded in Inorganic Matrices”](https://doi.org/10.1021/jacs.2c03039), W. Li, K. Li, X. Zhao, C. Liu and F.-X. Coudert, _J. Am. Chem. Soc._, **2022**, 144 (25), 11296–11305, DOI: [10.1021/jacs.2c03039](https://doi.org/10.1021/jacs.2c03039)
 
 
 **Paper history**
