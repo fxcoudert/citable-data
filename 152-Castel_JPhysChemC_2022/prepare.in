@@ -1,0 +1,99 @@
+# Zn/N 
+units           real
+
+## Boundary condition
+dimension       3
+boundary        p p p
+
+
+# Create geometry from a structure file
+atom_style      charge
+read_data       ZIF-4_crystal_singlecell.data
+
+# create a 222 supercell
+replicate 2 2 2
+
+
+# Apply ReaxFF potentials
+# safezone, mincap, minhabonds parameters doubled to avoid segmentation fault (unsufficient memory allocated)
+pair_style      reax/c lmp_control safezone 2.4 mincap 100 minhbonds 50
+pair_coeff      * * ffield_ZnN_2016 C  H  N  Zn
+
+
+# Boost  neibors (default = 2000)
+neighbor        2 bin
+neigh_modify    every 10 delay 0 check no
+
+compute                 reax all pair reax/c
+variable eb             equal c_reax[1]
+variable ea             equal c_reax[2]
+variable elp            equal c_reax[3]
+variable emol           equal c_reax[4]
+variable ev             equal c_reax[5]
+variable epen           equal c_reax[6]
+variable ecoa           equal c_reax[7]
+variable ehb            equal c_reax[8]
+variable et             equal c_reax[9]
+variable eco            equal c_reax[10]
+variable ew             equal c_reax[11]
+variable ep             equal c_reax[12]
+variable efi            equal c_reax[13]
+variable eqeq           equal c_reax[14]
+
+
+# ReaxFF-MD settings
+fix             1  all  qeq/reax  1  0.0  10.0  1e-6  reax/c
+fix             2  all  reax/c/bonds 1000 bonds.reaxc 
+fix             3  all  reax/c/species 50 1 50 species.reaxc element C  H  N  Zn  
+
+# minimization
+min_style       cg
+minimize        5e-7 0 20000 100000
+
+
+# Set-up output
+timestep        0.25
+thermo          10
+thermo_style    custom step time pe ke etotal evdwl ecoul enthalpy temp press vol density cella cellb cellc cellalpha cellbeta cellgamma 
+thermo_modify   format float %15.14g
+
+
+dump            1 all custom 500 dump_vel id type q x y z
+dump            2 all xyz 500 ZIF4.xyz 
+restart         5000 backup1.restart backup2.restart
+dump_modify     1 sort id element C H N Zn
+dump_modify     2 sort id element C H N Zn
+
+# MD run
+reset_timestep  0 
+
+
+log             log.run.1.prepare
+fix             4  all  nvt temp  20  20  10
+run             20000 
+write_data      prepare.nvtlowtdamp_20K.data
+write_restart   prepare.nvtlowtdamp_20K.restart.*
+unfix 4
+
+fix             4  all  nvt temp  20  300  100
+run             224000 
+write_data      prepare.nvtrampup_300K.data
+write_restart   prepare.nvtrampup_300K.restart.*
+unfix 4
+
+fix             4  all  nvt temp  300  300  100
+run             20000 
+write_data      prepare.nvt_300K.data
+write_restart   prepare.nvt_300K.restart.*
+unfix 4
+
+fix             4  all  npt temp  300  300  100 iso 0 0 1000
+run             120000 
+write_data      prepare.npt_300K.data
+write_restart   prepare.npt_300K.restart.*
+unfix 4
+
+
+write_restart   final_restart_file
+
+
