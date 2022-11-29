@@ -1,0 +1,159 @@
+# Zn/N 
+units           real
+
+## Boundary condition
+dimension       3
+boundary        p p p
+
+
+# Read geometry from restart file
+atom_style      charge
+read_restart    final_restart_file
+
+
+
+# Apply ReaxFF potentials
+# safezone, mincap, minhabonds parameters doubled to avoid segmentation fault (unsufficient memory allocated)
+pair_style      reax/c lmp_control safezone 2.4 mincap 100 minhbonds 50
+pair_coeff      * * ffield_ZnN_2016 C  H  N  Zn
+
+
+# Boost  neibors (default = 2000)
+neighbor        2 bin
+neigh_modify    every 10 delay 0 check no
+
+compute                 reax all pair reax/c
+variable eb             equal c_reax[1]
+variable ea             equal c_reax[2]
+variable elp            equal c_reax[3]
+variable emol           equal c_reax[4]
+variable ev             equal c_reax[5]
+variable epen           equal c_reax[6]
+variable ecoa           equal c_reax[7]
+variable ehb            equal c_reax[8]
+variable et             equal c_reax[9]
+variable eco            equal c_reax[10]
+variable ew             equal c_reax[11]
+variable ep             equal c_reax[12]
+variable efi            equal c_reax[13]
+variable eqeq           equal c_reax[14]
+
+
+# ReaxFF-MD settings
+fix             1  all  qeq/reax  1  0.0  10.0  1e-6  reax/c
+fix             2  all  reax/c/bonds 1000 bonds.reaxc 
+fix             3  all  reax/c/species 50 1 50 species.reaxc element C  H  N  Zn  
+
+
+
+# Set-up output
+timestep        0.25
+thermo          10
+thermo_style    custom step time pe ke etotal evdwl ecoul enthalpy temp press vol density cella cellb cellc cellalpha cellbeta cellgamma 
+thermo_modify   format float %15.14g
+
+
+dump            1 all custom 500 dump_vel id type q x y z
+dump            2 all xyz 500 ZIF4.xyz 
+restart         5000 backup1.restart backup2.restart
+dump_modify     1 sort id element C H N Zn
+dump_modify     2 sort id element C H N Zn
+
+# MD run
+
+
+log             log.run.3.quench
+fix             4  all  npt temp  1100  1000  100 iso 0 0 1000
+run             80000 
+write_data      quench.ramp_1000K.data
+write_restart   quench.ramp_1000K.restart.*
+unfix 4
+
+fix             4  all  npt temp  1000  1000  100 iso 0 0 1000
+run             80000 
+write_data      quench.plateau_1000K.data
+write_restart   quench.plateau_1000K.restart.*
+unfix 4
+
+fix             4  all  npt temp  1000  900  100 iso 0 0 1000
+run             80000 
+write_data      quench.ramp_900K.data
+write_restart   quench.ramp_900K.restart.*
+unfix 4
+
+fix             4  all  npt temp  900  900  100 iso 0 0 1000
+run             80000 
+write_data      quench.plateau_900K.data
+write_restart   quench.plateau_900K.restart.*
+unfix 4
+
+fix             4  all  npt temp  900  800  100 iso 0 0 1000
+run             80000 
+write_data      quench.ramp_800K.data
+write_restart   quench.ramp_800K.restart.*
+unfix 4
+
+fix             4  all  npt temp  800  800  100 iso 0 0 1000
+run             80000 
+write_data      quench.plateau_800K.data
+write_restart   quench.plateau_800K.restart.*
+unfix 4
+
+fix             4  all  npt temp  800  700  100 iso 0 0 1000
+run             80000 
+write_data      quench.ramp_700K.data
+write_restart   quench.ramp_700K.restart.*
+unfix 4
+
+fix             4  all  npt temp  700  700  100 iso 0 0 1000
+run             80000 
+write_data      quench.plateau_700K.data
+write_restart   quench.plateau_700K.restart.*
+unfix 4
+
+fix             4  all  npt temp  700  600  100 iso 0 0 1000
+run             80000 
+write_data      quench.ramp_600K.data
+write_restart   quench.ramp_600K.restart.*
+unfix 4
+
+fix             4  all  npt temp  600  600  100 iso 0 0 1000
+run             80000 
+write_data      quench.plateau_600K.data
+write_restart   quench.plateau_600K.restart.*
+unfix 4
+
+fix             4  all  npt temp  600  500  100 iso 0 0 1000
+run             80000 
+write_data      quench.ramp_500K.data
+write_restart   quench.ramp_500K.restart.*
+unfix 4
+
+fix             4  all  npt temp  500  500  100 iso 0 0 1000
+run             80000 
+write_data      quench.plateau_500K.data
+write_restart   quench.plateau_500K.restart.*
+unfix 4
+
+fix             4  all  npt temp  500  400  100 iso 0 0 1000
+run             80000 
+write_data      quench.ramp_400K.data
+write_restart   quench.ramp_400K.restart.*
+unfix 4
+
+fix             4  all  npt temp  400  400  100 iso 0 0 1000
+run             80000 
+write_data      quench.plateau_400K.data
+write_restart   quench.plateau_400K.restart.*
+unfix 4
+
+fix             4  all  npt temp  400  300  100 iso 0 0 1000
+run             80000 
+write_data      quench.ramp_300K.data
+write_restart   quench.ramp_300K.restart.*
+unfix 4
+
+
+write_restart   final_restart_file
+
+
