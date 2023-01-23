@@ -9,6 +9,8 @@ A first version of this paper was posted as a [preprint on chemRxiv](https://doi
 
 The RAESS code can be found in the following GitHub repository: [RAESS](https://github.com/coudertlab/RAESS)
 
+You can either use it as is or integrate it into a screening process (the way we use it is described in the final section)
+
 
 **Scripts**
 
@@ -22,25 +24,46 @@ The RAESS code can be found in the following GitHub repository: [RAESS](https://
 
 **Screening_Data**
 
-Figure 7 can be obtained using the data in `Performance_coremof`.
+- Figure 1 can be obtained using `voronoi_output.csv` and `output_widom_100k.csv` (`2019-11-01-ASR-internal_14142.csv` for LCD labels). The python script `analyse_scatterplot.py` does it.
 
-Figure S12 can be reobtained using the data in `Screening_Data/ToBaCCo`.
+- Figure 3's data are given in the ESI
 
+- Figure 4 can be obtained using `lambda.py` in `coremof`
+
+- Figure 6 can be obtained using `mu.py` in `coremof`
+
+- Figure 7 can be obtained using the Python script `analyse_final.py` in `coremof`
+
+- Figure S12 can be reobtained using the data in `Screening_Data/ToBaCCo`
+
+- Figure S1-3 and S5 can be obtained using `analyse_scatterplot.py`
+
+**Database**
+
+Contains the symmetry aware structures of CoREMOF 2019 (ASR). For the brute data go on zenodo [coremof2019](https://zenodo.org/record/3370144#.Y85ewafMJH4). 
 
 **Tutorial**
 
-Let's say you want to run a raess screening: 
+Let's say you want to run a RAESS screening: 
 
 1. Download [Raspa2](http://www.zeoplusplus.org/download.html and compile it according to the instructions. Remember the path as `$RASPA_DIR`
 
 2. Download a database of cif files and put them in `$RASPA_DIR/share/raspa/structures/cif/`
+
+A symmetry-specified version of CoREMOF 2019 (ASR) has been calculated using the `-t findsym` tag of [material-screening](https://github.com/eren125/material-screening) and can be used this way: 
+
+```
+rm $RASPA_DIR/share/raspa/structures/cif/*
+tar xvf coremof_sym.tar.gz
+cp coremof_sym/* $RASPA_DIR/share/raspa/structures/cif/.
+```
 
 3. Download and compile [RAESS](https://github.com/coudertlab/RAESS) according to the instructions. Remember the path as `$RAESS_DIR`. 
 ```
 export PATH=$PATH:$RAESS_DIR
 ```
 
-3. Download and compile [GLOST](https://github.com/cea-hpc/glost) according to the instructions. Remember the path as `$GLOST_DIR`
+4. Download and compile [GLOST](https://github.com/cea-hpc/glost) according to the instructions. Remember the path as `$GLOST_DIR`
 
 5. Final instructions for [material-screening](https://github.com/eren125/material-screening) usage.
 
@@ -64,4 +87,4 @@ export MATSCREEN=$WORK_PATH/material-screening/
 bash job_raess.sh
 mpirun -np $nprocs $GLOST_DIR/glost_launch glost.list &>> glost.log
 ```
-$nprocs is the number of processors you want to allocate to the tasks
+`$nprocs` is the number of processors you want to allocate to the tasks
