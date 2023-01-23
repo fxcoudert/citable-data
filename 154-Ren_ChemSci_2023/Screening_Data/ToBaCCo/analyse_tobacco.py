@@ -55,7 +55,8 @@ def pairplot(x, y, x_label, y_label,left=-70,right=160,bottom=-70,top=160, xscal
     ax = plt.gca()
     ax.set_aspect('equal', adjustable='box')
     ax.plot([0, 1], [0, 1], transform=ax.transAxes, linestyle="--", color = "gray")
-    plt.savefig("%s_vs_%s_%s_tobacco.jpeg"%(x,y,suff),dpi=280)
+    # plt.savefig("%s_vs_%s_%s_tobacco.jpeg"%(x,y,suff),dpi=280)
+    plt.show()
 
 x = 'H_Xe_0_widom'
 x_label = r"Reference Xe adsorption enthalpy $\Delta_{ads}H_0^{Xe}$ (Widom insertion)"+'\n'+"ToBaCCo"

@@ -34,6 +34,8 @@ You can either use it as is or integrate it into a screening process (the way we
 
 - Figure 7 can be obtained using the Python script `analyse_final.py` in `coremof`
 
+![Alt text](Screening_data/coremof/Sum-up.png?raw=true "Comparison of the RMSE to the reference Widom insertion and the average computation time for diﬀerent types of enthalpy calculation methods. The surface sampling calculations were all performed with 2k sampling points on each sphere and the Widom simulations were performed using 12k cycles.")
+
 - Figure S12 can be reobtained using the data in `Screening_Data/ToBaCCo`
 
 - Figure S1-3 and S5 can be obtained using `analyse_scatterplot.py`
