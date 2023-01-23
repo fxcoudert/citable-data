@@ -100,4 +100,4 @@ export MATSCREEN=$WORK_PATH/material-screening/
 bash job_raess.sh
 parallel -j $nprocs < glost.list
 ```
-It is possible to run it with parallel on several nodes but it needs more configurations (work in progress)
+It is also possible to run it with `parallel` on several nodes: https://www.msi.umn.edu/support/faq/how-can-i-use-gnu-parallel-run-lot-commands-parallel
