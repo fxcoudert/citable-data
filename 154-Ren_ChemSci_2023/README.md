@@ -90,3 +90,14 @@ bash job_raess.sh
 mpirun -np $nprocs $GLOST_DIR/glost_launch glost.list &>> glost.log
 ```
 `$nprocs` is the number of processors you want to allocate to the tasks
+Glost works easily on several nodes in a HPC cluster of machines.
+
+Glost uses one cpu for job distribution, which is not optimal if `$nprocs` is small. A better alternative is to simply use `Gnu-parallel` with the same `glost.list` we generated (works fine on a single node):
+
+```
+cd screening_test
+export MATSCREEN=$WORK_PATH/material-screening/
+bash job_raess.sh
+parallel -j $nprocs < glost.list
+```
+It is possible to run it with parallel on several nodes but it needs more configurations (work in progress)
