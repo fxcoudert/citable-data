@@ -44,7 +44,7 @@ You can either use it as is or integrate it into a screening process (the way we
 
 - `Database/coremof_sym.tar.gz` contains the symmetry aware structures of CoREMOF 2019 (ASR). For the raw data go on zenodo [coremof2019](https://zenodo.org/record/3370144#.Y85ewafMJH4). 
 
-- `Database/tobacco_sym_sample.tar.gz` contains a sample of 1000 symmetry aware structures of the ToBaCCo database. For the raw data go on the MOFXDB of the Northwestern University [tobacco](https://mof.tech.northwestern.edu/databases). 
+- `Database/tobacco_sym_sample.tar.gz` contains a sample of 1000 symmetry aware structures of the ToBaCCo database. For the raw data go on the MOFXDB of the Northwestern University [tobacco](https://mof.tech.northwestern.edu/databases). The database was designed by Colon et al., see their paper [Cryst. Growth Des. 2017, 17, 11, 5801–5810](https://pubs.acs.org/doi/10.1021/acs.cgd.7b00848).
 
 - For the data of the amorphous database we considered please refer to the paper [amorphous](https://pubs.acs.org/doi/10.1021/acs.chemmater.0c03057), where the cif files are provided in the supplementary informations. Obviously symmetries can't be determined for these structures and we did not manage to screen it on our lab computers using the `Raspa2` software probably due to memory issues (feel free to test it with a more efficient set-up if these materials interest you). 
 
