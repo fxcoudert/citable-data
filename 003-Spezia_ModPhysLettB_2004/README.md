@@ -1,4 +1,4 @@
-Supporting information for: [“Theoretical Study of Neutral Dipolar Atom in Water: Structure, Spectroscopy and Formation of an Excitonic State”](https://doi.org/10.1142/S0217984904007827), R. Spezia, F.-X. Coudert and A. Boutin, _Mod. Phys. Lett. B_, **2004**, 18 (26-27), 1327–1345, DOI: [10.1016/j.cplett.2006.07.023](https://doi.org/10.1142/S0217984904007827)
+Supporting information for: [“Theoretical Study of Neutral Dipolar Atom in Water: Structure, Spectroscopy and Formation of an Excitonic State”](https://doi.org/10.1142/S0217984904007827), R. Spezia, F.-X. Coudert and A. Boutin, _Mod. Phys. Lett. B_, **2004**, 18 (26-27), 1327–1345, DOI: [10.1142/S0217984904007827](https://doi.org/10.1142/S0217984904007827)
 
 **Source and data for figures:**
 
