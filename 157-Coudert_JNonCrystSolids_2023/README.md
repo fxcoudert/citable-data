@@ -1,4 +1,4 @@
-Supporting information for: [“Failure to Reproduce the Results of "A new transferable interatomic potential for molecular dynamics simulations of borosilicate glasses"”](https://doi.org/10.48550/arXiv.2305.14958), F.-X. Coudert, preprint on arXiv, **2023**, DOI: [10.48550/arXiv.2305.14958](https://doi.org/10.48550/arXiv.2305.14958)
+Supporting information for: [“Failure to Reproduce the Results of "A new transferable interatomic potential for molecular dynamics simulations of borosilicate glasses"”](https://doi.org/10.1016/j.jnoncrysol.2023.122423), F.-X. Coudert, _J. Non-Cryst. Solids_, **2023**, 615, 122423, DOI: [10.1016/j.jnoncrysol.2023.122423](https://doi.org/10.1016/j.jnoncrysol.2023.122423)
 
 
 **Data**
