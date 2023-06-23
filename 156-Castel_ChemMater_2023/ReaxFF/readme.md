@@ -9,4 +9,18 @@ More details in the Supporting information for[“Challenges in Molecular Dynami
 The MD runs should be launched sequentially: start 002 after 001 is over, etc.
 At each volume_change, deform should be launched before equilibrate.
 
+## Finite stress difference
+
+The MD runs should be launched sequentially: start 002 after 001 is over, etc.
+
+Input files are for an isotropic cell (keyword `iso`).
+For a flexible cell, replace `iso` with `tri` in the following line:
+```
+fix    4  all  npt temp  300  300  100 iso 0 0 1000
+```
+
+## Strain-fluctuation
+
+One very long run (5 ns), which may be split into a series of shorter ones sequentially restarted
+
 <!-- Add link to amof workflow when ReaxFF included -->
