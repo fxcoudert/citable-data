@@ -16,21 +16,13 @@ For each method and MD scheme used in the article, the input files are provided 
 
 The file structure is `MD-scheme/method` where `MD-scheme` can be `AIMD`, `ReaxFF` and `MOF-FF` and `method` can be `finite strain difference`, `finite stress difference` or `strain-fluctuation`.
 
-**Glass structures**
+**Structures**
 
-TODO
+A number of structural files of both crystals and glasses are present in the [`Structures`](Structures) folder.
+They are provided in several formats and can be used to adapt the MD input files provided.
 
----
-Below: not updated yet
-
-**ReaxFF molecular dynamics input files ([Implemented in LAMMPS](https://docs.lammps.org/pair_reaxff.html)):**
-
-- LAMMPS input files of the 4 steps of the melt-quenching simulation outlined in the paper:
-  - [`prepare.in`](prepare.in).
-  - [`melt.in`](melt.in).
-  - [`quench.in`](quench.in). 
-  - [`equilibrate.in`](equilibrate.in). 
-- A single cell of the ZIF-4 crystal formatted in the  [`charge` atom_style](https://docs.lammps.org/atom_style.html): [`ZIF-4_crystal_singlecell.data`](ZIF-4_crystal_singlecell.data).
-- The ReaxFF potential file [`ffield_ZnN_2016`](`ffield_ZnN_2016`) and control file [`lmp_control`](`ffield_ZnN_2016`), made available on this repository courtesy of [Prof. Adri van Duin](https://www.engr.psu.edu/adri/Home.aspx). Associated training set files can be obtained upon request through the Penn State Materials Computation Center website using [this contact form](https://www.mri.psu.edu/materials-computation-center/connect-mcc). 
-
-The original paper of this force field: [“Enabling Computational Design of ZIFs Using ReaxFF”](https://doi.org/10.1021/acs.jpcb.8b08094 ), Yongjian Yang, Yun Kyung Shin, Shichun Li, Thomas D. Bennett, Adri C. T. van Duin, and John C. Mauro, _J. Phys. Chem. C_, **2018**, 122 (41), 9616-9624, DOI: [10.1021/acs.jpcb.8b08094 ](https://doi.org/10.1021/acs.jpcb.8b08094 )
+This folder contains:
+- Ab initio glasses from [“Structure of Metal–Organic Framework Glasses by Ab Initio Molecular Dynamics”](https://doi.org/10.1021/acs.chemmater.0c02950), R. Gaillac, P. Pullumbi, and F.-X. Coudert, _Chem. Mater._, **2020**, 32, 8004–8011, already available as `cif` files [here](129-Gaillac_ChemMater_2020/)
+- An RMC glass from [“Liquid metal-organic frameworks”](https://doi.org/10.1038/nmat4998), R. Gaillac, P. Pullumbi, K. A. Beyer, K. W. Chapman, D. A. Keen, T. D. Bennett, and F.-X. Coudert, _Nature Mater._, **2017**, 16, 1149–1154
+- Different supercells of the crystal prepared for MOF-FF
+- A ReaxFF glass generated in [“Challenges in Molecular Dynamics of Amorphous ZIFs Using Reactive Force Fields”](https://doi.org/10.1021/acs.jpcc.2c06305), N. Castel and F.-X. Coudert, _J. Phys. Chem. C_, **2022**, 126 (45), 19532–19541
