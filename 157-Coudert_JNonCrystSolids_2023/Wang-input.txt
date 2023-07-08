@@ -1,0 +1,68 @@
+units real
+dimension 3
+processors * * *
+boundary p p p
+
+# read data
+atom_style charge
+read_data NCBS.dat
+
+# atom charges
+set type 1 charge 0.4725 # Na
+set type 2 charge 1.4175 # B
+set type 3 charge 1.8900 # Si
+set type 4 charge -0.945 # O
+set type 5 charge 0.9450 # Ca
+
+# inter-atomic potential
+pair_style buck/coul/long 11.0 11.0
+pair_coeff * * 0.00000000 1.000 0.00000000 # others
+pair_coeff 1 4 2774279.99 0.170 0.00000000 # Na-O
+pair_coeff 2 2 11170.5294 0.350 0.00000000 # B-B
+pair_coeff 2 3 7787.54700 0.290 0.00000000 # B-Si
+pair_coeff 2 4 4772206.15 0.124 807.162989 # B-O
+pair_coeff 3 4 1160089.75 0.161 1067.65535 # Si-O
+pair_coeff 4 4 208071.224 0.265 1962.27772 # O-O
+pair_coeff 4 5 3589789.46 0.178 974.533939 # O-Ca
+
+kspace_style pppm 1.0e-5
+neighbor 2.0 bin
+neigh_modify every 1 check yes
+timestep 1.0
+
+# outputs
+thermos 1000
+thermo_style custom step temp pe press lx density
+
+# mixing
+minimize 1.0e-8 1.0e-8 10000 10000
+velocity all create 3000.0 5812775 dist gaussian
+fix 1 all nvt temp 3000 3000 100
+run 10000
+unfix 1
+
+fix 1 all npt temp 3000 3000 100 iso 0 0 1000
+run 100000
+unfix 1
+
+write_restart liquid.rest
+
+# cooling
+fix 1 all npt temp 3000 300 100 iso 0 0 1000
+run 2700000
+unfix 1
+
+# final relaxation
+fix 1 all npt temp 300 300 100 iso 0.0 0.0 1000
+run 100000
+unfix 1
+
+# statistical average
+dump 1 all custom 1000 md.lammpstrj id type x y z
+fix 1 all nvt temp 300 300 100
+run 100000
+unfix 1
+undump 1
+
+write_restart NCBS300K.rest
+write_data NCBS300K.dat
