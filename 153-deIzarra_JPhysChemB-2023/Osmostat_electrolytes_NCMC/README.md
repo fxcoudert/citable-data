@@ -1,0 +1,9 @@
+Supplemental data for: [“Alchemical Osmostat for Monte Carlo Simulation: Sampling Aqueous Electrolyte Solution in Open Systems”](https://pubs.acs.org/doi/abs/10.1021/acs.jpcb.2c07902), A. De Izarra, F.-X. Coudert, A. H. Fuchs and A. Boutin, _J. Phys. Chem. B_, **2023**, XXX (XX), XXXXX–XXXXX, DOI: [https://doi.org/10.1021/acs.jpcb.2c07902](https://doi.org/10.1021/acs.jpcb.2c07902)
+
+**In "Osmostat_electrolytes_NCMC":**
+
+- In "RASPA_osmostat" is provided the updated files of the source code of RASPA where the NCMC move is implemented for performing MC simulations in the osmotic ensemble. In order to install the patch, copy the files in RASPA_osmostat/src in RASPA2-master/src after having downloaded the unmodified and extracted the RASPA2-master version from https://github.com/iRASPA/RASPA2.
+- In "MC_computation_chemical_potential_ion_exchange_CsCl", input files are given to perform calculation of the alchemical work and chemical potential for CsCl electrolyte using the above RASPA patch.
+- In "MC_computation_chemical_potential_ion_exchange_CsCl", input files are given to perform MC simulations in the osmostic ensemble where CsCl electrolytes are inserted in a system initially constituted of pure TIP4P water using the above RASPA patch.
+
+

@@ -1,0 +1,3 @@
+osmostat: 2*H20 -> CsCl: Number of pseudo widom attemps: 	3001. 
+Average Protocol Work :							-542.638 +/- 0.305779 kJ/mol.
+Chemical potential :							-567.756 +/- 0.724602 kJ/mol.
