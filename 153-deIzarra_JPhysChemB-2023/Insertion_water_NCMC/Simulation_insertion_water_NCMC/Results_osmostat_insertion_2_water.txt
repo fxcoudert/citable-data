@@ -1,0 +1,4 @@
+osmostat: vacuum -> 2*H20 (300K): Number of pseudo widom attemps: 	3001. 
+Average Alchemical Work :							-48.7668 +/- 0.231759 kJ/mol.
+Chemical potential (divided by 2 for one water) :							-26.5046 +/- 0.24485 kJ/mol.
+Chemical potential (divided by 2 for one water) :							-6.33476 +/- 0.0585206 kcal/mol.
