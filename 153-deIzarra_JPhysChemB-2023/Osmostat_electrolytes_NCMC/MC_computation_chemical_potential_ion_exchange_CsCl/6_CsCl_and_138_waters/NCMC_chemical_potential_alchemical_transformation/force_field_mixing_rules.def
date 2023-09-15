@@ -1,0 +1,14 @@
+# general rule for shifted vs truncated
+truncated
+# general rule tailcorrections
+yes  
+# number of defined interactions
+5
+# type interaction
+Cl             lennard-jones        50.321      4.401        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+Cs             lennard-jones        50.321      3.883        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+Hw             none
+Ow             lennard-jones   	    78.000     3.1536
+Mw		       none
+# general mixing rule for Lennard-Jones
+Lorentz-Berthelot

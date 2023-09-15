@@ -1,0 +1,50 @@
+SimulationType                MonteCarlo
+NumberOfCycles                10000
+NumberOfInitializationCycles  0
+PrintEvery                    1
+Movies yes
+WriteMoviesEvery 			  1
+
+TimeStep				  0.001
+
+RestartFile					  yes
+
+ContinueAfterCrash yes
+WriteBinaryRestartFileEvery   1
+
+ChargeMethod                  Ewald
+Forcefield                    Local
+CutOffVDW                     8.0
+CutOffCoulomb                 8.0
+EwaldPrecision                1e-6
+
+RandomSeed 1663764743207709717
+
+Box 0
+BoxLengths  16.64641  16.64641  16.64641
+ExternalTemperature 300.0
+ExternalPressure 100000
+
+AlchemicalTransformation 0 1 2
+ProbabilityAlchemicalTransformationMove 0.001
+LambdaStepsAlchemicalTransformationMove 200
+RelaxationStepsAlchemicalTransformationMove 200
+ChemicalPotentialAlchemical -567.756 
+
+
+
+Component 0 MoleculeName             Tip4p
+            MoleculeDefinition       Local
+            TranslationProbability   1.0
+            RotationProbability      1.0
+            CreateNumberOfMolecules  0
+
+Component 1 MoleculeName             Cs
+            MoleculeDefinition       Local
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  0
+
+Component 2 MoleculeName             Cl
+            MoleculeDefinition       Local
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  0

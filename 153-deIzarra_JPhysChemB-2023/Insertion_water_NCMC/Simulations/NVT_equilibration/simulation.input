@@ -1,0 +1,40 @@
+SimulationType                MolecularDynamics
+NumberOfCycles                25000
+NumberOfInitializationCycles  1000
+NumberOfEquilibrationCycles   5000
+PrintEvery                    10
+
+Movies yes
+WriteMoviesEvery 			  100
+
+RestartFile					  no
+
+
+Ensemble                      NVT
+
+ChargeMethod                  Ewald
+Forcefield                    Local
+CutOffVDW                     8.0
+CutOffCoulomb                 8.0
+EwaldPrecision                1e-6
+
+Box 0
+BoxLengths  16.494043  16.494043  16.494043
+ExternalTemperature 300.0
+ExternalPressure 100000
+
+Component 0 MoleculeName             Tip4p
+            MoleculeDefinition       Local
+            TranslationProbability   1.0
+            RotationProbability      1.0
+            CreateNumberOfMolecules  148
+
+Component 1 MoleculeName             cation
+            MoleculeDefinition       Local
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  1
+
+Component 2 MoleculeName             anion
+            MoleculeDefinition       Local
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  1
