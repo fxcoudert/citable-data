@@ -1,0 +1,210 @@
+@SET RESTART 1
+
+#@SET LIBDIR /workgpfs/rech/vjh/rvjh001/cp2k/files
+@SET LIBDIR /ccc/cont003/home/gen2309/carofant/src/cp2k/files
+@SET SYSTEM Li2CO3-K2CO3
+#################################################
+&FORCE_EVAL
+
+  METHOD QuickStep
+
+  STRESS_TENSOR DIAGONAL_ANALYTICAL
+
+  &DFT
+    BASIS_SET_FILE_NAME ${LIBDIR}/BASIS_MOLOPT
+    POTENTIAL_FILE_NAME ${LIBDIR}/GTH_POTENTIALS
+
+    &MGRID
+      CUTOFF 700
+      NGRIDS 6
+      REL_CUTOFF 40
+    &END MGRID
+    &QS
+      EPS_DEFAULT 1.0E-12
+      MAP_CONSISTENT TRUE
+      EXTRAPOLATION ASPC
+      EXTRAPOLATION_ORDER 3
+    &END QS
+    &SCF
+      MAX_SCF 20
+      SCF_GUESS RESTART
+      EPS_SCF 3.0E-7
+      &OUTER_SCF
+        EPS_SCF 3.0E-7
+        MAX_SCF 1000
+      &END OUTER_SCF
+      &OT ON
+        PRECONDITIONER FULL_SINGLE_INVERSE
+#        PRECONDITIONER FULL_ALL
+#        ENERGY_GAP  0.010
+
+#        MINIMIZER CG
+        MINIMIZER DIIS
+        N_DIIS 6
+#        SAFE_DIIS OFF
+#        ALGORITHM IRAC
+#        LINESEARCH 3PNT
+      &END OT
+      &PRINT
+        &RESTART_HISTORY
+          BACKUP_COPIES 0
+        &END RESTART_HISTORY
+      &END PRINT
+    &END SCF
+
+    &XC
+      &XC_FUNCTIONAL BLYP
+      &END XC_FUNCTIONAL
+      &vdW_POTENTIAL
+         DISPERSION_FUNCTIONAL PAIR_POTENTIAL
+         &PAIR_POTENTIAL
+#            TYPE GRIMME
+            PARAMETER_FILE_NAME ${LIBDIR}/dftd3.dat
+            TYPE DFTD3
+            REFERENCE_FUNCTIONAL BLYP
+            R_CUTOFF 40.0
+         &END PAIR_POTENTIAL
+      &END vdW_POTENTIAL
+
+      &XC_GRID
+        XC_DERIV SPLINE3
+      &END XC_GRID
+
+    &END XC
+
+    #&PRINT
+    #  &MO_CUBES
+    #    &EACH
+    #      MD 1000
+    #    &END EACH
+    #    NHOMO        2
+    #    NLUMO        3
+    #    WRITE_CUBE   F
+    #  &END MO_CUBES
+    #&END PRINT
+
+  &END DFT
+
+  &SUBSYS
+
+    &CELL
+      ABC [angstrom] 22.23 22.23 22.23
+    &END CELL
+
+    &TOPOLOGY
+      COORD_FILE_FORMAT xyz
+      #COORD_FILE_NAME ./Li2K2CO3-monox-1000.xyz
+      COORD_FILE_NAME ./Li2K2CO3-monox-1000-first.xyz
+      CONNECTIVITY OFF
+    &END TOPOLOGY
+
+    &KIND C
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q4 
+      POTENTIAL GTH-BLYP-q4 
+    &END KIND
+    &KIND O
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q6
+      POTENTIAL GTH-BLYP-q6
+    &END KIND
+    &KIND Li
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q3 
+      POTENTIAL GTH-BLYP-q3
+    &END KIND
+    &KIND K
+      BASIS_SET DZVP-MOLOPT-SR-GTH-q9 
+      POTENTIAL GTH-BLYP-q9
+    &END KIND
+
+  &END SUBSYS
+
+&END FORCE_EVAL
+
+############################################################
+&GLOBAL
+  PREFERRED_DIAG_LIBRARY ELPA
+  PROJECT ${SYSTEM}
+  #PREFERRED_DIAG_LIBRARY ELPA
+  #ELPA_KERNEL BGQ
+  RUN_TYPE MD
+  PRINT_LEVEL LOW
+   WALLTIME 72000
+   #WALLTIME 43170
+# 19:55
+&END GLOBAL
+###########################################################
+
+&MOTION
+
+  &MD
+    ENSEMBLE NVT
+    STEPS 100000
+    TIMESTEP 0.5
+    TEMPERATURE 1000
+    &THERMOSTAT
+#      TYPE NOSE
+      TYPE CSVR
+      &CSVR
+        TIMECON [fs] 1000
+      &END CSVR
+      &NOSE
+        LENGTH 4
+        YOSHIDA 9
+        TIMECON [fs] 500.0
+        MULTIPLE_TIME_STEPS 2
+      &END NOSE
+    &END THERMOSTAT
+  &END MD
+
+  &PRINT
+#    &CELL  SILENT
+#      FILENAME =${SYSTEM}.cell
+#      &EACH
+#        MD 1
+#      &END EACH
+#    &END CELL
+    &STRESS  ON
+      FILENAME =${SYSTEM}.stress
+      &EACH
+       MD 1
+      &END EACH
+    &END STRESS
+    &TRAJECTORY  ON
+      FILENAME =${SYSTEM}.xyz
+      &EACH
+        MD 1
+      &END EACH
+    &END TRAJECTORY
+    &VELOCITIES  ON
+      FILENAME =${SYSTEM}.vel
+      &EACH
+       MD 1
+      &END EACH
+    &END VELOCITIES
+    &FORCES  ON
+      FILENAME =${SYSTEM}.force
+      &EACH
+       MD 1
+      &END EACH
+    &END FORCES
+    &RESTART
+      FILENAME =${SYSTEM}.restart
+      &EACH
+        MD 1
+      &END EACH
+    &END RESTART
+  &END PRINT
+
+&END MOTION
+########################################################
+@if ${RESTART} == 1
+&EXT_RESTART
+  RESTART_FILE_NAME ${SYSTEM}.restart
+  RESTART_COUNTERS    T
+  RESTART_AVERAGES    T
+  RESTART_POS         T
+  RESTART_VEL         T
+  RESTART_THERMOSTAT  T
+##  RESTART_BAROSTAT    T
+##  RESTART_CELL        T
+&END EXT_RESTART
+@endif
