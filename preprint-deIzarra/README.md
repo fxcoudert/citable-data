@@ -7,6 +7,9 @@ In the [`RASPA2/`](RASPA2/) directory:
 - The content inside `forcefield/` must be copied in `simulations/share/raspa/forcefield`.
 - The content inside `molecules/` must be copied in `simulations/share/raspa/molecules`.
 
+Simulations were ran with the two modified versions of the RASPA2 code, previously published by our group, and available at https://github.com/fxcoudert/citable-data/tree/master/153-deIzarra_JPhysChemB-2023
+For more details on the methodology, see [“Alchemical Osmostat for Monte Carlo Simulation: Sampling Aqueous Electrolyte Solution in Open Systems”](https://pubs.acs.org/doi/abs/10.1021/acs.jpcb.2c07902), A. De Izarra, F.-X. Coudert, A. H. Fuchs and A. Boutin, _J. Phys. Chem. B_, **2023**, 127 (3), 766–776, DOI: [https://doi.org/10.1021/acs.jpcb.2c07902](https://doi.org/10.1021/acs.jpcb.2c07902)
+
 
 **Simulation input files:**
 
