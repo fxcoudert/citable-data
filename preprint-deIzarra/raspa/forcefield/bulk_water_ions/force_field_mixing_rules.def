@@ -1,0 +1,27 @@
+# general rule for shifted vs truncated
+truncated
+# general rule tailcorrections
+yes
+# number of defined interactions
+17
+# type interaction
+Hw             none
+Ow             lennard-jones        78.000     3.1536
+Mw                     none
+Cl             lennard-jones        50.321      4.401        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+Cs             lennard-jones        50.321      3.883        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+Br             lennard-jones        50.321      4.539        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+K              lennard-jones        50.321      3.331        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+F              lennard-jones        90.594      3.117        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+I              lennard-jones        50.321      5.167        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+Li             lennard-jones        83.035      1.505        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+Na             lennard-jones        50.321      2.583        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+Rb             lennard-jones        50.321      3.527        // https://aip.scitation.org/doi/pdf/10.1063/1.1570405
+vi                         lennard-jones         0.000      0.000
+Ba             lennard-jones         8.901      3.820        // https://aip.scitation.org/doi/abs/10.1063/1.4772808
+Ca             lennard-jones       113.062      2.410        // https://aip.scitation.org/doi/abs/10.1063/1.4772808
+Mg             lennard-jones        70.964      1.630        // https://aip.scitation.org/doi/abs/10.1063/1.4772808
+Sr             lennard-jones        30.070      3.100        // https://aip.scitation.org/doi/abs/10.1063/1.4772808
+# general mixing rule for Lennard-Jones
+Lorentz-Berthelot
+
