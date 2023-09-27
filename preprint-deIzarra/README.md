@@ -10,6 +10,8 @@ In the [`RASPA2/`](RASPA2/) directory:
 Simulations were ran with the two modified versions of the RASPA2 code, previously published by our group, and available at https://github.com/fxcoudert/citable-data/tree/master/153-deIzarra_JPhysChemB-2023
 For more details on the methodology, see [“Alchemical Osmostat for Monte Carlo Simulation: Sampling Aqueous Electrolyte Solution in Open Systems”](https://pubs.acs.org/doi/abs/10.1021/acs.jpcb.2c07902), A. De Izarra, F.-X. Coudert, A. H. Fuchs and A. Boutin, _J. Phys. Chem. B_, **2023**, 127 (3), 766–776, DOI: [https://doi.org/10.1021/acs.jpcb.2c07902](https://doi.org/10.1021/acs.jpcb.2c07902)
 
+Finally, in `RASPA2/RASPA_insertion_water_NCMC/` we provide source files for a modified version of RASPA, where the NCMC move is adapted to insert a single water molecule in electrolyte solutions (instead of two water molecules as in our work linked above. In order to install this modified version, copy the files in the `src/` directory of RASPA2, which can be downloaded from https://github.com/iRASPA/RASPA2. These modifications are also available as a patch file: [`RASPA_insertion_water_NCMC.patch`](RASPA2/RASPA_insertion_water_NCMC.patch)
+
 
 **Simulation input files:**
 

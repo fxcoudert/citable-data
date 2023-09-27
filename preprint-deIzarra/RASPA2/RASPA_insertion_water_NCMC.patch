@@ -1,0 +1,3675 @@
+diff --git a/src/cbmc.c b/src/cbmc.c
+index e8e53b4..64d0c2d 100644
+--- a/src/cbmc.c
++++ b/src/cbmc.c
+@@ -62,23 +62,25 @@ static REAL RosenbluthOld;             // the old Rosenbluth weight (retrace)
+ static REAL *RosenbluthTorsion;
+ static REAL RosenBluthFactorFirstBead;
+ 
+-static int CurrentBead;       // the current bead (new beads are grown from this one)
+-static int CurrentGroup;      // the current group
++// Modified by Ambroise switch static to non-static
++int CurrentBead;       // the current bead (new beads are grown from this one)
++int CurrentGroup;      // the current group
+ 
+-static int NumberOfPreviousBeads;  // the number of previous beads
+-static int PreviousBead;           // the first previous bead
+-static int PreviousGroup;          // the previous group
++int NumberOfPreviousBeads;  // the number of previous beads
+ 
+-static int NumberOfBeadsToBePlaced;              // the numer of beads to be placed
+-static int *BeadsToBePlaced;
++int PreviousBead;           // the first previous bead
++int PreviousGroup;          // the previous group
++
++int NumberOfBeadsToBePlaced;              // the numer of beads to be placed
++int *BeadsToBePlaced;
+ 
+ int NumberOfBeadsAlreadyPlaced;              // the number of beads already placed
+ int *BeadsAlreadyPlaced; // a list of atom-ids
+ 
+-static int NumberOfBranches;                                      // the number of branches
+-static int *NumberOfBranchAtoms;              // the number of atoms per branch
+-static int **BranchAtoms; // a list of atom-ids per branch
+-
++int NumberOfBranches;                                      // the number of branches
++int *NumberOfBranchAtoms;              // the number of atoms per branch
++int **BranchAtoms; // a list of atom-ids per branch
++//-------------------------------
+ VECTOR FirstBeadPosition;
+ VECTOR **NewPosition;
+ VECTOR *OldPosition;
+@@ -268,43 +270,43 @@ REAL *UCationPermanentDipolePermanentDipoleOld;
+ REAL *UHostPermanentDipolePermanentDipoleOld;
+ 
+ // trial energies
+-static REAL *UBondTrial;
+-static REAL *UBendTrial;
+-static REAL *UBendBendTrial;
+-static REAL *UUreyBradleyTrial;
+-static REAL *UInversionBendTrial;
+-static REAL *UTorsionTrial;
+-static REAL *UImproperTorsionTrial;
+-static REAL *UBondBondTrial;
+-static REAL *UBondBendTrial;
+-static REAL *UBondTorsionTrial;
+-static REAL *UBendTorsionTrial;
+-static REAL *UIntraVDWTrial;
+-static REAL *UIntraChargeChargeTrial;
+-static REAL *UIntraChargeBondDipoleTrial;
+-static REAL *UIntraBondDipoleBondDipoleTrial;
+-
+-static REAL *UHostVDWTrial;
+-static REAL *UAdsorbateVDWTrial;
+-static REAL *UCationVDWTrial;
+-static REAL *UHostChargeChargeTrial;
+-static REAL *UAdsorbateChargeChargeTrial;
+-static REAL *UCationChargeChargeTrial;
+-static REAL *UHostChargeBondDipoleTrial;
+-static REAL *UAdsorbateChargeBondDipoleTrial;
+-static REAL *UCationChargeBondDipoleTrial;
+-static REAL *UHostChargePermanentDipoleTrial;
+-static REAL *UAdsorbateChargePermanentDipoleTrial;
+-static REAL *UCationChargePermanentDipoleTrial;
+-static REAL *UHostBondDipoleBondDipoleTrial;
+-static REAL *UAdsorbateBondDipoleBondDipoleTrial;
+-static REAL *UCationBondDipoleBondDipoleTrial;
+-static REAL *UHostBondDipolePermanentDipoleTrial;
+-static REAL *UAdsorbateBondDipolePermanentDipoleTrial;
+-static REAL *UCationBondDipolePermanentDipoleTrial;
+-static REAL *UHostPermanentDipolePermanentDipoleTrial;
+-static REAL *UAdsorbatePermanentDipolePermanentDipoleTrial;
+-static REAL *UCationPermanentDipolePermanentDipoleTrial;
++REAL *UBondTrial;
++REAL *UBendTrial;
++REAL *UBendBendTrial;
++REAL *UUreyBradleyTrial;
++REAL *UInversionBendTrial;
++REAL *UTorsionTrial;
++REAL *UImproperTorsionTrial;
++REAL *UBondBondTrial;
++REAL *UBondBendTrial;
++REAL *UBondTorsionTrial;
++REAL *UBendTorsionTrial;
++REAL *UIntraVDWTrial;
++REAL *UIntraChargeChargeTrial;
++REAL *UIntraChargeBondDipoleTrial;
++REAL *UIntraBondDipoleBondDipoleTrial;
++
++REAL *UHostVDWTrial;
++REAL *UAdsorbateVDWTrial;
++REAL *UCationVDWTrial;
++REAL *UHostChargeChargeTrial;
++REAL *UAdsorbateChargeChargeTrial;
++REAL *UCationChargeChargeTrial;
++REAL *UHostChargeBondDipoleTrial;
++REAL *UAdsorbateChargeBondDipoleTrial;
++REAL *UCationChargeBondDipoleTrial;
++REAL *UHostChargePermanentDipoleTrial;
++REAL *UAdsorbateChargePermanentDipoleTrial;
++REAL *UCationChargePermanentDipoleTrial;
++REAL *UHostBondDipoleBondDipoleTrial;
++REAL *UAdsorbateBondDipoleBondDipoleTrial;
++REAL *UCationBondDipoleBondDipoleTrial;
++REAL *UHostBondDipolePermanentDipoleTrial;
++REAL *UAdsorbateBondDipolePermanentDipoleTrial;
++REAL *UCationBondDipolePermanentDipoleTrial;
++REAL *UHostPermanentDipolePermanentDipoleTrial;
++REAL *UAdsorbatePermanentDipolePermanentDipoleTrial;
++REAL *UCationPermanentDipolePermanentDipoleTrial;
+ 
+ static REAL EnergyHostVDWFirstBead;
+ static REAL EnergyAdsorbateVDWFirstBead;
+@@ -368,17 +370,24 @@ static int *BoolToBePlaced;
+ static int *BoolAlreadyPlacedOrToBePlaced;
+ static int *beadn;
+ static int *PossibleCurrentBeads;
+-static int **MoleculeTodoConnectivity;
++int **MoleculeTodoConnectivity;
+ static int **MoleculeConnectivity;
+ 
++// Added by Ambroise
++// Switch from static to non static because used for alchemical transformation
+ static int HandleFirstBead(int Switch);
+-static void Interactions(void);
+-static int GenerateTrialOrientationsSimpleSphere(int Old);
+-static int GenerateTrialOrientationsMCScheme(int Old);
+-static int ComputeExternalEnergies(void);
++void Interactions(void);
+ 
+-static int Rosen(void);
+-static int RosenOld(void);
++// Added by Ambroise
++// Switch from static to non static because used for alchemical transformation
++int GenerateTrialOrientationsSimpleSphere(int Old);
++int GenerateTrialOrientationsMCScheme(int Old);
++int ComputeExternalEnergies(void);
++
++// Added by Ambroise
++// Switch from static to non static because used for alchemical transformation
++int Rosen(void);
++int RosenOld(void);
+ 
+ static REAL ComputeSumRosenbluthWeight(REAL *BoltzmannFactors,int *Overlap,int NumberOfTrialPositions);
+ static REAL ComputeNormalizedRosenbluthWeight(REAL *BoltzmannFactors,int *Overlap,int NumberOfTrialPositions);
+@@ -654,6 +663,7 @@ int HandleFirstBead(int Switch)
+         FirstBeadPosition=ConvertFromABCtoXYZ(s);
+       } while(!ValidCartesianPoint(CurrentComponent,FirstBeadPosition));
+     }
++    
+     Trial[i]=FirstBeadPosition;
+ 
+     posA=Trial[i];
+@@ -759,6 +769,7 @@ int HandleFirstBead(int Switch)
+ 
+   EnergyHostVDWFirstBead=EnergiesHostVDW[i];
+   EnergyAdsorbateVDWFirstBead=EnergiesAdsorbateVDW[i];
++ 
+   EnergyCationVDWFirstBead=EnergiesCationVDW[i];
+ 
+   EnergyHostChargeChargeFirstBead=EnergiesHostChargeCharge[i];
+@@ -1139,9 +1150,13 @@ void Interactions(void)
+   }
+ }
+ 
++// Added by AMbroise;
++int Itrial;
++
+ int ComputeExternalEnergies(void)
+ {
+-  int i,j,Itrial,A,B,type,typeA,typeB;
++	
++  int i,j,A,B,type,typeA,typeB;
+   REAL rr,r;
+   REAL EnergiesIntra,EnergiesIntraChargeCharge,EnergiesIntraChargeBondDipole,EnergiesIntraBondDipoleBondDipole;
+   REAL EnergyHostVDW,EnergyAdsorbateVDW,EnergyCationVDW;
+@@ -1181,12 +1196,13 @@ int ComputeExternalEnergies(void)
+     EnergiesHostBondDipoleBondDipole=0.0;
+     EnergiesAdsorbateBondDipoleBondDipole=0.0;
+     EnergiesCationBondDipoleBondDipole=0.0;
+-
++  
+     for(j=0;j<NumberOfBeadsToBePlaced;j++)
+     {
+       TRIAL_OVERLAP=FALSE;
+       if (BeadsToBePlaced[j]<Components[CurrentComponent].NumberOfAtoms)
+       {
++			
+         posAVDW=posA=TrialPositions[Itrial][BeadsToBePlaced[j]];
+         type=Components[CurrentComponent].Type[BeadsToBePlaced[j]];
+ 
+@@ -1228,7 +1244,6 @@ int ComputeExternalEnergies(void)
+         EnergiesAdsorbateChargeCharge+=EnergyAdsorbateChargeCharge;
+         EnergiesAdsorbateChargeBondDipole+=EnergyAdsorbateChargeBondDipole;
+         EnergiesAdsorbateBondDipoleBondDipole+=EnergyAdsorbateBondDipoleBondDipole;
+-
+         EnergiesCationVDW+=EnergyCationVDW;
+         EnergiesCationChargeCharge+=EnergyCationChargeCharge;
+         EnergiesCationChargeBondDipole+=EnergyCationChargeBondDipole;
+@@ -1462,6 +1477,7 @@ int ComputeExternalEnergies(void)
+       Overlap[Itrial]=TRUE;
+     }
+   }
++
+   return 0;
+ }
+ 
+@@ -1516,6 +1532,8 @@ int GenerateTrialOrientationsSimpleSphere(int Old)
+       bond_length[j]=GenerateBondlength(Bonds[j]);
+   }
+ 
++  
++
+   for(iu=0;iu<NumberOfTrialPositions;iu++)
+   {
+     if(!(Old&&iu==0))    // generate 'k' new trial positions for the second bead except for the first trial position (iu=0) when retracing
+@@ -1531,18 +1549,18 @@ int GenerateTrialOrientationsSimpleSphere(int Old)
+           atom_nr=Components[CurrentComponent].Groups[CurrentGroup].Atoms[j];
+           cord[j].x=Components[CurrentComponent].Positions[atom_nr].x-Components[CurrentComponent].Positions[CurrentBead].x;
+           cord[j].y=Components[CurrentComponent].Positions[atom_nr].y-Components[CurrentComponent].Positions[CurrentBead].y;
+-          cord[j].z=Components[CurrentComponent].Positions[atom_nr].z-Components[CurrentComponent].Positions[CurrentBead].z;
++          cord[j].z=Components[CurrentComponent].Positions[atom_nr].z-Components[CurrentComponent].Positions[CurrentBead].z;          
+         }
+-
++        
+         RandomArrayRotationMatrix(cord,Components[CurrentComponent].Groups[CurrentGroup].NumberOfGroupAtoms);
+-
++		
+         for(j=0;j<Components[CurrentComponent].Groups[CurrentGroup].NumberOfGroupAtoms;j++)
+         {
+           atom_nr=Components[CurrentComponent].Groups[CurrentGroup].Atoms[j];
+           TrialPositions[iu][atom_nr].x=TrialPositions[0][CurrentBead].x+cord[j].x;
+           TrialPositions[iu][atom_nr].y=TrialPositions[0][CurrentBead].y+cord[j].y;
+           TrialPositions[iu][atom_nr].z=TrialPositions[0][CurrentBead].z+cord[j].z;
+-        }
++        }  
+       }
+       else
+       {
+@@ -2760,12 +2778,14 @@ int Rosen(void)
+     SetGrowingStatus();
+ 
+     Interactions();
+-
++    
++   
++    
+     // fill trialpositions of the beads that are already grown
+     for(iu=0;iu<NumberOfTrialPositions;iu++)
+       for(j=0;j<NumberOfBeadsAlreadyPlaced;j++)
+         TrialPositions[iu][BeadsAlreadyPlaced[j]]=NewPosition[CurrentSystem][BeadsAlreadyPlaced[j]];
+-
++		
+     for(j=0;j<NumberOfTrialPositionsTorsion;j++)
+       RosenbluthTorsion[j]=1.0;
+ 
+@@ -2832,7 +2852,7 @@ int Rosen(void)
+         MoleculeTodoConnectivity[j][ip]=FALSE;
+     }
+   } while(NumberOfBeadsAlreadyPlaced!=Components[CurrentComponent].NumberOfAtoms);
+-
++  
+   return 0;
+ }
+ 
+@@ -2948,7 +2968,7 @@ REAL RetraceMolecule(int Iicode)
+   UHostBondDipoleBondDipoleOld[CurrentSystem]=0.0;
+   UAdsorbateBondDipoleBondDipoleOld[CurrentSystem]=0.0;
+   UCationBondDipoleBondDipoleOld[CurrentSystem]=0.0;
+-
++  
+   RosenbluthOld=1.0;
+ 
+   OVERLAP=FALSE;
+@@ -2972,6 +2992,7 @@ REAL RetraceMolecule(int Iicode)
+     RosenbluthOld=RosenBluthFactorFirstBead;
+ 
+     UCationVDWOld[CurrentSystem]=EnergyCationVDWFirstBead;
++    
+     UAdsorbateVDWOld[CurrentSystem]=EnergyAdsorbateVDWFirstBead;
+     UHostVDWOld[CurrentSystem]=EnergyHostVDWFirstBead;
+ 
+diff --git a/src/cbmc.h b/src/cbmc.h
+index 8671873..fe263d4 100644
+--- a/src/cbmc.h
++++ b/src/cbmc.h
+@@ -44,6 +44,9 @@ extern int BiasingMethod;
+ 
+ #define MAX_NUMBER_OF_TRIAL_POSITIONS 2000
+ 
++// Added by Ambroise
++extern int Itrial;
++
+ extern int NumberOfTrialPositions;
+ extern int NumberOfTrialPositionsForTheFirstBead;
+ extern int NumberOfTrialMovesPerOpenBead;
+@@ -146,8 +149,64 @@ extern REAL *UHostBondDipoleBondDipoleOld;
+ extern REAL *UAdsorbateBondDipoleBondDipoleOld;
+ extern REAL *UCationBondDipoleBondDipoleOld;
+ 
+-extern int NumberOfBeadsAlreadyPlaced;                         // number of atoms that are already placed
+-extern int *BeadsAlreadyPlaced;
++// trial energies
++extern REAL *UBondTrial;
++extern REAL *UBendTrial;
++extern REAL *UBendBendTrial;
++extern REAL *UUreyBradleyTrial;
++extern REAL *UInversionBendTrial;
++extern REAL *UTorsionTrial;
++extern REAL *UImproperTorsionTrial;
++extern REAL *UBondBondTrial;
++extern REAL *UBondBendTrial;
++extern REAL *UBondTorsionTrial;
++extern REAL *UBendTorsionTrial;
++extern REAL *UIntraVDWTrial;
++extern REAL *UIntraChargeChargeTrial;
++extern REAL *UIntraChargeBondDipoleTrial;
++extern REAL *UIntraBondDipoleBondDipoleTrial;
++
++extern REAL *UHostVDWTrial;
++extern REAL *UAdsorbateVDWTrial;
++extern REAL *UCationVDWTrial;
++extern REAL *UHostChargeChargeTrial;
++extern REAL *UAdsorbateChargeChargeTrial;
++extern REAL *UCationChargeChargeTrial;
++extern REAL *UHostChargeBondDipoleTrial;
++extern REAL *UAdsorbateChargeBondDipoleTrial;
++extern REAL *UCationChargeBondDipoleTrial;
++extern REAL *UHostChargePermanentDipoleTrial;
++extern REAL *UAdsorbateChargePermanentDipoleTrial;
++extern REAL *UCationChargePermanentDipoleTrial;
++extern REAL *UHostBondDipoleBondDipoleTrial;
++extern REAL *UAdsorbateBondDipoleBondDipoleTrial;
++extern REAL *UCationBondDipoleBondDipoleTrial;
++extern REAL *UHostBondDipolePermanentDipoleTrial;
++extern REAL *UAdsorbateBondDipolePermanentDipoleTrial;
++extern REAL *UCationBondDipolePermanentDipoleTrial;
++extern REAL *UHostPermanentDipolePermanentDipoleTrial;
++extern REAL *UAdsorbatePermanentDipolePermanentDipoleTrial;
++extern REAL *UCationPermanentDipolePermanentDipoleTrial;
++
++// Added by Ambroise
++extern int CurrentBead;       
++extern int CurrentGroup;      
++
++extern int NumberOfPreviousBeads;  
++
++extern int PreviousBead;           
++extern int PreviousGroup;          
++
++extern int NumberOfBeadsToBePlaced;
++extern int *BeadsToBePlaced;
++
++extern int NumberOfBeadsAlreadyPlaced; 
++extern int *BeadsAlreadyPlaced; 
++
++extern int NumberOfBranches;           
++extern int *NumberOfBranchAtoms;       
++extern int **BranchAtoms; 
++//-------------------------------
+ extern VECTOR **NewPosition;
+ extern VECTOR *OldPosition;
+ extern VECTOR **NewVelocity;
+@@ -159,6 +218,11 @@ extern REAL **CFVDWScalingRXMC;
+ extern REAL *CFChargeScaling;
+ extern REAL **CFChargeScalingRXMC;
+ extern int OVERLAP;
++//-----------------------------
++// Added by Ambroise
++int Rosen(void);
++//-----------------------------
++extern int **MoleculeTodoConnectivity;
+ 
+ void CalculateAnisotropicTrialPositions(int TypeMolA,VECTOR *TrialPosition,VECTOR *TrialAnisotropicPosition);
+ 
+diff --git a/src/constants.c b/src/constants.c
+index 07b6bc6..1e88bc7 100644
+--- a/src/constants.c
++++ b/src/constants.c
+@@ -74,6 +74,9 @@ REAL VOLUMETRIC_EXPANSION_COEFFICIENT_CONVERSION_FACTOR;
+ REAL FH_CONVERSION_FACTOR;
+ 
+ REAL ENERGY_TO_KELVIN;
++// Added by Ambroise
++REAL KJ_PER_MOL_TO_ENERGY;
++//-------------------------
+ REAL KELVIN_TO_ENERGY;
+ REAL ENERGY_TO_KJ_PER_MOL;
+ REAL ENERGY_TO_EV;
+@@ -123,6 +126,9 @@ void SetSimulationUnits(void)
+     FH_CONVERSION_FACTOR=1.0;
+ 
+     ENERGY_TO_KELVIN=1.0;
++    // Added by Ambroise
++    KJ_PER_MOL_TO_ENERGY=1.0;
++    //-------------------
+     KELVIN_TO_ENERGY=1.0;
+     ENERGY_TO_KJ_PER_MOL=1.0;
+     ENERGY_TO_EV=1.0;
+@@ -172,6 +178,9 @@ void SetSimulationUnits(void)
+     ENERGY_TO_KELVIN=((ENERGY_CONVERSION_FACTOR*AVOGADRO_CONSTANT)/MOLAR_GAS_CONSTANT);
+     KELVIN_TO_ENERGY=(MOLAR_GAS_CONSTANT/(ENERGY_CONVERSION_FACTOR*AVOGADRO_CONSTANT));
+     ENERGY_TO_KJ_PER_MOL=((ENERGY_CONVERSION_FACTOR*AVOGADRO_CONSTANT)/1000.0);
++    // Added by Ambroise
++    KJ_PER_MOL_TO_ENERGY=(1000.0/(ENERGY_CONVERSION_FACTOR*AVOGADRO_CONSTANT));
++    //---------------------------------------------------------------------------------
+     ENERGY_TO_EV=(ENERGY_TO_KELVIN/11604.23);
+     ENERGY_TO_KCAL_PER_MOL=((ENERGY_CONVERSION_FACTOR*AVOGADRO_CONSTANT)/4184.0);
+     ENERGY_TO_KCAL15_PER_MOL=((ENERGY_CONVERSION_FACTOR*AVOGADRO_CONSTANT)/4185.5);
+@@ -221,6 +230,9 @@ void WriteRestartConstants(FILE *FilePtr)
+   fwrite(&FH_CONVERSION_FACTOR,sizeof(REAL),1,FilePtr);
+ 
+   fwrite(&ENERGY_TO_KELVIN,sizeof(REAL),1,FilePtr);
++  // Added by Ambroise
++  fwrite(&KJ_PER_MOL_TO_ENERGY,sizeof(REAL),1,FilePtr);
++  //---------------------------------------------------------
+   fwrite(&KELVIN_TO_ENERGY,sizeof(REAL),1,FilePtr);
+   fwrite(&ENERGY_TO_KJ_PER_MOL,sizeof(REAL),1,FilePtr);
+   fwrite(&ENERGY_TO_EV,sizeof(REAL),1,FilePtr);
+@@ -279,6 +291,9 @@ void ReadRestartConstants(FILE *FilePtr)
+   fread(&FH_CONVERSION_FACTOR,sizeof(REAL),1,FilePtr);
+ 
+   fread(&ENERGY_TO_KELVIN,sizeof(REAL),1,FilePtr);
++  // Added by Ambroise
++  fread(&KJ_PER_MOL_TO_ENERGY,sizeof(REAL),1,FilePtr);
++  //---------------------------------------------------------
+   fread(&KELVIN_TO_ENERGY,sizeof(REAL),1,FilePtr);
+   fread(&ENERGY_TO_KJ_PER_MOL,sizeof(REAL),1,FilePtr);
+   fread(&ENERGY_TO_EV,sizeof(REAL),1,FilePtr);
+diff --git a/src/constants.h b/src/constants.h
+index 17844c5..ca88ac3 100644
+--- a/src/constants.h
++++ b/src/constants.h
+@@ -141,6 +141,9 @@ extern REAL FH_CONVERSION_FACTOR;
+ 
+ extern REAL ENERGY_TO_KELVIN;
+ extern REAL KELVIN_TO_ENERGY;
++// Added by Ambroise
++extern REAL KJ_PER_MOL_TO_ENERGY;
++//------------------------------
+ extern REAL ENERGY_TO_KJ_PER_MOL;
+ extern REAL ENERGY_TO_EV;
+ extern REAL ENERGY_TO_KCAL_PER_MOL;
+diff --git a/src/framework.c b/src/framework.c
+index 726447b..97ff063 100644
+--- a/src/framework.c
++++ b/src/framework.c
+@@ -6731,6 +6731,7 @@ int ReturnDipoleIndex(int f1,int A,int B)
+ 
+ void AddBondTypeToDefinitions(int TypeA,int TypeB,int BondType,REAL *parms)
+ {
++
+   int i,j,index;
+   int AlreadyPresent;
+   int NumberOfArguments;
+@@ -6749,7 +6750,7 @@ void AddBondTypeToDefinitions(int TypeA,int TypeB,int BondType,REAL *parms)
+     parameters[0]=parms[0]*ENERGY_TO_KELVIN;
+     parameters[1]=parms[1];
+   }
+-
++  
+   if(Framework[CurrentSystem].NumberOfBondsDefinitions==0)
+   {
+     index=0;
+@@ -6831,6 +6832,7 @@ void AddBondTypeToDefinitions(int TypeA,int TypeB,int BondType,REAL *parms)
+     }
+ 
+   }
++
+ }
+ 
+ void AddBendTypeToDefinitions(int TypeA,int TypeB,int TypeC,int BendType,REAL *parms)
+@@ -8302,6 +8304,7 @@ int ReadFrameworkDefinition(void)
+     ReadLine(line,1024,FilePtr); // skip line
+     for(i=0;i<Framework[CurrentSystem].NumberOfBondsDefinitions;i++)
+     {
++	  
+       ReadLine(line,1024,FilePtr);
+       arg_pointer=line;
+       sscanf(line,"%s%s%s%n",TypeNameA,TypeNameB,buffer,&n);
+@@ -8343,14 +8346,15 @@ int ReadFrameworkDefinition(void)
+             {
+               Framework[CurrentSystem].Bonds[CurrentFramework][index].A=A;
+               Framework[CurrentSystem].Bonds[CurrentFramework][index].B=B;
+-
++				
+               Framework[CurrentSystem].BondType[CurrentFramework][index]=BondType;
+-
++			  
+               Framework[CurrentSystem].NumberOfBondsPerType[i]++;
+ 
+               for(j=0;j<BondTypes[BondType].nr_args;j++)
++              {
+                 Framework[CurrentSystem].BondArguments[CurrentFramework][index][j]=arguments[j];
+-
++			  }
+               // set to appropriate bond-distance
+               switch(BondType)
+               {
+@@ -11243,6 +11247,196 @@ int IsDefinedImproperTorsion(int system,int f1,int A,int B,int C,int D)
+   return FALSE;
+ }
+ 
++// Added by Ambroise
++//*********************************************
++
++/*********************************************************************************************************
++ * Name       | AllocateList14atomsVDWandEwald                                                           *
++ * ----------------------------------------------------------------------------------------------------- *
++ * Function   | Create a 2D list indicating which atoms are 1-4 to assign scaling parameter for VDW and  *
++ *            | Ewald calculation  *
++ * Note       | Read the connectivity and establish 1-4 pair  *
++ *            |   *
++ *            |   *
++ *********************************************************************************************************/
++
++void AllocateList14atomsVDWandEwald(int system)
++{
++  int i,j,f1;
++
++  // First initialization of the size of tab for each framework.
++  Framework[system].pair14VDW_size=(int*)calloc(Framework[system].NumberOfFrameworks,sizeof(int));
++  Framework[system].pair14ChargeCharge_size=(int*)calloc(Framework[system].NumberOfFrameworks,sizeof(int));
++  
++
++  // Initialization of storage of intravalues for each 14 pair for VDW and Ewald for each framework.
++  Framework[system].scaling_pair14VDW=(REAL***)calloc(Framework[system].NumberOfFrameworks,sizeof(REAL**));
++  Framework[system].scaling_pair14ChargeCharge=(REAL***)calloc(Framework[system].NumberOfFrameworks,sizeof(REAL**));
++    
++  for(f1=0;f1<Framework[system].NumberOfFrameworks;f1++)
++  {
++		Framework[system].scaling_pair14VDW[f1]=(REAL**)calloc(TotalNumberOfReplicaCells[system]*Framework[system].NumberOfAtoms[f1],sizeof(REAL*));
++		Framework[system].scaling_pair14ChargeCharge[f1]=(REAL**)calloc(TotalNumberOfReplicaCells[system]*Framework[system].NumberOfAtoms[f1],sizeof(REAL*)); 
++		
++		for(i=0;i<TotalNumberOfReplicaCells[system]*Framework[system].NumberOfAtoms[f1];i++)
++		{
++			
++			Framework[system].scaling_pair14VDW[f1][i]=(REAL*)calloc(TotalNumberOfReplicaCells[system]*Framework[system].NumberOfAtoms[f1],sizeof(REAL));
++			Framework[system].scaling_pair14ChargeCharge[f1][i]=(REAL*)calloc(TotalNumberOfReplicaCells[system]*Framework[system].NumberOfAtoms[f1],sizeof(REAL));
++			 
++			for(j=0;j<TotalNumberOfReplicaCells[system]*Framework[system].NumberOfAtoms[f1];j++)
++			{
++				Framework[system].scaling_pair14VDW[f1][i][j]=1.0;
++				Framework[system].scaling_pair14ChargeCharge[f1][i][j]=1.0;
++			}
++		
++		}
++
++		Framework[system].pair14VDW_size[f1] = TotalNumberOfReplicaCells[system]*Framework[system].NumberOfAtoms[f1];			
++		Framework[system].pair14ChargeCharge_size[f1] = TotalNumberOfReplicaCells[system]*Framework[system].NumberOfAtoms[f1];	
++   }
++
++   
++  // VDW-VDW && electrostatic scaling 1-4 pairs.
++  // ============================================================
++  // set general 1-4 index for scaling 1-4 VDW parameter
++  // VDW is based on replica-method using 'GetReplicaNeighbour'
++  
++  int A,B,C,D,k,l,m;
++  
++  for(f1=0;f1<Framework[system].NumberOfFrameworks;f1++)
++  {
++	
++    for(A=0;A<Framework[system].NumberOfAtoms[f1];A++)
++    {
++     
++      for(k=0;k<Framework[system].Connectivity[f1][A];k++)
++      {
++		
++        B=GetReplicaNeighbour(system,f1,A,k);
++	
++        for(l=0;l<Framework[system].Connectivity[f1][B];l++)
++        {
++          C=GetReplicaNeighbour(system,f1,B,l);
++
++          for(m=0;m<Framework[system].Connectivity[f1][C];m++)
++          {
++            D=GetReplicaNeighbour(system,f1,C,m);
++            if((D!=B)&&(D!=A))
++            {
++              // we now have 4 connected atoms: A, B, C, D
++              if(IsDefinedTorsion(system,f1,A,B,C,D))
++              {
++				Framework[system].scaling_pair14VDW[f1][A][D]= Framework[system].Intra14VDWScalingValue; 
++				Framework[system].scaling_pair14ChargeCharge[f1][A][D]= Framework[system].Intra14ChargeChargeScalingValue; 
++				
++                if(D<Framework[system].NumberOfAtoms[f1])
++                {
++				  Framework[system].scaling_pair14VDW[f1][D][A]= Framework[system].Intra14VDWScalingValue; ; 
++				  Framework[system].scaling_pair14ChargeCharge[f1][D][A]= Framework[system].Intra14ChargeChargeScalingValue; 
++                }
++              }
++            }
++          }
++        }
++      }
++    }
++  } 
++  
++
++
++  // Count the number of 1-4 pairs for each framework.
++  Framework[system].list14pair_size=(int*)calloc(Framework[system].NumberOfFrameworks,sizeof(int));
++  
++  // Count 1-4 pairs to retrieve number and index of 1-4 pairs.
++  // ==============================================================================================
++  for(f1=0;f1<Framework[system].NumberOfFrameworks;f1++)
++  {
++	Framework[system].list14pair_size[f1] = 0;
++
++    for(A=0;A<Framework[system].NumberOfAtoms[f1];A++)
++    {
++      for(k=0;k<Framework[system].Connectivity[f1][A];k++)
++      {
++        B=GetNeighbour(system,f1,A,k);
++
++        for(l=0;l<Framework[system].Connectivity[f1][B];l++)
++        {
++          C=GetNeighbour(system,f1,B,l);
++          if((A!=C)&&(C!=B))
++          {
++
++            for(m=0;m<Framework[system].Connectivity[f1][C];m++)
++            {
++              D=GetNeighbour(system,f1,C,m);
++              if((D!=B)&&(D!=A)&&(D!=C))
++              {
++				
++                if(A<D && IsDefinedTorsion(system,f1,A,B,C,D) && (!BITVAL(Framework[CurrentSystem].ExclusionMatrix[f1][A][D],1)))
++                {		
++                  Framework[system].list14pair_size[f1]++;
++                } 
++              }
++            }
++          }
++        }
++      }
++    }
++  }	
++ 
++  // Store in a table all the 1-4 pair for ewald summation, for scaling parameter.
++  Framework[system].list14pair=(PAIR**)calloc(Framework[system].NumberOfFrameworks,sizeof(PAIR*));
++  for(f1=0;f1<Framework[system].NumberOfFrameworks;f1++)
++  {
++	    Framework[system].list14pair[f1]=(PAIR*)calloc(Framework[system].list14pair_size[f1],sizeof(PAIR));
++	    
++	    for(i=0;i<Framework[system].list14pair_size[f1];i++)
++	    {
++			Framework[system].list14pair[f1][i].A=0;
++			Framework[system].list14pair[f1][i].B=0;
++		}
++  }  
++  
++  int count = 0;
++  
++  for(f1=0;f1<Framework[system].NumberOfFrameworks;f1++)
++  {
++
++    for(A=0;A<Framework[system].NumberOfAtoms[f1];A++)
++    {
++      for(k=0;k<Framework[system].Connectivity[f1][A];k++)
++      {
++        B=GetNeighbour(system,f1,A,k);
++
++        for(l=0;l<Framework[system].Connectivity[f1][B];l++)
++        {
++          C=GetNeighbour(system,f1,B,l);
++          if((A!=C)&&(C!=B))
++          {
++
++            for(m=0;m<Framework[system].Connectivity[f1][C];m++)
++            {
++              D=GetNeighbour(system,f1,C,m);
++              if((D!=B)&&(D!=A)&&(D!=C))
++              {
++                if(A<D && IsDefinedTorsion(system,f1,A,B,C,D) && (!BITVAL(Framework[CurrentSystem].ExclusionMatrix[f1][A][D],1)))
++                {
++					
++					Framework[system].list14pair[f1][count].A=A;
++					Framework[system].list14pair[f1][count].B=D;	
++					count++;		
++                }
++              }
++            }
++          }
++        }
++      }
++    }
++  }	
++  
++}
++//*********************************************
++
+ /*********************************************************************************************************
+  * Name       | MakeExclusionMatrix                                                                      *
+  * ----------------------------------------------------------------------------------------------------- *
+@@ -11257,11 +11451,14 @@ int IsDefinedImproperTorsion(int system,int f1,int A,int B,int C,int D)
+ 
+ void MakeExclusionMatrix(int system)
+ {
++
++
+   int i,j,k,l,m,f1;
+   int A,B,C,D;
+   int index1,index2;
+   int largest_size;
+ 
++
+   // allocate memory for the exclusion-matrix
+   Framework[system].ExclusionMatrix=(char***)calloc(Framework[system].NumberOfFrameworks,sizeof(char**));
+   for(f1=0;f1<Framework[system].NumberOfFrameworks;f1++)
+@@ -11330,9 +11527,9 @@ void MakeExclusionMatrix(int system)
+         }
+       }
+     }
+-  }
+-
++  }	
+ 
++  
+   // VDW-VDW
+   // ==============================================================================================
+   // set general 1-2, 1-3, 1-4 exclusions for VDW
+@@ -11371,21 +11568,28 @@ void MakeExclusionMatrix(int system)
+               SETBIT(Framework[system].ExclusionMatrix[f1][A][C],7);
+               if(C<Framework[system].NumberOfAtoms[f1])
+               {
+-                SETBIT(Framework[system].ExclusionMatrix[f1][C][A],0);
++                SETBIT(Framework[system].ExclusionMatrix[f1][C][A],0);              
+                 SETBIT(Framework[system].ExclusionMatrix[f1][C][A],7);
++
+               }
+             }
+           }
+ 
+           for(m=0;m<Framework[system].Connectivity[f1][C];m++)
+           {
++			    
+             D=GetReplicaNeighbour(system,f1,C,m);
+             if((D!=B)&&(D!=A))
+             {
+-              // we now have 4 connected atoms: A, B, C, D
++			  // we now have 4 connected atoms: A, B, C, D
++			  // Le if n'est jamais vérifié car: RemoveTorsionNeighboursFromLongRangeInteraction no
++			  // toujours un Bit 0 donc VDW bien présente de par l'initialisation de ExclusionMatrix
++
+               if(Remove14NeighboursFromVDWInteraction||(RemoveTorsionNeighboursFromLongRangeInteraction&&IsDefinedTorsion(system,f1,A,B,C,D)))
+               {
++
+                 SETBIT(Framework[system].ExclusionMatrix[f1][A][D],0);
++                
+                 if(D<Framework[system].NumberOfAtoms[f1])
+                   SETBIT(Framework[system].ExclusionMatrix[f1][D][A],0);
+               }
+@@ -11413,7 +11617,9 @@ void MakeExclusionMatrix(int system)
+         // we now have 2 connected atoms: A and B
+         if(Remove12NeighboursFromChargeChargeInteraction||(RemoveBondNeighboursFromLongRangeInteraction&&IsDefinedBond(system,f1,A,B)))
+         {
++			//printf("before: %i\n",Framework[system].ExclusionMatrix[f1][A][B]);
+           SETBIT(Framework[system].ExclusionMatrix[f1][A][B],1);
++          //printf("after: %i\n\n",Framework[system].ExclusionMatrix[f1][A][B]);
+           if(B<Framework[system].NumberOfAtoms[f1])
+             SETBIT(Framework[system].ExclusionMatrix[f1][B][A],1);
+         }
+@@ -11435,11 +11641,11 @@ void MakeExclusionMatrix(int system)
+           {
+             D=GetReplicaNeighbour(system,f1,C,m);
+             if((D!=B)&&(D!=A))
+-            {
+-              // we now have 4 connected atoms: A, B, C, D
++            {			
++			  // we now have 4 connected atoms: A, B, C, D
+               if(Remove14NeighboursFromChargeChargeInteraction||(RemoveTorsionNeighboursFromLongRangeInteraction&&IsDefinedTorsion(system,f1,A,B,C,D)))
+               {
+-                SETBIT(Framework[system].ExclusionMatrix[f1][A][D],1);
++				 SETBIT(Framework[system].ExclusionMatrix[f1][A][D],1);
+                 if(D<Framework[system].NumberOfAtoms[f1])
+                   SETBIT(Framework[system].ExclusionMatrix[f1][D][A],1);
+               }
+@@ -11450,6 +11656,8 @@ void MakeExclusionMatrix(int system)
+     }
+   }
+ 
++
++
+   // set general 1-2, 1-3, 1-4 exclusions for charge-charge exclusion-list
+   // charge exclusion in Fourier-space is based on the unit-cell using 'GetNeighbour'
+   for(f1=0;f1<Framework[system].NumberOfFrameworks;f1++)
+@@ -11464,7 +11672,9 @@ void MakeExclusionMatrix(int system)
+         // we now have 2 connected atoms: A and B
+         if(Remove12NeighboursFromChargeChargeInteraction||(RemoveBondNeighboursFromLongRangeInteraction&&IsDefinedBond(system,f1,A,B)))
+         {
++			//printf("before: %i\n",Framework[system].ExclusionMatrix[f1][A][B]);
+           SETBIT(Framework[system].ExclusionMatrix[f1][A][B],4);
++          //printf("after: %i\n",Framework[system].ExclusionMatrix[f1][A][B]);
+           if(B<Framework[system].NumberOfAtoms[f1])
+             SETBIT(Framework[system].ExclusionMatrix[f1][B][A],4);
+         }
+@@ -13993,6 +14203,11 @@ void ReadRestartFramework(FILE *FilePtr)
+       // rather then store the exclusion matrix, recompute it when all required information is read
+       CurrentSystem=i;
+       MakeExclusionMatrix(i);
++      // Add by Ambroise
++      AllocateList14atomsVDWandEwald(i);
++      printInteractionIndexAtoms(i);
++      //*****************************************
++      
+     }
+   }
+ 
+@@ -14053,3 +14268,102 @@ void ReadRestartFramework(FILE *FilePtr)
+   }
+ 
+ }
++// Added by Ambroise
++//*********************************************
++void printInteractionIndexAtoms(int system)
++{
++	int f1,i,j,index;
++	
++	FILE *FilePtr;
++	char buffer[256];
++	
++	
++	for(f1=0;f1<Framework[system].NumberOfFrameworks;f1++)
++    {   
++		
++		
++		if(Framework[system].PrintInteractionIndex[f1]) 
++		{
++			if(f1 == 0) 
++			{
++				mkdir("PrintInteractionIndexAtoms",S_IRWXU);
++				sprintf(buffer,"PrintInteractionIndexAtoms/System_%d",system);
++				mkdir(buffer,S_IRWXU);
++			}
++			
++			  sprintf(buffer,"PrintInteractionIndexAtoms/System_%d/InteractionIndexAtoms_framework_%d.txt",system,f1);
++			  FilePtr=fopen(buffer,"w");
++			  
++			  if(FilePtr)
++			  {
++				  if(Framework[system].FrameworkModel==FLEXIBLE)
++				  {
++					    
++						//Output the bond index atoms.
++						
++						index = 0;
++						
++						fprintf(FilePtr,"[\tBonds\t]\n");
++						for(i=0;i<Framework[system].NumberOfBondsDefinitions;i++) //Nomber of different bond types
++						{
++							fprintf(FilePtr,"\t[\t%s\t%s\t]\n",PseudoAtoms[Framework[system].BondDefinitions[i].A].Name,PseudoAtoms[Framework[system].BondDefinitions[i].B].Name);
++							
++							for(j=0;j<Framework[system].NumberOfBondsPerType[i];j++) // In a given type, give the number of bond
++							{
++								fprintf(FilePtr,"\t\t%i\t%i\n",Framework[system].Bonds[f1][index].A,Framework[system].Bonds[f1][index].B);
++								index++;
++							}
++						}	
++	
++						
++						//Output the angle index atoms.
++						
++						index = 0;
++						
++						fprintf(FilePtr,"[\tangle\t]\n");
++						for(i=0;i<Framework[system].NumberOfBendDefinitions;i++) //Nomber of different bend types
++						{                                 
++							fprintf(FilePtr,"\t[\t%s\t%s\t%s\t]\n",PseudoAtoms[Framework[system].BendDefinitions[i].A].Name,PseudoAtoms[Framework[system].BendDefinitions[i].B].Name,PseudoAtoms[Framework[system].BendDefinitions[i].C].Name);
++							
++							for(j=0;j<Framework[system].NumberOfBendsPerType[i];j++) // In a given type, give the number of bend
++							{
++								fprintf(FilePtr,"\t\t%i\t%i\t%i\n",Framework[system].Bends[f1][index].A,Framework[system].Bends[f1][index].B,Framework[system].Bends[f1][index].C);
++								index++;
++							}
++						}
++						
++		
++						
++						//Output the dihedrals index atoms.
++						
++						index = 0;
++						
++						fprintf(FilePtr,"[\tdihedrals\t]\n");
++						for(i=0;i<Framework[system].NumberOfTorsionDefinitions;i++) //Nomber of different Torsion types
++						{                                   
++							fprintf(FilePtr,"\t[\t%s\t%s\t%s\t%s\t]\n",PseudoAtoms[Framework[system].TorsionDefinitions[i].A].Name,PseudoAtoms[Framework[system].TorsionDefinitions[i].B].Name,PseudoAtoms[Framework[system].TorsionDefinitions[i].C].Name,PseudoAtoms[Framework[system].TorsionDefinitions[i].D].Name);
++							
++							for(j=0;j<Framework[system].NumberOfTorsionsPerType[i];j++) // In a given type, give the number of Torsion 
++							{
++								fprintf(FilePtr,"\t\t%i\t%i\t%i\t%i\n",Framework[system].Torsions[f1][index].A,Framework[system].Torsions[f1][index].B,Framework[system].Torsions[f1][index].C,Framework[system].Torsions[f1][index].D);
++								index++;
++							}
++						}
++						
++					}
++			  }
++			  
++			  else
++			  {
++				printf(stderr,"Cannot open %s",buffer);
++				
++			  }
++			  
++			  fclose(FilePtr);
++		}
++	}
++	
++}
++
++	  
++//*********************************************
+diff --git a/src/framework.h b/src/framework.h
+index 50de2f1..7248e24 100644
+--- a/src/framework.h
++++ b/src/framework.h
+@@ -202,6 +202,18 @@ typedef struct FrameworkComponent
+   int **CellListHead;                        // the starting atom per cell
+   int **CellList;                            // linked list of framework atoms
+ 
++  // Added by Ambroise
++  //*********************************
++  REAL ***scaling_pair14VDW;							// Store 14 atoms in the box for VDW.
++  REAL ***scaling_pair14ChargeCharge;                 // Store 14 atoms in the box for chargecharge.
++  PAIR **list14pair;							// Store 14 atom pairs for Ewald summation.
++   
++   
++  int *pair14VDW_size;			 
++  int *pair14ChargeCharge_size; 
++  int *list14pair_size;			
++  //*********************************
++
+   REAL *FrameworkProbability;
+   int FrameworkExclusion;
+   int RemoveHydrogenDisorder;
+@@ -253,6 +265,11 @@ typedef struct FrameworkComponent
+ 
+   int ReadCIFAsCartesian;
+ 
++  // Added by Ambroise
++  //*********************************
++  int * PrintInteractionIndex;
++  //*********************************
++  
+   char ***ExclusionMatrix;
+ 
+   int **Connectivity;
+@@ -490,6 +507,8 @@ void QuenchCoreSHellVelocities(void);
+ int ClosestCrystallographicPosition(VECTOR pos);
+ void ClosestCrystallographicPosition2(VECTOR pos,int *closest,REAL *minimum_distance);
+ 
++void AllocateList14atomsVDWandEwald(int system);
++
+ void MakeExclusionMatrix(int system);
+ void MakeExcludedInteractionLists(int system);
+ 
+@@ -532,4 +551,8 @@ void WriteFrameworkDefinitionMOL(char *string);
+ 
+ void PutNoiseOnFrameworkAtomicPositions(void);
+ 
++// Added by Ambroise
++//*****************************************
++void printInteractionIndexAtoms(int system);
++//*****************************************
+ #endif
+diff --git a/src/input.c b/src/input.c
+index c131c8c..e6f7e02 100644
+--- a/src/input.c
++++ b/src/input.c
+@@ -161,6 +161,7 @@ void CheckConstraintInputCation(CATION_MOLECULE** cations,int molecule_nr,int at
+ // more characters then the line are discarded
+ char *ReadLine(char *buffer, size_t length, FILE *file)
+ {
++	
+   char *p;
+   size_t last;
+ 
+@@ -234,11 +235,19 @@ int ReadInput(char *input)
+   int NumberOfCFBiasingFactors;
+   REAL OverlapDistance;
+   int CurrentReaction;
++  // Added by Ambroise
++  //---------------------------------
++  int CurrentAlchReaction;
++  //---------------------------------
+   int typeA,typeB;
+   int atom1,atom2;
+   int CFMoleculePresent=FALSE;
+ 
+   CurrentReaction=0;
++  // Added by Ambroise
++  //---------------------------------
++  CurrentAlchReaction=0;
++  //---------------------------------
+   RXMCLambdaHistogramSize=21;
+   MeasureLambdaBelow=10.0;
+   RemoveFractionalMoleculesFromRestartFile=FALSE;
+@@ -479,7 +488,11 @@ int ReadInput(char *input)
+   ComputePrincipleMomentsOfInertia=FALSE;
+ 
+   CFWangLandauEvery=5000;
+-
++  // Added by Ambroise
++  //---------------------------------------------------------------------
++  RelaxationStepsAlchemicalTransformationMove = 5;
++  ChemicalPotentialAlchemical = 0.0;
++  //---------------------------------------------------------------------
+   NumberOfHybridNVESteps=5;
+   NumberOfHybridNPHSteps=5;
+   NumberOfHybridNPHPRSteps=5;
+@@ -543,6 +556,10 @@ int ReadInput(char *input)
+   ProbabilityParallelMolFractionMove=0.0;
+   ProbabilityGibbsVolumeChangeMove=0.0;
+   ProbabilityHybridNVEMove=0.0;
++  // Added by Ambroise
++  //---------------------------------------------------
++  ProbabilityWidomOsmostatCalculationMove=0.0;
++   //---------------------------------------------------
+   ProbabilityHybridNPHMove=0.0;
+   ProbabilityHybridNPHPRMove=0.0;
+   ProbabilityFrameworkChangeMove=0.0;
+@@ -640,7 +657,9 @@ int ReadInput(char *input)
+   NumberOfSystems=0;
+   NumberOfComponents=0;
+   NumberOfReactions=0;
+-
++  // Added by Ambroise 
++  NumberAlchemicalReactions=0;
++  
+   // This loops through the string line-by-line, using the reentrant form of
+   // `strtok` to be less ambiguous about the state of things
+   tmp = strdup(input);
+@@ -732,6 +751,7 @@ int ReadInput(char *input)
+     if(strcasecmp("Reaction",keyword)==0) NumberOfReactions++;
+     //-------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
++
+     // if restarted from a binary restart file we  can skip everything, and read
+     // the full system status from that binary restart-file
+     if(strcasecmp("ContinueAfterCrash",keyword)==0)
+@@ -746,8 +766,33 @@ int ReadInput(char *input)
+         if(ContinueAfterCrash) return 0;
+       }
+     }
++    
++   
++   // Added by Ambroise
++   //-------------------------------------------------------------------------------------------------------------------------------------------------------
++   // Alchemical transformation : read statements for number of reactions
++   //-------------------------------------------------------------------------------------------------------------------------------------------------------
++   if(strcasecmp("AlchemicalTransformation",keyword)==0) NumberAlchemicalReactions++;
++   //-------------------------------------------------------------------------------------------------------------------------------------------------------
++   
++   // Added by Ambroise - store the index of salt ions.
++   //*****************************************************************************************
++   if(NumberAlchemicalReactions>0)
++   {
++		SaltIndex								 =(int**)calloc(NumberAlchemicalReactions,sizeof(int*));
++		MultiplicitySalt			 			 =(int**)calloc(NumberAlchemicalReactions,sizeof(int*));
++		ChosenMoleculeAlchemicalTransformation   =(int**)calloc(NumberAlchemicalReactions,sizeof(int*));
++		NumberTransientMoities	       		 	 =(int*)calloc(NumberAlchemicalReactions,sizeof(int));
++		
++		for(i=0;i<NumberAlchemicalReactions;i++)
++		{
++			SaltIndex[i]=(int*)calloc(1,sizeof(int));
++			MultiplicitySalt[i]=(int*)calloc(1,sizeof(int));
++		}
++   }   
+   }
+ 
++  
+   // set units, either reduced or real units
+   SetSimulationUnits();
+ 
+@@ -986,13 +1031,13 @@ int ReadInput(char *input)
+   {
+     ReactantsStoichiometry[i]=(int*)calloc(NumberOfComponents,sizeof(int));
+     ProductsStoichiometry[i]=(int*)calloc(NumberOfComponents,sizeof(int));
+-
+   }
+ 
+   for(i=0;i<NumberOfSystems;i++)
+     for(l=0;l<NumberOfReactions;l++)
+       CFRXMCWangLandauScalingFactor[i][l]=0.01;
+-
++      
++ 
+   // second pass to get the number of frameworks per system
+   CurrentSystem=0;
+   CurrentComponent=0;
+@@ -1410,7 +1455,7 @@ int ReadInput(char *input)
+       Framework[i].ExcludedIntraBondDipoleBondDipole=(PAIR**)calloc(Framework[i].NumberOfFrameworks,sizeof(PAIR*));
+ 
+       FrameworkFixedInitialization[i]=(int*)calloc(Framework[i].NumberOfFrameworks,sizeof(int));
+-
++      
+       NumberOfFixedFrameworkAtoms[i]=(int*)calloc(Framework[i].NumberOfFrameworks,sizeof(int));
+       NumberOfFixedFrameworkAtomsX[i]=(int*)calloc(Framework[i].NumberOfFrameworks,sizeof(int));
+       NumberOfFixedFrameworkAtomsY[i]=(int*)calloc(Framework[i].NumberOfFrameworks,sizeof(int));
+@@ -1446,7 +1491,17 @@ int ReadInput(char *input)
+       Framework[i].AnisotropicType=ANISOTROPIC_MID_POINT;
+       Framework[i].ForceSpaceGroupDetection=FALSE;
+       Framework[i].ReadCIFAsCartesian=FALSE;
+-
++      
++      // Add by Ambroise (Interaction index for bond, bend and dihedral analysis).
++      //*************************************************
++      Framework[i].PrintInteractionIndex=(int*)calloc(Framework[i].NumberOfFrameworks,sizeof(int));
++      for(j=0;j<Framework[i].NumberOfFrameworks;j++)
++      {
++			Framework[i].PrintInteractionIndex[j]=FALSE;
++	  }
++      //*************************************************
++      
++	  Framework[i].ReadCIFAsCartesian=FALSE;
+       Framework[i].Intra14VDWScalingValue=1.0;
+       Framework[i].Intra14ChargeChargeScalingValue=1.0;
+     }
+@@ -1479,6 +1534,9 @@ int ReadInput(char *input)
+   // final pass, most memory is now already allocated
+   CurrentComponent=0;
+   CurrentReaction=0;
++  // Added by Ambroise
++  CurrentAlchReaction=0;
++  //******************
+   LineNumber=0;
+   tmp = strdup(input);
+   tokptr = 0;
+@@ -2229,13 +2287,15 @@ int ReadInput(char *input)
+       }
+     }
+ 
+-
++	
+     //-----------------------------------------------------------------------------------------------------
+     // CFC-RXMC : read reactions
+     //-----------------------------------------------------------------------------------------------------
+     if(strcasecmp("Reaction",keyword)==0)
+     {
++	
+       arg_pointer=arguments;
++      
+       for(i=0;i<NumberOfComponents;i++)
+       {
+         sscanf(arg_pointer,"%d%n",&ReactantsStoichiometry[CurrentReaction][i],&n);
+@@ -2249,6 +2309,45 @@ int ReadInput(char *input)
+       CurrentReaction++;
+     }
+ 
++	
++	// Added by Ambroise
++	//-------------------------------------------------------------------------------------------------------------------------------------------------------
++    // Alchemical transformation : read cation and anion indexes.
++    //-------------------------------------------------------------------------------------------------------------------------------------------------------
++    if(strcasecmp("AlchemicalTransformation",keyword)==0)
++    {
++		
++      arg_pointer=arguments;
++
++	  // Read the index of the solvent in which salt must be introduced.
++	  sscanf(arg_pointer,"%d%n",&SolventIndex,&n);
++      arg_pointer+=n;
++	  // Read the index of the salt, to be appeared in the component section.
++      for(i=0;i<1;i++)
++      {	 
++        sscanf(arg_pointer,"%d%n",&SaltIndex[CurrentAlchReaction][i],&n);
++        arg_pointer+=n;
++      }
++	  /*
++      NumberTransientMoities[CurrentAlchReaction] = 0;
++      
++      // Read the multiplicity of salt (e.g. take into account of ion ratio).
++      for(i=0;i<2;i++)
++      {	 
++        sscanf(arg_pointer,"%d%n",&MultiplicitySalt[CurrentAlchReaction][i],&n);
++        arg_pointer+=n;
++        NumberTransientMoities[CurrentAlchReaction] += MultiplicitySalt[CurrentAlchReaction][i];
++      }
++
++	  // Initialize	the vector to store index of chosen molecule to be replaced in the MC-move.
++	  if(CurrentAlchReaction==0)
++	  {
++		ChosenMoleculeAlchemicalTransformation[CurrentAlchReaction] = (int*)calloc(NumberTransientMoities[CurrentAlchReaction],sizeof(int));
++	  }	
++	  */
++      CurrentAlchReaction++;
++    }
++    //-------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+     // read MD ensembles
+     if(strcasecmp("Ensemble",keyword)==0)
+@@ -2514,7 +2613,15 @@ int ReadInput(char *input)
+     {
+       if(strcasecmp("yes",firstargument)==0) Framework[CurrentSystem].ReadCIFAsCartesian=TRUE;
+       if(strcasecmp("no",firstargument)==0) Framework[CurrentSystem].ReadCIFAsCartesian=FALSE;
++   }
++    // Add by Ambroise (print interaction framework).
++    //***********************************************
++    if(strcasecmp("PrintInteractionIndexAtoms",keyword)==0)
++    {
++      if(strcasecmp("yes",firstargument)==0) Framework[CurrentSystem].PrintInteractionIndex[CurrentFramework]=TRUE;
++      if(strcasecmp("no",firstargument)==0) Framework[CurrentSystem].PrintInteractionIndex[CurrentFramework]=FALSE;
+     }
++    //***********************************************
+     if(strcasecmp("RestrictFrameworkAtomsToBox",keyword)==0)
+     {
+       if(strcasecmp("yes",firstargument)==0) Framework[CurrentSystem].RestrictFrameworkAtomsToBox=TRUE;
+@@ -2782,6 +2889,13 @@ int ReadInput(char *input)
+     if(strcasecmp("ReinsertionInPlaceProbability",keyword)==0) sscanf(arguments,"%lf",&Components[CurrentComponent].ProbabilityReinsertionInPlaceMove);
+     if(strcasecmp("HybridMCMDMoveProbability",keyword)==0) sscanf(arguments,"%lf",&ProbabilityHybridNVEMove);
+     if(strcasecmp("HybridNVEMoveProbability",keyword)==0) sscanf(arguments,"%lf",&ProbabilityHybridNVEMove);
++    // Added by Ambroise
++    //--------------------------------------------------------------------------------------------------------
++    if(strcasecmp("LambdaStepsAlchemicalTransformationMove",keyword)==0) sscanf(arguments,"%d",&AlchReacLambda);
++    if(strcasecmp("ChemicalPotentialAlchemical",keyword)==0) sscanf(arguments,"%lf",&ChemicalPotentialAlchemical);
++    if(strcasecmp("RelaxationStepsAlchemicalTransformationMove",keyword)==0) sscanf(arguments,"%d",&RelaxationStepsAlchemicalTransformationMove);
++    if(strcasecmp("ProbabilityWidomOsmostatCalculationMove",keyword)==0) sscanf(arguments,"%lf",&ProbabilityWidomOsmostatCalculationMove);
++    //--------------------------------------------------------------------------------------------------------
+     if(strcasecmp("HybridNPHMoveProbability",keyword)==0) sscanf(arguments,"%lf",&ProbabilityHybridNPHMove);
+     if(strcasecmp("HybridNPHPRMoveProbability",keyword)==0) sscanf(arguments,"%lf",&ProbabilityHybridNPHPRMove);
+     if(strcasecmp("NumberOfHybridNVESteps",keyword)==0) sscanf(arguments,"%d",&NumberOfHybridNVESteps);
+@@ -6056,7 +6170,6 @@ int ReadInput(char *input)
+       PrintFrameworkCationBondDipoleBondDipoleStatus=TRUE;
+     }
+ 
+-
+     // create frameworks
+     if(strcasecmp("FrameworkProbability",keyword)==0) sscanf(arguments,"%lf",&Framework[CurrentSystem].FrameworkProbability[CurrentFramework]);
+     if(strcasecmp("FrameworkExclusion",keyword)==0)
+@@ -6285,10 +6398,13 @@ int ReadInput(char *input)
+         // read the flexible framework model definitions
+         ReadFrameworkDefinition();
+         ReadFrameworkSpecificDefinition();
+-
++        
+         MakeExclusionMatrix(CurrentSystem);
+         MakeExcludedInteractionLists(CurrentSystem);
+-
++        // Add by Ambroise
++        AllocateList14atomsVDWandEwald(CurrentSystem);
++        printInteractionIndexAtoms(CurrentSystem);
++		//***********************************
+         ReadBlockingPockets();
+       }
+ 
+@@ -6379,7 +6495,7 @@ int ReadInput(char *input)
+   ReadForceFieldDefinitions();
+   ComputeDummyInteractions();
+   ComputePotentialShifts();
+-
++  
+   if(ChargeFromChargeEquilibration)
+   {
+     for(CurrentSystem=0;CurrentSystem<NumberOfSystems;CurrentSystem++)
+@@ -7533,7 +7649,7 @@ int ReadInput(char *input)
+ 
+   InitializeEwald(EwaldPrecision,EwaldAutomatic);
+   AllocateEwaldMemory();
+-
++  
+   for(CurrentSystem=0;CurrentSystem<NumberOfSystems;CurrentSystem++)
+   {
+ 
+@@ -9709,6 +9825,7 @@ void ReadRestartFile(void)
+ 
+ void ReadRestartFileOld(void)
+ {
++	printf("READ_restart_old");
+   int i;
+   int NumberOfComponentsRead;
+   int extra_framework_boolean;
+@@ -9913,6 +10030,7 @@ void ReadRestartFileOld(void)
+ 
+ void ReadBinaryRestartFiles(void)
+ {
++  
+   FILE *FilePtr;
+   char buffer[1024];
+ 
+@@ -9948,5 +10066,6 @@ void ReadBinaryRestartFiles(void)
+     ContinueAfterCrash=FALSE;
+     fprintf(stderr, "Crash set to false\n");
+   }
++ 
+ }
+ 
+diff --git a/src/mc_moves.c b/src/mc_moves.c
+index 4bcdd2d..f266e4b 100644
+--- a/src/mc_moves.c
++++ b/src/mc_moves.c
+@@ -42,6 +42,7 @@
+ #include "framework_force.h"
+ #include "framework.h"
+ #include "simulation.h"
++#include "Alchemical_transformation.h"
+ #include "cbmc.h"
+ #include "ewald.h"
+ #include "utils.h"
+@@ -104,17 +105,18 @@ VECTOR **ReferenceElectricFieldAtTrialPosition;
+ VECTOR **InducedDipoleAtTrialPosition;
+ static VECTOR *cord;
+ 
+-// delta energies
+-static REAL UDeltaPolarization;
+-static REAL *UHostPolarizationNew;
+-static REAL *UAdsorbatePolarizationNew;
+-static REAL *UCationPolarizationNew;
+-static REAL *UPolarizationNew;
++// Modified by Ambroise: switched from static to extern for use in alchemical transformation.
++REAL UDeltaPolarization;
++REAL *UHostPolarizationNew;
++REAL *UAdsorbatePolarizationNew;
++REAL *UCationPolarizationNew;
++REAL *UPolarizationNew;
+ 
+-static REAL *UHostBackPolarizationNew;
+-static REAL *UAdsorbateBackPolarizationNew;
+-static REAL *UCationBackPolarizationNew;
+-static REAL *UBackPolarizationNew;
++REAL *UHostBackPolarizationNew;
++REAL *UAdsorbateBackPolarizationNew;
++REAL *UCationBackPolarizationNew;
++REAL *UBackPolarizationNew;
++//-------------------------------------------------------
+ 
+ REAL *UHostVDWDelta;
+ REAL *UHostChargeChargeRealDelta;
+@@ -215,6 +217,11 @@ static REAL (**ReinsertionInPlaceAccepted)[2];
+ static REAL ***IdentityChangeAttempts;
+ static REAL (***IdentityChangeAccepted)[2];
+ 
++// Added by Ambroise (Osmostat calculation)
++//----------------------------------------------
++REAL **WidomOsmostat;
++//----------------------------------------------
++
+ static REAL **ParallelTemperingAttempts;
+ static REAL **ParallelTemperingAccepted;
+ 
+@@ -391,7 +398,6 @@ static REAL ***CFLambdaHistogram;
+ static REAL ***RXMCLambdaHistogram;
+ static int **LambdaRetraceMolecules;
+ 
+-
+ static REAL **ExchangeFractionalParticleAttempts;
+ static REAL **ExchangeFractionalParticleAccepted;
+ 
+@@ -554,7 +560,7 @@ void InitializeMCMovesStatisticsAllSystems(void)
+         IdentityChangeAttempts[j][i][k]=0.0;
+         IdentityChangeAccepted[j][i][k][0]=0.0;
+         IdentityChangeAccepted[j][i][k][1]=0.0;
+-
++		
+         GibbsIdentityChangeAttempts[j][i][k]=0.0;
+         GibbsIdentityChangeAccepted[j][i][k][0]=0.0;
+         GibbsIdentityChangeAccepted[j][i][k][1]=0.0;
+@@ -696,6 +702,16 @@ void InitializeMCMovesStatisticsAllSystems(void)
+     HybridNPHPREndTemperatureFrameworkCount[j]=0.0;
+     HybridNPHPREndTemperatureAdsorbateCount[j]=0.0;
+     HybridNPHPREndTemperatureCationCount[j]=0.0;
++    
++    // Added by Ambroise  
++    //---------------------------------------------------------
++    for(k=0;k<NumberAlchemicalReactions;k++)
++    {
++		// statistics for widom osmostat move.
++		WidomOsmostat[j][k]=0.0;
++	}
++	//---------------------------------------------------------
++	
+   }
+ }
+ 
+@@ -1546,6 +1562,7 @@ int TranslationMoveAdsorbate(void)
+   // calculate a random displacement
+   vNew=2.0*RandomNumber()-1.0;
+ 
++
+   // choose a possible displacement
+   displacement=GetDisplacementVector(vNew);
+ 
+@@ -1737,7 +1754,7 @@ int TranslationMoveAdsorbate(void)
+       if((ChargeMethod==EWALD)&&(!OmitEwaldFourier))
+         AcceptEwaldAdsorbateMove(0);
+     }
+-
++    
+     nr_atoms=Adsorbates[CurrentSystem][CurrentAdsorbateMolecule].NumberOfAtoms;
+     for(i=0;i<nr_atoms;i++)
+     {
+@@ -1746,7 +1763,6 @@ int TranslationMoveAdsorbate(void)
+     }
+ 
+     UpdateGroupCenterOfMassAdsorbate(CurrentAdsorbateMolecule);
+-
+     UTotal[CurrentSystem]+=DeltaU;
+   }
+   else
+@@ -2892,7 +2908,6 @@ int RotationMoveAdsorbate(void)
+     for(i=0;i<NumberOfCationMolecules[CurrentSystem];i++)
+       UpdateGroupCenterOfMassCation(i);
+ 
+-
+   return 0;
+ }
+ 
+@@ -6288,6 +6303,753 @@ void PrintReinsertionInPlaneStatistics(FILE *FilePtr)
+ }
+ 
+ 
++// Added by Ambroise
++int WidomOsmostatCalculation(void)
++{ 		
++  int i,j,f1,m;
++  int Type;
++  REAL Drift;
++  REAL ReferenceEnergy;
++  
++  // Declare the component index of old and new
++  int CurrentAlchemicalReaction;
++  int * OldComponent; 
++  int * NewComponent; 
++  int NumberOldComponent;
++  int NumberNewComponent;
++  
++  int NumberOfMolecules;
++  int InitialSaltIons;
++  int InitialWater; 
++  
++  REAL ProtocolWork_vdw=0.0;
++  REAL ProtocolWork_elec=0.0;
++  REAL Ubefore=0.0;
++  REAL Uafter=0.0;
++
++  REAL *NCMCWorkStore= (REAL*)calloc(AlchReacLambda,sizeof(REAL)); 
++  
++  // We will store the energy of the system before performing the alchemical transformation
++  REAL StoredUHostBond,StoredUHostUreyBradley,StoredUHostBend,StoredUHostInversionBend;
++  REAL StoredUHostTorsion,StoredUHostImproperTorsion,StoredUHostBondBond;
++  REAL StoredUHostBendBend,StoredUHostBondBend,StoredUHostBondTorsion,StoredUHostBendTorsion;
++
++  REAL StoredUAdsorbateBond,StoredUAdsorbateUreyBradley,StoredUAdsorbateBend,StoredUAdsorbateInversionBend;
++  REAL StoredUAdsorbateTorsion,StoredUAdsorbateImproperTorsion,StoredUAdsorbateBondBond;
++  REAL StoredUAdsorbateBendBend,StoredUAdsorbateBondBend,StoredUAdsorbateBondTorsion,StoredUAdsorbateBendTorsion;
++  REAL StoredUAdsorbateIntraVDW,StoredUAdsorbateIntraChargeCharge;
++  REAL StoredUAdsorbateIntraChargeBondDipole,StoredUAdsorbateIntraBondDipoleBondDipole;
++
++  REAL StoredUCationBond,StoredUCationUreyBradley,StoredUCationBend,StoredUCationInversionBend;
++  REAL StoredUCationTorsion,StoredUCationImproperTorsion,StoredUCationBondBond;
++  REAL StoredUCationBendBend,StoredUCationBondBend,StoredUCationBondTorsion,StoredUCationBendTorsion;
++  REAL StoredUCationIntraVDW,StoredUCationIntraChargeCharge;
++  REAL StoredUCationIntraChargeBondDipole,StoredUCationIntraBondDipoleBondDipole;
++
++  REAL StoredUHostHost,StoredUHostHostVDW,StoredUHostHostChargeChargeReal;
++  REAL StoredUHostHostChargeBondDipoleReal,StoredUHostHostBondDipoleBondDipoleReal;
++  REAL StoredUHostHostChargeChargeFourier,StoredUHostHostCoulomb;
++  REAL StoredUHostHostChargeBondDipoleFourier,StoredUHostHostBondDipoleBondDipoleFourier;
++  REAL StoredUHostAdsorbate,StoredUHostAdsorbateVDW,StoredUHostAdsorbateChargeChargeReal;
++  REAL StoredUHostAdsorbateChargeBondDipoleReal,StoredUHostAdsorbateBondDipoleBondDipoleReal;
++  REAL StoredUHostAdsorbateChargeChargeFourier,StoredUHostAdsorbateCoulomb;
++  REAL StoredUHostAdsorbateChargeBondDipoleFourier,StoredUHostAdsorbateBondDipoleBondDipoleFourier;
++  REAL StoredUHostCation,StoredUHostCationVDW,StoredUHostCationChargeChargeReal;
++  REAL StoredUHostCationChargeBondDipoleReal,StoredUHostCationBondDipoleBondDipoleReal;
++  REAL StoredUHostCationChargeChargeFourier,StoredUHostCationCoulomb;
++  REAL StoredUHostCationChargeBondDipoleFourier,StoredUHostCationBondDipoleBondDipoleFourier;
++
++  REAL StoredUAdsorbateAdsorbate,StoredUAdsorbateAdsorbateVDW,StoredUAdsorbateAdsorbateChargeChargeReal;
++  REAL StoredUAdsorbateAdsorbateChargeBondDipoleReal,StoredUAdsorbateAdsorbateBondDipoleBondDipoleReal;
++  REAL StoredUAdsorbateAdsorbateChargeChargeFourier,StoredUAdsorbateAdsorbateCoulomb;
++  REAL StoredUAdsorbateAdsorbateChargeBondDipoleFourier,StoredUAdsorbateAdsorbateBondDipoleBondDipoleFourier;
++  REAL StoredUAdsorbateCation,StoredUAdsorbateCationVDW,StoredUAdsorbateCationChargeChargeReal;
++  REAL StoredUAdsorbateCationChargeBondDipoleReal,StoredUAdsorbateCationBondDipoleBondDipoleReal;
++  REAL StoredUAdsorbateCationChargeChargeFourier,StoredUAdsorbateCationCoulomb;
++  REAL StoredUAdsorbateCationChargeBondDipoleFourier,StoredUAdsorbateCationBondDipoleBondDipoleFourier;
++  REAL StoredUCationCation,StoredUCationCationVDW,StoredUCationCationChargeChargeReal;
++  REAL StoredUCationCationChargeBondDipoleReal,StoredUCationCationBondDipoleBondDipoleReal;
++  REAL StoredUCationCationChargeChargeFourier,StoredUCationCationCoulomb;
++  REAL StoredUCationCationChargeBondDipoleFourier,StoredUCationCationBondDipoleBondDipoleFourier;
++  REAL StoredUTotal,StoredUTailCorrection;
++
++  REAL UHostPolarizationStored,UAdsorbatePolarizationStored,UCationPolarizationStored;
++  REAL UHostBackPolarizationStored,UAdsorbateBackPolarizationStored,UCationBackPolarizationStored;
++
++  REAL StoredUKinetic,StoredUHostKinetic,StoredUAdsorbateTranslationalKinetic;
++  REAL StoredUCationTranslationalKinetic,StoredUAdsorbateRotationalKinetic;
++  REAL StoredUCationRotationalKinetic,StoredUAdsorbateKinetic,StoredUCationKinetic;
++
++  // Test if there is any molecules in the system, other than those belonging to the framework.
++  NumberOfMolecules=NumberOfAdsorbateMolecules[CurrentSystem];
++
++  if(NumberOfMolecules==0) return -1;
++ 
++  StoredUTotal=UTotal[CurrentSystem];
++  StoredUTailCorrection=UTailCorrection[CurrentSystem];
++
++  StoredUHostBond=UHostBond[CurrentSystem];
++  StoredUHostUreyBradley=UHostUreyBradley[CurrentSystem];
++  StoredUHostBend=UHostBend[CurrentSystem];
++  StoredUHostInversionBend=UHostInversionBend[CurrentSystem];
++  StoredUHostTorsion=UHostTorsion[CurrentSystem];
++  StoredUHostImproperTorsion=UHostImproperTorsion[CurrentSystem];
++  StoredUHostBondBond=UHostBondBond[CurrentSystem];
++  StoredUHostBendBend=UHostBendBend[CurrentSystem];
++  StoredUHostBondBend=UHostBondBend[CurrentSystem];
++  StoredUHostBondTorsion=UHostBondTorsion[CurrentSystem];
++  StoredUHostBendTorsion=UHostBendTorsion[CurrentSystem];
++
++  StoredUAdsorbateBond=UAdsorbateBond[CurrentSystem];
++  StoredUAdsorbateUreyBradley=UAdsorbateUreyBradley[CurrentSystem];
++  StoredUAdsorbateBend=UAdsorbateBend[CurrentSystem];
++  StoredUAdsorbateInversionBend=UAdsorbateInversionBend[CurrentSystem];
++  StoredUAdsorbateTorsion=UAdsorbateTorsion[CurrentSystem];
++  StoredUAdsorbateImproperTorsion=UAdsorbateImproperTorsion[CurrentSystem];
++  StoredUAdsorbateBondBond=UAdsorbateBondBond[CurrentSystem];
++  StoredUAdsorbateBendBend=UAdsorbateBendBend[CurrentSystem];
++  StoredUAdsorbateBondBend=UAdsorbateBondBend[CurrentSystem];
++  StoredUAdsorbateBondTorsion=UAdsorbateBondTorsion[CurrentSystem];
++  StoredUAdsorbateBendTorsion=UAdsorbateBendTorsion[CurrentSystem];
++  StoredUAdsorbateIntraVDW=UAdsorbateIntraVDW[CurrentSystem];
++  StoredUAdsorbateIntraChargeCharge=UAdsorbateIntraChargeCharge[CurrentSystem];
++  StoredUAdsorbateIntraChargeBondDipole=UAdsorbateIntraChargeBondDipole[CurrentSystem];
++  StoredUAdsorbateIntraBondDipoleBondDipole=UAdsorbateIntraBondDipoleBondDipole[CurrentSystem];
++
++  StoredUCationBond=UCationBond[CurrentSystem];
++  StoredUCationUreyBradley=UCationUreyBradley[CurrentSystem];
++  StoredUCationBend=UCationBend[CurrentSystem];
++  StoredUCationInversionBend=UCationInversionBend[CurrentSystem];
++  StoredUCationTorsion=UCationTorsion[CurrentSystem];
++  StoredUCationImproperTorsion=UCationImproperTorsion[CurrentSystem];
++  StoredUCationBondBond=UCationBondBond[CurrentSystem];
++  StoredUCationBendBend=UCationBendBend[CurrentSystem];
++  StoredUCationBondBend=UCationBondBend[CurrentSystem];
++  StoredUCationBondTorsion=UCationBondTorsion[CurrentSystem];
++  StoredUCationBendTorsion=UCationBendTorsion[CurrentSystem];
++  StoredUCationIntraVDW=UCationIntraVDW[CurrentSystem];
++  StoredUCationIntraChargeCharge=UCationIntraChargeCharge[CurrentSystem];
++  StoredUCationIntraChargeBondDipole=UCationIntraChargeBondDipole[CurrentSystem];
++  StoredUCationIntraBondDipoleBondDipole=UCationIntraBondDipoleBondDipole[CurrentSystem];
++
++  StoredUHostHost=UHostHost[CurrentSystem];
++  StoredUHostHostVDW=UHostHostVDW[CurrentSystem];
++  StoredUHostHostChargeChargeReal=UHostHostChargeChargeReal[CurrentSystem];
++  StoredUHostHostChargeChargeFourier=UHostHostChargeChargeFourier[CurrentSystem];
++  StoredUHostHostChargeBondDipoleReal=UHostHostChargeBondDipoleReal[CurrentSystem];
++  StoredUHostHostChargeBondDipoleFourier=UHostHostChargeBondDipoleFourier[CurrentSystem];
++  StoredUHostHostBondDipoleBondDipoleReal=UHostHostBondDipoleBondDipoleReal[CurrentSystem];
++  StoredUHostHostBondDipoleBondDipoleFourier=UHostHostBondDipoleBondDipoleFourier[CurrentSystem];
++  StoredUHostHostCoulomb=UHostHostCoulomb[CurrentSystem];
++
++  StoredUHostAdsorbate=UHostAdsorbate[CurrentSystem];
++  StoredUHostAdsorbateVDW=UHostAdsorbateVDW[CurrentSystem];
++  StoredUHostAdsorbateChargeChargeReal=UHostAdsorbateChargeChargeReal[CurrentSystem];
++  StoredUHostAdsorbateChargeBondDipoleReal=UHostAdsorbateChargeBondDipoleReal[CurrentSystem];
++  StoredUHostAdsorbateBondDipoleBondDipoleReal=UHostAdsorbateBondDipoleBondDipoleReal[CurrentSystem];
++  StoredUHostAdsorbateChargeChargeFourier=UHostAdsorbateChargeChargeFourier[CurrentSystem];
++  StoredUHostAdsorbateChargeBondDipoleFourier=UHostAdsorbateChargeBondDipoleFourier[CurrentSystem];
++  StoredUHostAdsorbateBondDipoleBondDipoleFourier=UHostAdsorbateBondDipoleBondDipoleFourier[CurrentSystem];
++  StoredUHostAdsorbateCoulomb=UHostAdsorbateCoulomb[CurrentSystem];
++
++  StoredUHostCation=UHostCation[CurrentSystem];
++  StoredUHostCationVDW=UHostCationVDW[CurrentSystem];
++  StoredUHostCationChargeChargeReal=UHostCationChargeChargeReal[CurrentSystem];
++  StoredUHostCationChargeBondDipoleReal=UHostCationChargeBondDipoleReal[CurrentSystem];
++  StoredUHostCationBondDipoleBondDipoleReal=UHostCationBondDipoleBondDipoleReal[CurrentSystem];
++  StoredUHostCationChargeChargeFourier=UHostCationChargeChargeFourier[CurrentSystem];
++  StoredUHostCationChargeBondDipoleFourier=UHostCationChargeBondDipoleFourier[CurrentSystem];
++  StoredUHostCationBondDipoleBondDipoleFourier=UHostCationBondDipoleBondDipoleFourier[CurrentSystem];
++  StoredUHostCationCoulomb=UHostCationCoulomb[CurrentSystem];
++
++  StoredUAdsorbateAdsorbate=UAdsorbateAdsorbate[CurrentSystem];
++  StoredUAdsorbateAdsorbateVDW=UAdsorbateAdsorbateVDW[CurrentSystem];
++  StoredUAdsorbateAdsorbateChargeChargeReal=UAdsorbateAdsorbateChargeChargeReal[CurrentSystem];
++  StoredUAdsorbateAdsorbateChargeBondDipoleReal=UAdsorbateAdsorbateChargeBondDipoleReal[CurrentSystem];
++  StoredUAdsorbateAdsorbateBondDipoleBondDipoleReal=UAdsorbateAdsorbateBondDipoleBondDipoleReal[CurrentSystem];
++  StoredUAdsorbateAdsorbateChargeChargeFourier=UAdsorbateAdsorbateChargeChargeFourier[CurrentSystem];
++  StoredUAdsorbateAdsorbateChargeBondDipoleFourier=UAdsorbateAdsorbateChargeBondDipoleFourier[CurrentSystem];
++  StoredUAdsorbateAdsorbateBondDipoleBondDipoleFourier=UAdsorbateAdsorbateBondDipoleBondDipoleFourier[CurrentSystem];
++  StoredUAdsorbateAdsorbateCoulomb=UAdsorbateAdsorbateCoulomb[CurrentSystem];
++
++  StoredUAdsorbateCation=UAdsorbateCation[CurrentSystem];
++  StoredUAdsorbateCationVDW=UAdsorbateCationVDW[CurrentSystem];
++  StoredUAdsorbateCationChargeChargeReal=UAdsorbateCationChargeChargeReal[CurrentSystem];
++  StoredUAdsorbateCationChargeBondDipoleReal=UAdsorbateCationChargeBondDipoleReal[CurrentSystem];
++  StoredUAdsorbateCationBondDipoleBondDipoleReal=UAdsorbateCationBondDipoleBondDipoleReal[CurrentSystem];
++  StoredUAdsorbateCationChargeChargeFourier=UAdsorbateCationChargeChargeFourier[CurrentSystem];
++  StoredUAdsorbateCationChargeBondDipoleFourier=UAdsorbateCationChargeBondDipoleFourier[CurrentSystem];
++  StoredUAdsorbateCationBondDipoleBondDipoleFourier=UAdsorbateCationBondDipoleBondDipoleFourier[CurrentSystem];
++  StoredUAdsorbateCationCoulomb=UAdsorbateCationCoulomb[CurrentSystem];
++
++  StoredUCationCation=UCationCation[CurrentSystem];
++  StoredUCationCationVDW=UCationCationVDW[CurrentSystem];
++  StoredUCationCationChargeChargeReal=UCationCationChargeChargeReal[CurrentSystem];
++  StoredUCationCationChargeBondDipoleReal=UCationCationChargeBondDipoleReal[CurrentSystem];
++  StoredUCationCationBondDipoleBondDipoleReal=UCationCationBondDipoleBondDipoleReal[CurrentSystem];
++  StoredUCationCationChargeChargeFourier=UCationCationChargeChargeFourier[CurrentSystem];
++  StoredUCationCationChargeBondDipoleFourier=UCationCationChargeBondDipoleFourier[CurrentSystem];
++  StoredUCationCationBondDipoleBondDipoleFourier=UCationCationBondDipoleBondDipoleFourier[CurrentSystem];
++  StoredUCationCationCoulomb=UCationCationCoulomb[CurrentSystem];
++
++  UHostPolarizationStored=UHostPolarization[CurrentSystem];
++  UAdsorbatePolarizationStored=UAdsorbatePolarization[CurrentSystem];
++  UCationPolarizationStored=UCationPolarization[CurrentSystem];
++
++  UHostBackPolarizationStored=UHostBackPolarization[CurrentSystem];
++  UAdsorbateBackPolarizationStored=UAdsorbateBackPolarization[CurrentSystem];
++  UCationBackPolarizationStored=UCationBackPolarization[CurrentSystem];
++ 
++  // Store the degrees of freedom of the system.
++  DegreesOfFreedomReferenceAdsorbates = DegreesOfFreedomAdsorbates[CurrentSystem];
++  DegreesOfFreedomReferenceTranslation = DegreesOfFreedomTranslation[CurrentSystem];
++  DegreesOfFreedomReferenceTranslationalAdsorbates = DegreesOfFreedomTranslationalAdsorbates[CurrentSystem];
++  DegreesOfFreedomReference = DegreesOfFreedom[CurrentSystem];
++  							
++  DegreesOfFreedomReferenceRotation = DegreesOfFreedomRotation[CurrentSystem];
++  DegreesOfFreedomReferenceAdsorbates = DegreesOfFreedomAdsorbates[CurrentSystem];
++  DegreesOfFreedomReferenceRotationalAdsorbates = DegreesOfFreedomRotationalAdsorbates[CurrentSystem];
++
++  // store the positions of the framework
++  for(f1=0;f1<Framework[CurrentSystem].NumberOfFrameworks;f1++)
++    for(i=0;i<Framework[CurrentSystem].NumberOfAtoms[f1];i++)
++      Framework[CurrentSystem].Atoms[f1][i].ReferencePosition=Framework[CurrentSystem].Atoms[f1][i].Position;
++  
++  // Store the NumberOfPseudoAtom pointer.
++  NumberOfPseudoAtomsReferenceTypeNew=(int*)calloc(NumberOfPseudoAtoms,sizeof(int));
++  NumberOfPseudoAtomsReferenceTypeOld=(int*)calloc(NumberOfPseudoAtoms,sizeof(int));
++  NumberOfPseudoAtomsReferenceType=(int**)calloc(NumberOfSystems,sizeof(int*));
++
++  for(i=0;i<NumberOfSystems;i++)
++  {
++	  NumberOfPseudoAtomsReferenceType[i]=(int*)calloc(NumberOfPseudoAtoms,sizeof(int));
++  }
++
++  for(i=0;i<NumberOfPseudoAtoms;i++)
++  {
++	  NumberOfPseudoAtomsReferenceTypeNew[i]=NumberOfPseudoAtomsTypeNew[i];
++	  NumberOfPseudoAtomsReferenceTypeOld[i]=NumberOfPseudoAtomsTypeOld[i];
++	  NumberOfPseudoAtomsReferenceType[CurrentSystem][i]=NumberOfPseudoAtomsType[CurrentSystem][i];
++  }
++	
++  // store the structure-factors for the Ewald-summations
++  if((ChargeMethod==EWALD)&&(!OmitEwaldFourier))
++    SaveCurrentEwaldStructureFactors(0,CurrentSystem);
++   
++  if (NumberAlchemicalReactions<=0) return 0;
++
++  CurrentAlchemicalReaction=0;
++  
++  InitialSaltIons = Components[SaltIndex[CurrentAlchemicalReaction][0]].NumberOfMolecules[CurrentSystem];
++  	
++  InitialWater    =	Components[SolventIndex].NumberOfMolecules[CurrentSystem];
++
++  // Remove water and insert ions, for calculation of osmostat.
++  OldComponent = (int*)calloc(1,sizeof(int)); // This is the salt
++  NewComponent = (int*)calloc(1,sizeof(int)); // This is water.
++  
++  OldComponent[0] = SaltIndex[CurrentAlchemicalReaction][0];
++  
++  NewComponent[0] = SolventIndex;  
++  
++  NumberOldComponent = 1;
++  NumberNewComponent = 1;
++ 
++  // Select random particules.
++  SelectRandomMoleculeAlchemicalTransformation(OldComponent, NumberOldComponent, CurrentAlchemicalReaction);
++ 
++  // Extra memory for the new 2 transient components
++  AddExtraPseudoAtoms();	
++  AllocateTransientComponentMemory();	
++  ReallocateMemoryParameterTab();
++  
++  // Store position of Chosen moities, before removing the chosen moities from the old system.
++  StoreChosenMoitiesCoordinates(NumberOldComponent);
++	
++  // Set up the mass of the new transient, according to the choice of components
++  InitializeMassTransientMoities(NumberOldComponent);
++  InitializeVDWTransientMoities(NumberOldComponent);
++  InitializeChargeTransientMoities(NumberOldComponent);
++  
++  // Delete chosen adsorbates and add intial transient adsorbates
++  DeleteChosenMoities();
++  
++  // store the positions of the Adsorbates
++  for(m=0;m<NumberOfAdsorbateMolecules[CurrentSystem];m++)
++  {
++    Type=Adsorbates[CurrentSystem][m].Type;
++    for(i=0;i<Components[Type].NumberOfGroups;i++)
++      Adsorbates[CurrentSystem][m].Groups[i].CenterOfMassReferencePosition=Adsorbates[CurrentSystem][m].Groups[i].CenterOfMassPosition;
++    for(i=0;i<Adsorbates[CurrentSystem][m].NumberOfAtoms;i++)
++    {
++      Adsorbates[CurrentSystem][m].Atoms[i].ReferencePosition=Adsorbates[CurrentSystem][m].Atoms[i].Position;
++    }
++  }
++
++  // store the positions of the cation.
++  for(m=0;m<NumberOfCationMolecules[CurrentSystem];m++)
++  {
++    Type=Cations[CurrentSystem][m].Type;
++    for(i=0;i<Components[Type].NumberOfGroups;i++)
++      Cations[CurrentSystem][m].Groups[i].CenterOfMassReferencePosition=Cations[CurrentSystem][m].Groups[i].CenterOfMassPosition;
++    for(i=0;i<Cations[CurrentSystem][m].NumberOfAtoms;i++)
++      Cations[CurrentSystem][m].Atoms[i].ReferencePosition=Cations[CurrentSystem][m].Atoms[i].Position;
++  }
++
++  MakeInitialTransient(NumberOldComponent);
++  
++  Ensemble[CurrentSystem]=NVE;
++
++  // register an attempt to change the 'Old'-components to the 'New'-components.
++  WidomOsmostat[CurrentSystem][CurrentAlchemicalReaction]+=1.0;	
++
++  // Only do the vdw contribution
++  for(i=1;i<=AlchReacLambda;i++)
++  {	  
++	// get the energy before perturbation at i^th step.
++	if(i>0)Ubefore = UTotal[CurrentSystem];
++
++	// interpolate vdw parameters.
++	UpdateMixingRuleVDWInterpolationAlchemicalTransformation(NumberOldComponent, Lambda[i]);  
++
++	// Then prepare for NVE simulation.
++    for(j=0;j<NumberOfAdsorbateMolecules[CurrentSystem];j++)
++		InitializeVelocityAdsorbate(j);
++	
++	for(j=0;j<NumberOfCationMolecules[CurrentSystem];j++)
++		InitializeVelocityCation(j);
++
++	if(Framework[CurrentSystem].FrameworkModel==FLEXIBLE)
++		InitializeFrameworkVelocities();
++
++	InitializeForces();
++	
++	// get the energy after perturbation at i^th step.
++	if(i>0)Uafter = UTotal[CurrentSystem];
++
++	// Update protocol work
++	if(i>0)ProtocolWork_vdw += Uafter - Ubefore;
++	StoredUKinetic=UKinetic[CurrentSystem];
++	StoredUHostKinetic=UHostKinetic[CurrentSystem];
++	StoredUAdsorbateTranslationalKinetic=UAdsorbateTranslationalKinetic[CurrentSystem];
++	StoredUCationTranslationalKinetic=UCationTranslationalKinetic[CurrentSystem];
++	StoredUAdsorbateRotationalKinetic=UAdsorbateRotationalKinetic[CurrentSystem];
++	StoredUCationRotationalKinetic=UCationRotationalKinetic[CurrentSystem];
++	StoredUAdsorbateKinetic=UAdsorbateKinetic[CurrentSystem];
++	StoredUCationKinetic=UCationKinetic[CurrentSystem];
++	
++	// register the starting temperatures
++    if(DegreesOfFreedom[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTemperature[CurrentSystem]+=2.0*StoredUKinetic/(K_B*DegreesOfFreedom[CurrentSystem]);
++      HybridNVEAlchStartTemperatureCount[CurrentSystem]+=1.0;
++    }
++    
++    if(DegreesOfFreedomTranslation[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTranslationalTemperature[CurrentSystem]+=2.0*(StoredUHostKinetic+
++         StoredUAdsorbateTranslationalKinetic+StoredUCationTranslationalKinetic)/
++                                                (K_B*DegreesOfFreedomTranslation[CurrentSystem]);
++      HybridNVEAlchStartTemperatureTranslationCount[CurrentSystem]+=1.0;
++    }
++    
++    if(DegreesOfFreedomRotation[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartRotationalTemperature[CurrentSystem]+=2.0*(StoredUAdsorbateRotationalKinetic+
++            StoredUCationRotationalKinetic)/(K_B*DegreesOfFreedomRotation[CurrentSystem]);
++      HybridNVEAlchStartTemperatureRotationCount[CurrentSystem]+=1.0;
++    }
++    
++    if(DegreesOfFreedomFramework[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTemperatureFramework[CurrentSystem]+=2.0*StoredUHostKinetic/(K_B*DegreesOfFreedomFramework[CurrentSystem]);
++      HybridNVEAlchStartTemperatureFrameworkCount[CurrentSystem]+=1.0;
++    }
++    
++    if(DegreesOfFreedomAdsorbates[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTemperatureAdsorbate[CurrentSystem]+=2.0*StoredUAdsorbateKinetic/(K_B*DegreesOfFreedomAdsorbates[CurrentSystem]);
++      HybridNVEAlchStartTemperatureAdsorbateCount[CurrentSystem]+=1.0;
++    }
++
++    if(DegreesOfFreedomCations[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTemperatureCation[CurrentSystem]+=2.0*StoredUCationKinetic/(K_B*DegreesOfFreedomCations[CurrentSystem]);
++      HybridNVEAlchStartTemperatureCationCount[CurrentSystem]+=1.0;
++    }
++
++    ReferenceEnergy=ConservedEnergy[CurrentSystem];
++    Drift=0.0;
++	
++    // integrated the system 'NumberOfHybridNVESteps' steps
++	for(j=0;j<RelaxationStepsAlchemicalTransformationMove;j++)
++	{
++		// evolve the system a full time-step
++		Integration();
++
++		// update the drift in the energy
++		Drift+=fabs((ConservedEnergy[CurrentSystem]-ReferenceEnergy)/ReferenceEnergy);
++	}
++	
++  }
++
++  // Then do the electrostat contribution.
++  for(i=0;i<=AlchReacLambda;i++)
++  {	  
++	// get the energy before perturbation at i^th step.
++	if(i>0)Ubefore = UTotal[CurrentSystem];
++
++	// interpolate charge parameter
++	UpdateChargeInterpolationAlchemicalTransformation(NumberOldComponent, Lambda[i]);
++
++	// Then prepare for NVE simulation.
++    for(j=0;j<NumberOfAdsorbateMolecules[CurrentSystem];j++)
++		InitializeVelocityAdsorbate(j);
++	
++	for(j=0;j<NumberOfCationMolecules[CurrentSystem];j++)
++		InitializeVelocityCation(j);
++
++	if(Framework[CurrentSystem].FrameworkModel==FLEXIBLE)
++		InitializeFrameworkVelocities();
++
++	InitializeForces();
++	
++	// get the energy after perturbation at i^th step.
++	if(i>0)Uafter = UTotal[CurrentSystem];
++
++	// Update protocol work
++	if(i>0)ProtocolWork_elec += Uafter - Ubefore;
++	StoredUKinetic=UKinetic[CurrentSystem];
++	StoredUHostKinetic=UHostKinetic[CurrentSystem];
++	StoredUAdsorbateTranslationalKinetic=UAdsorbateTranslationalKinetic[CurrentSystem];
++	StoredUCationTranslationalKinetic=UCationTranslationalKinetic[CurrentSystem];
++	StoredUAdsorbateRotationalKinetic=UAdsorbateRotationalKinetic[CurrentSystem];
++	StoredUCationRotationalKinetic=UCationRotationalKinetic[CurrentSystem];
++	StoredUAdsorbateKinetic=UAdsorbateKinetic[CurrentSystem];
++	StoredUCationKinetic=UCationKinetic[CurrentSystem];
++	
++	// register the starting temperatures
++    if(DegreesOfFreedom[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTemperature[CurrentSystem]+=2.0*StoredUKinetic/(K_B*DegreesOfFreedom[CurrentSystem]);
++      HybridNVEAlchStartTemperatureCount[CurrentSystem]+=1.0;
++    }
++    
++    if(DegreesOfFreedomTranslation[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTranslationalTemperature[CurrentSystem]+=2.0*(StoredUHostKinetic+
++         StoredUAdsorbateTranslationalKinetic+StoredUCationTranslationalKinetic)/
++                                                (K_B*DegreesOfFreedomTranslation[CurrentSystem]);
++      HybridNVEAlchStartTemperatureTranslationCount[CurrentSystem]+=1.0;
++    }
++    
++    if(DegreesOfFreedomRotation[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartRotationalTemperature[CurrentSystem]+=2.0*(StoredUAdsorbateRotationalKinetic+
++            StoredUCationRotationalKinetic)/(K_B*DegreesOfFreedomRotation[CurrentSystem]);
++      HybridNVEAlchStartTemperatureRotationCount[CurrentSystem]+=1.0;
++    }
++    
++    if(DegreesOfFreedomFramework[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTemperatureFramework[CurrentSystem]+=2.0*StoredUHostKinetic/(K_B*DegreesOfFreedomFramework[CurrentSystem]);
++      HybridNVEAlchStartTemperatureFrameworkCount[CurrentSystem]+=1.0;
++    }
++    
++    if(DegreesOfFreedomAdsorbates[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTemperatureAdsorbate[CurrentSystem]+=2.0*StoredUAdsorbateKinetic/(K_B*DegreesOfFreedomAdsorbates[CurrentSystem]);
++      HybridNVEAlchStartTemperatureAdsorbateCount[CurrentSystem]+=1.0;
++    }
++
++    if(DegreesOfFreedomCations[CurrentSystem]>0)
++    {
++      HybridNVEAlchStartTemperatureCation[CurrentSystem]+=2.0*StoredUCationKinetic/(K_B*DegreesOfFreedomCations[CurrentSystem]);
++      HybridNVEAlchStartTemperatureCationCount[CurrentSystem]+=1.0;
++    }
++
++    ReferenceEnergy=ConservedEnergy[CurrentSystem];
++    Drift=0.0;
++	
++    // integrated the system 'NumberOfHybridNVESteps' steps
++	for(j=0;j<RelaxationStepsAlchemicalTransformationMove;j++)
++	{
++		// evolve the system a full time-step
++		Integration();
++
++		// update the drift in the energy
++		Drift+=fabs((ConservedEnergy[CurrentSystem]-ReferenceEnergy)/ReferenceEnergy);
++	}
++  }
++  
++  // Manage registration of protocol work.
++  SizeProtocolWorkStore++;
++  IncreaseSizeProtocolWork();
++  ProtocolWorkStore[SizeProtocolWorkStore-1] = ProtocolWork_vdw + ProtocolWork_elec;
++  ProtocolWorkStore_vdw[SizeProtocolWorkStore-1] = ProtocolWork_vdw;
++  ProtocolWorkStore_elec[SizeProtocolWorkStore-1] = ProtocolWork_elec;
++  
++  // Print in the output file the protocol work.
++  UpdateFileProtocolWork(SizeProtocolWorkStore-1, OutputOsmostatFilePtr);
++
++  // register the end temperatures
++  HybridNVEAlchDrift[CurrentSystem]+=Drift;
++  HybridNVEAlchDriftCount[CurrentSystem]+=1.0;
++  
++  if(DegreesOfFreedom[CurrentSystem]>0)
++  {
++  	HybridNVEAlchEndTemperature[CurrentSystem]+=2.0*UKinetic[CurrentSystem]/(K_B*DegreesOfFreedom[CurrentSystem]);
++  	HybridNVEAlchEndTemperatureCount[CurrentSystem]+=1.0;
++  }
++  
++  if(DegreesOfFreedomTranslation[CurrentSystem]>0)
++  {
++  	HybridNVEAlchEndTranslationalTemperature[CurrentSystem]+=2.0*(UHostKinetic[CurrentSystem]+
++  		UAdsorbateTranslationalKinetic[CurrentSystem]+UCationTranslationalKinetic[CurrentSystem])/
++  											(K_B*DegreesOfFreedomTranslation[CurrentSystem]);
++  	HybridNVEAlchEndTemperatureTranslationCount[CurrentSystem]+=1.0;
++  }
++  
++  if(DegreesOfFreedomRotation[CurrentSystem]>0)
++  {
++  	HybridNVEAlchEndRotationalTemperature[CurrentSystem]+=2.0*(UAdsorbateRotationalKinetic[CurrentSystem]+
++  			UCationRotationalKinetic[CurrentSystem])/(K_B*DegreesOfFreedomRotation[CurrentSystem]);
++  	HybridNVEAlchEndTemperatureRotationCount[CurrentSystem]+=1.0;
++  }
++  
++  if(DegreesOfFreedomFramework[CurrentSystem]>0)
++  {
++  	HybridNVEAlchEndTemperatureFramework[CurrentSystem]+=2.0*UHostKinetic[CurrentSystem]/(K_B*DegreesOfFreedomFramework[CurrentSystem]);
++  	HybridNVEAlchEndTemperatureFrameworkCount[CurrentSystem]+=1.0;
++  }
++  
++  if(DegreesOfFreedomAdsorbates[CurrentSystem]>0)
++  {
++  	HybridNVEAlchEndTemperatureAdsorbate[CurrentSystem]+=2.0*UAdsorbateKinetic[CurrentSystem]/(K_B*DegreesOfFreedomAdsorbates[CurrentSystem]);
++  	HybridNVEAlchEndTemperatureAdsorbateCount[CurrentSystem]+=1.0;
++  }
++  
++  if(DegreesOfFreedomCations[CurrentSystem]>0)
++  {
++  	HybridNVEAlchEndTemperatureCation[CurrentSystem]+=2.0*UCationKinetic[CurrentSystem]/(K_B*DegreesOfFreedomCations[CurrentSystem]);
++  	HybridNVEAlchEndTemperatureCationCount[CurrentSystem]+=1.0;
++  }
++
++  // restore all the energy to the Old state
++  UHostBond[CurrentSystem]=StoredUHostBond;
++  UHostUreyBradley[CurrentSystem]=StoredUHostUreyBradley;
++  UHostBend[CurrentSystem]=StoredUHostBend;
++  UHostInversionBend[CurrentSystem]=StoredUHostInversionBend;
++  UHostTorsion[CurrentSystem]=StoredUHostTorsion;
++  UHostImproperTorsion[CurrentSystem]=StoredUHostImproperTorsion;
++  UHostBondBond[CurrentSystem]=StoredUHostBondBond;
++  UHostBendBend[CurrentSystem]=StoredUHostBendBend;
++  UHostBondBend[CurrentSystem]=StoredUHostBondBend;
++  UHostBondTorsion[CurrentSystem]=StoredUHostBondTorsion;
++  UHostBendTorsion[CurrentSystem]=StoredUHostBendTorsion;
++
++  UAdsorbateBond[CurrentSystem]=StoredUAdsorbateBond;
++  UAdsorbateUreyBradley[CurrentSystem]=StoredUAdsorbateUreyBradley;
++  UAdsorbateBend[CurrentSystem]=StoredUAdsorbateBend;
++  UAdsorbateInversionBend[CurrentSystem]=StoredUAdsorbateInversionBend;
++  UAdsorbateTorsion[CurrentSystem]=StoredUAdsorbateTorsion;
++  UAdsorbateImproperTorsion[CurrentSystem]=StoredUAdsorbateImproperTorsion;
++  UAdsorbateBondBond[CurrentSystem]=StoredUAdsorbateBondBond;
++  UAdsorbateBendBend[CurrentSystem]=StoredUAdsorbateBendBend;
++  UAdsorbateBondTorsion[CurrentSystem]=StoredUAdsorbateBondTorsion;
++  UAdsorbateBondBend[CurrentSystem]=StoredUAdsorbateBondBend;
++  UAdsorbateBendTorsion[CurrentSystem]=StoredUAdsorbateBendTorsion;
++  UAdsorbateIntraVDW[CurrentSystem]=StoredUAdsorbateIntraVDW;
++  UAdsorbateIntraChargeCharge[CurrentSystem]=StoredUAdsorbateIntraChargeCharge;
++  UAdsorbateIntraChargeBondDipole[CurrentSystem]=StoredUAdsorbateIntraChargeBondDipole;
++  UAdsorbateIntraBondDipoleBondDipole[CurrentSystem]=StoredUAdsorbateIntraBondDipoleBondDipole;
++	
++  UCationBond[CurrentSystem]=StoredUCationBond;
++  UCationUreyBradley[CurrentSystem]=StoredUCationUreyBradley;
++  UCationBend[CurrentSystem]=StoredUCationBend;
++  UCationInversionBend[CurrentSystem]=StoredUCationInversionBend;
++  UCationTorsion[CurrentSystem]=StoredUCationTorsion;
++  UCationImproperTorsion[CurrentSystem]=StoredUCationImproperTorsion;
++  UCationBondBond[CurrentSystem]=StoredUCationBondBond;
++  UCationBendBend[CurrentSystem]=StoredUCationBendBend;
++  UCationBondBend[CurrentSystem]=StoredUCationBondBend;
++  UCationBondTorsion[CurrentSystem]=StoredUCationBondTorsion;
++  UCationBendTorsion[CurrentSystem]=StoredUCationBendTorsion;
++  UCationIntraVDW[CurrentSystem]=StoredUCationIntraVDW;
++  UCationIntraChargeCharge[CurrentSystem]=StoredUCationIntraChargeCharge;
++  UCationIntraChargeBondDipole[CurrentSystem]=StoredUCationIntraChargeBondDipole;
++  UCationIntraBondDipoleBondDipole[CurrentSystem]=StoredUCationIntraBondDipoleBondDipole;
++
++  UHostHost[CurrentSystem]=StoredUHostHost;
++  UHostHostVDW[CurrentSystem]=StoredUHostHostVDW;
++  UHostHostChargeChargeReal[CurrentSystem]=StoredUHostHostChargeChargeReal;
++  UHostHostChargeBondDipoleReal[CurrentSystem]=StoredUHostHostChargeBondDipoleReal;
++  UHostHostBondDipoleBondDipoleReal[CurrentSystem]=StoredUHostHostBondDipoleBondDipoleReal;
++  UHostHostChargeChargeFourier[CurrentSystem]=StoredUHostHostChargeChargeFourier;
++  UHostHostChargeBondDipoleFourier[CurrentSystem]=StoredUHostHostChargeBondDipoleFourier;
++  UHostHostBondDipoleBondDipoleFourier[CurrentSystem]=StoredUHostHostBondDipoleBondDipoleFourier;
++  UHostHostCoulomb[CurrentSystem]=StoredUHostHostCoulomb;
++	
++  UHostAdsorbate[CurrentSystem]=StoredUHostAdsorbate;
++  UHostAdsorbateVDW[CurrentSystem]=StoredUHostAdsorbateVDW;
++  UHostAdsorbateChargeChargeReal[CurrentSystem]=StoredUHostAdsorbateChargeChargeReal;
++  UHostAdsorbateChargeBondDipoleReal[CurrentSystem]=StoredUHostAdsorbateChargeBondDipoleReal;
++  UHostAdsorbateBondDipoleBondDipoleReal[CurrentSystem]=StoredUHostAdsorbateBondDipoleBondDipoleReal;
++  UHostAdsorbateChargeChargeFourier[CurrentSystem]=StoredUHostAdsorbateChargeChargeFourier;
++  UHostAdsorbateChargeBondDipoleFourier[CurrentSystem]=StoredUHostAdsorbateChargeBondDipoleFourier;
++  UHostAdsorbateBondDipoleBondDipoleFourier[CurrentSystem]=StoredUHostAdsorbateBondDipoleBondDipoleFourier;
++  UHostAdsorbateCoulomb[CurrentSystem]=StoredUHostAdsorbateCoulomb;
++
++  UHostCation[CurrentSystem]=StoredUHostCation;
++  UHostCationVDW[CurrentSystem]=StoredUHostCationVDW;
++  UHostCationChargeChargeReal[CurrentSystem]=StoredUHostCationChargeChargeReal;
++  UHostCationChargeBondDipoleReal[CurrentSystem]=StoredUHostCationChargeBondDipoleReal;
++  UHostCationBondDipoleBondDipoleReal[CurrentSystem]=StoredUHostCationBondDipoleBondDipoleReal;
++  UHostCationChargeChargeFourier[CurrentSystem]=StoredUHostCationChargeChargeFourier;
++  UHostCationChargeBondDipoleFourier[CurrentSystem]=StoredUHostCationChargeBondDipoleFourier;
++  UHostCationBondDipoleBondDipoleFourier[CurrentSystem]=StoredUHostCationBondDipoleBondDipoleFourier;
++  UHostCationCoulomb[CurrentSystem]=StoredUHostCationCoulomb;
++	
++  UAdsorbateAdsorbate[CurrentSystem]=StoredUAdsorbateAdsorbate;
++  UAdsorbateAdsorbateVDW[CurrentSystem]=StoredUAdsorbateAdsorbateVDW;
++  UAdsorbateAdsorbateChargeChargeReal[CurrentSystem]=StoredUAdsorbateAdsorbateChargeChargeReal;
++  UAdsorbateAdsorbateChargeBondDipoleReal[CurrentSystem]=StoredUAdsorbateAdsorbateChargeBondDipoleReal;
++  UAdsorbateAdsorbateBondDipoleBondDipoleReal[CurrentSystem]=StoredUAdsorbateAdsorbateBondDipoleBondDipoleReal;
++  UAdsorbateAdsorbateChargeChargeFourier[CurrentSystem]=StoredUAdsorbateAdsorbateChargeChargeFourier;
++  UAdsorbateAdsorbateChargeBondDipoleFourier[CurrentSystem]=StoredUAdsorbateAdsorbateChargeBondDipoleFourier;
++  UAdsorbateAdsorbateBondDipoleBondDipoleFourier[CurrentSystem]=StoredUAdsorbateAdsorbateBondDipoleBondDipoleFourier;
++  UAdsorbateAdsorbateCoulomb[CurrentSystem]=StoredUAdsorbateAdsorbateCoulomb;
++	
++  UAdsorbateCation[CurrentSystem]=StoredUAdsorbateCation;
++  UAdsorbateCationVDW[CurrentSystem]=StoredUAdsorbateCationVDW;
++  UAdsorbateCationChargeChargeReal[CurrentSystem]=StoredUAdsorbateCationChargeChargeReal;
++  UAdsorbateCationChargeBondDipoleReal[CurrentSystem]=StoredUAdsorbateCationChargeBondDipoleReal;
++  UAdsorbateCationBondDipoleBondDipoleReal[CurrentSystem]=StoredUAdsorbateCationBondDipoleBondDipoleReal;
++  UAdsorbateCationChargeChargeFourier[CurrentSystem]=StoredUAdsorbateCationChargeChargeFourier;
++  UAdsorbateCationChargeBondDipoleFourier[CurrentSystem]=StoredUAdsorbateCationChargeBondDipoleFourier;
++  UAdsorbateCationBondDipoleBondDipoleFourier[CurrentSystem]=StoredUAdsorbateCationBondDipoleBondDipoleFourier;
++  UAdsorbateCationCoulomb[CurrentSystem]=StoredUAdsorbateCationCoulomb;
++	
++  UCationCation[CurrentSystem]=StoredUCationCation;
++  UCationCationVDW[CurrentSystem]=StoredUCationCationVDW;
++  UCationCationChargeChargeReal[CurrentSystem]=StoredUCationCationChargeChargeReal;
++  UCationCationChargeBondDipoleReal[CurrentSystem]=StoredUCationCationChargeBondDipoleReal;
++  UCationCationBondDipoleBondDipoleReal[CurrentSystem]=StoredUCationCationBondDipoleBondDipoleReal;
++  UCationCationChargeChargeFourier[CurrentSystem]=StoredUCationCationChargeChargeFourier;
++  UCationCationChargeBondDipoleFourier[CurrentSystem]=StoredUCationCationChargeBondDipoleFourier;
++  UCationCationBondDipoleBondDipoleFourier[CurrentSystem]=StoredUCationCationBondDipoleBondDipoleFourier;
++  UCationCationCoulomb[CurrentSystem]=StoredUCationCationCoulomb;
++  UTailCorrection[CurrentSystem]=StoredUTailCorrection;
++	
++  UHostPolarization[CurrentSystem]=UHostPolarizationStored;
++  UAdsorbatePolarization[CurrentSystem]=UHostPolarizationStored;
++  UCationPolarization[CurrentSystem]=UCationPolarizationStored;
++	
++  UHostBackPolarization[CurrentSystem]=UHostBackPolarizationStored;
++  UAdsorbateBackPolarization[CurrentSystem]=UAdsorbateBackPolarizationStored;
++  UCationBackPolarization[CurrentSystem]=UCationBackPolarizationStored;
++	
++  UTotal[CurrentSystem]=StoredUTotal;
++  UTailCorrection[CurrentSystem]=StoredUTailCorrection;
++  
++  // restore all the positions to the Old state
++  for(f1=0;f1<Framework[CurrentSystem].NumberOfFrameworks;f1++)
++    for(i=0;i<Framework[CurrentSystem].NumberOfAtoms[f1];i++)
++      Framework[CurrentSystem].Atoms[f1][i].Position=Framework[CurrentSystem].Atoms[f1][i].ReferencePosition;
++	
++	// Restore the NumberOfPseudoAtom pointer.
++	for(i=0;i<NumberOfPseudoAtoms;i++)
++	{
++	NumberOfPseudoAtomsTypeNew[i]=NumberOfPseudoAtomsReferenceTypeNew[i];
++	NumberOfPseudoAtomsTypeOld[i]=NumberOfPseudoAtomsReferenceTypeOld[i];
++	NumberOfPseudoAtomsType[CurrentSystem][i]=NumberOfPseudoAtomsReferenceType[CurrentSystem][i];
++	}  
++
++	// Retrieve the number of non-alchemed molecules.
++	int UntouchedAdsorbates=NumberOfAdsorbateMolecules[CurrentSystem]-NumberTransientMoities[CurrentAlchemicalReaction];
++	
++	// Copy the former molecule that has not been chosen for ion exchange.
++  for(m=0;m<UntouchedAdsorbates;m++)
++  {
++    Type=Adsorbates[CurrentSystem][m].Type;
++    for(i=0;i<Components[Type].NumberOfGroups;i++)
++      Adsorbates[CurrentSystem][m].Groups[i].CenterOfMassPosition=Adsorbates[CurrentSystem][m].Groups[i].CenterOfMassReferencePosition;
++
++    for(i=0;i<Adsorbates[CurrentSystem][m].NumberOfAtoms;i++)
++      Adsorbates[CurrentSystem][m].Atoms[i].Position=Adsorbates[CurrentSystem][m].Atoms[i].ReferencePosition; 
++  }
++
++  // Copy the former molecule candidate for the ions exchange: restore initial
++  int n;
++	
++  for(n=0;n<NumberTransientMoities[CurrentAlchemicalReaction];n++)
++  {
++		// We add the candidates molecules at the top of the pile of adsorbate.
++		m=n+UntouchedAdsorbates;
++		Type=AdsorbatesReferenceChosen[n].Type;
++		
++		// Update number of transient
++		Components[Type].NumberOfMolecules[CurrentSystem]++;
++		
++		// Update Adsorabtes
++		Adsorbates[CurrentSystem][m].Type=Type;
++		Adsorbates[CurrentSystem][m].NumberOfAtoms=AdsorbatesReferenceChosen[n].NumberOfAtoms;
++			Adsorbates[CurrentSystem][m].Atoms=(ATOM*)realloc(Adsorbates[CurrentSystem][m].Atoms,(Components[Type].NumberOfAtoms)*sizeof(ATOM));
++		if(Components[Type].NumberOfGroups>0)
++			Adsorbates[CurrentSystem][m].Groups=(GROUP*)realloc(Adsorbates[CurrentSystem][m].Groups,(Components[Type].NumberOfGroups)*sizeof(GROUP));
++		
++		for(i=0;i<Components[Type].NumberOfGroups;i++)
++		  Adsorbates[CurrentSystem][m].Groups[i]=AdsorbatesReferenceChosen[n].Groups[i];
++		
++		for(i=0;i<AdsorbatesReferenceChosen[n].NumberOfAtoms;i++)
++		  Adsorbates[CurrentSystem][m].Atoms[i]=AdsorbatesReferenceChosen[n].Atoms[i]; 
++  }
++	 
++	// The cation are not modified in the alchemical transformation.
++  for(m=0;m<NumberOfCationMolecules[CurrentSystem];m++)
++  {
++    Type=Cations[CurrentSystem][m].Type;
++    for(i=0;i<Components[Type].NumberOfGroups;i++)
++      Cations[CurrentSystem][m].Groups[i].CenterOfMassPosition=Cations[CurrentSystem][m].Groups[i].CenterOfMassReferencePosition;
++    for(i=0;i<Cations[CurrentSystem][m].NumberOfAtoms;i++)
++      Cations[CurrentSystem][m].Atoms[i].Position=Cations[CurrentSystem][m].Atoms[i].ReferencePosition;
++  }
++	// Restore the initial degrees of freedom.
++	DegreesOfFreedomAdsorbates[CurrentSystem]=DegreesOfFreedomReferenceAdsorbates;
++	DegreesOfFreedomTranslation[CurrentSystem]=DegreesOfFreedomReferenceTranslation;
++	DegreesOfFreedomTranslationalAdsorbates[CurrentSystem]=DegreesOfFreedomReferenceTranslationalAdsorbates;
++	DegreesOfFreedom[CurrentSystem]=DegreesOfFreedomReference;
++								
++	DegreesOfFreedomRotation[CurrentSystem]=DegreesOfFreedomReferenceRotation;
++	DegreesOfFreedomAdsorbates[CurrentSystem]=DegreesOfFreedomReferenceAdsorbates;
++	DegreesOfFreedomRotationalAdsorbates[CurrentSystem]=DegreesOfFreedomReferenceRotationalAdsorbates;
++
++  if((ChargeMethod==EWALD)&&(!OmitEwaldFourier))
++    RetrieveStoredEwaldStructureFactors(0,CurrentSystem);
++
++  CalculateAnisotropicSites();
++  
++  // deallocate memory
++  RemoveExtraPseudoAtoms();
++  DeallocateTransientComponentMemory();
++  DeallocateMemoryParameterTab();
++  
++  // restore the initial memory of components, pseudoatom and and other vectors.
++  DeallocateChosenMoitiesCoordinates();
++
++  // Reinitialize force and energy to recompute the good vector for fourier ewald.
++  InitializeForces();
++
++  // Let's free the used pointer.
++  free(OldComponent);
++  free(NewComponent); 
++  free(NCMCWorkStore);
++  
++  return 0;
++}
++
++
++
+ // Identity-switch Monte-Carlo move in the grand-canonical ensemble (Adsorbate-version)
+ // A molecule of type 'A' is randomly selected and an attempt is made to change its identity to 'B'
+ // The move is called semi-grand ensemble, but is also a special case of the Gibbs ensemble.
+@@ -6306,6 +7068,7 @@ int IdentityChangeAdsorbateMove(void)
+   int StoredNumberOfTrialPositions;
+   int StoredNumberOfTrialPositionsFirstBead;
+ 
++  // Trial position to reconstruct molecules
+   StoredNumberOfTrialPositions=NumberOfTrialPositions;
+   StoredNumberOfTrialPositionsFirstBead=NumberOfTrialPositionsForTheFirstBead;
+ 
+@@ -6595,12 +7358,14 @@ int IdentityChangeAdsorbateMove(void)
+   return 0;
+ }
+ 
++
+ // Identity-switch Monte-Carlo move in the grand-canonical ensemble (Cation-version)
+ // A molecule of type 'A' is randomly selected and an attempt is made to change its identity to 'B'
+ // The move is called semi-grand ensemble, but is also a special case of the Gibbs ensemble.
+ // The move is called 'swotch' in original paper of M. G. Martin and J. I. Siepmann
+ // JACS, 1997, 8921-8924
+ 
++
+ int IdentityChangeCationMove(void)
+ {
+   int i,d;
+@@ -6930,6 +7695,95 @@ void PrintIdentityChangeStatistics(FILE *FilePtr)
+ }
+ 
+ 
++// Added by Ambroise (information about MC alchemical steps).
++//--------------------------------------------------------------------------------
++void PrintwidomOsmostatStatistics(FILE *FilePtr)
++{
++  int i,j,MoveUsed;
++  int CurrentAlchReaction;
++
++  MoveUsed=FALSE;
++  if(WidomOsmostat[CurrentSystem][0]>0)
++  {
++	  MoveUsed=TRUE;
++  }	
++
++  if(MoveUsed)
++  {
++    fprintf(FilePtr,"Widom insertion technique of single water with NCMC move:\n");
++    fprintf(FilePtr,"======================================\n");
++    for(CurrentAlchReaction=0;CurrentAlchReaction<NumberAlchemicalReactions;CurrentAlchReaction++)
++    {
++        if(WidomOsmostat[CurrentSystem][CurrentAlchReaction]>0.0)
++        {
++          fprintf(FilePtr,"from vaccum -> x1 water molecule: total tried: %lf:\n",
++            (double)WidomOsmostat[CurrentSystem][CurrentAlchReaction]);
++          
++          fprintf(FilePtr,"\n");
++          fprintf(FilePtr,"**************************************************************\n");
++          fprintf(FilePtr,"\n");
++		  fprintf(FilePtr,"Informations about of the hybrid MCMD in the NVE-ensemble during osmostat calibration:\n");
++		  fprintf(FilePtr,"==============================================================\n");		  
++		  	  
++		  fprintf(FilePtr,"\tLambdaStepsAlchemicalTransformationMove: %18.10lf \n\n",
++            (double)((REAL)AlchReacLambda));
++            
++		  fprintf(FilePtr,"\tRelaxationStepsAlchemicalTransformationMove: %18.10lf \n\n",
++            (double)((REAL)RelaxationStepsAlchemicalTransformationMove));
++		  
++		  fprintf(FilePtr,"\tTotal amount of MD-time simulated: %18.10lf [ps]\n\n",
++            (double)((REAL)RelaxationStepsAlchemicalTransformationMove*(AlchReacLambda+1)*DeltaT*WidomOsmostat[CurrentSystem][CurrentAlchReaction]));
++
++		  fprintf(FilePtr,"\tAverage drift in the energy:               % 18.10lf\n\n",
++            (double)(HybridNVEAlchDrift[CurrentSystem]/HybridNVEAlchDriftCount[CurrentSystem]));
++
++		  if(HybridNVEAlchStartTemperatureCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage begin temperature:               % 18.10lf\n",
++			   (double)(HybridNVEAlchStartTemperature[CurrentSystem]/HybridNVEAlchStartTemperatureCount[CurrentSystem]));
++		  if(HybridNVEAlchStartTemperatureTranslationCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage begin temperature (translation): % 18.10lf\n",
++			   (double)(HybridNVEAlchStartTranslationalTemperature[CurrentSystem]/HybridNVEAlchStartTemperatureTranslationCount[CurrentSystem]));
++		  if(HybridNVEAlchStartTemperatureRotationCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage begin temperature (rotation): % 18.10lf\n",
++               (double)(HybridNVEAlchStartRotationalTemperature[CurrentSystem]/HybridNVEAlchStartTemperatureRotationCount[CurrentSystem]));
++		  if(HybridNVEAlchStartTemperatureFrameworkCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage begin temperature framework : % 18.10lf\n",
++               (double)(HybridNVEAlchStartTemperatureFramework[CurrentSystem]/HybridNVEAlchStartTemperatureFrameworkCount[CurrentSystem]));
++		  if(HybridNVEAlchStartTemperatureAdsorbateCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage begin temperature adsorbates: % 18.10lf\n",
++               (double)(HybridNVEAlchStartTemperatureAdsorbate[CurrentSystem]/HybridNVEAlchStartTemperatureAdsorbateCount[CurrentSystem]));
++		  if(HybridNVEAlchStartTemperatureCationCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage begin temperature cations: % 18.10lf\n\n",
++               (double)(HybridNVEAlchStartTemperatureCation[CurrentSystem]/HybridNVEAlchStartTemperatureCationCount[CurrentSystem]));
++
++		  if(HybridNVEAlchEndTemperatureCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage end temperature: % 18.10lf\n",
++			   (double)(HybridNVEAlchEndTemperature[CurrentSystem]/HybridNVEAlchEndTemperatureCount[CurrentSystem]));
++		  if(HybridNVEAlchEndTemperatureTranslationCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage end temperature (translation): % 18.10lf\n",
++			   (double)(HybridNVEAlchEndTranslationalTemperature[CurrentSystem]/HybridNVEAlchEndTemperatureTranslationCount[CurrentSystem]));
++		  if(HybridNVEAlchEndTemperatureRotationCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage end temperature (rotation): % 18.10lf\n",
++               (double)(HybridNVEAlchEndRotationalTemperature[CurrentSystem]/HybridNVEAlchEndTemperatureRotationCount[CurrentSystem]));
++		  if(HybridNVEAlchEndTemperatureFrameworkCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage end temperature framework : % 18.10lf\n",
++               (double)(HybridNVEAlchEndTemperatureFramework[CurrentSystem]/HybridNVEAlchEndTemperatureFrameworkCount[CurrentSystem]));
++		  if(HybridNVEAlchEndTemperatureAdsorbateCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage end temperature adsorbates: % 18.10lf\n",
++			   (double)(HybridNVEAlchEndTemperatureAdsorbate[CurrentSystem]/HybridNVEAlchEndTemperatureAdsorbateCount[CurrentSystem]));
++		  if(HybridNVEAlchEndTemperatureCationCount[CurrentSystem]>0)
++			fprintf(FilePtr,"\tAverage end temperature cations: % 18.10lf\n\n",
++               (double)(HybridNVEAlchEndTemperatureCation[CurrentSystem]/HybridNVEAlchEndTemperatureCationCount[CurrentSystem]));
++		}
++    }
++    fprintf(FilePtr,"\n");
++  }
++  else
++  {
++   fprintf(FilePtr,"Osmostat calibration was OFF in current simulation.\n\n");
++  }
++}
++
+ // Swap Monte-Carlo move
+ //
+ //
+@@ -7007,9 +7861,12 @@ int SwapAddAdsorbateMove(void)
+   // get partial pressure for this component
+   PartialFugacity=Components[CurrentComponent].FugacityCoefficient[CurrentSystem]*
+                   Components[CurrentComponent].PartialPressure[CurrentSystem];
+-
++	//printf("quantité %f %f %f\n \n \n:",Components[CurrentComponent].FugacityCoefficient[CurrentSystem],Components[CurrentComponent].PartialPressure[CurrentSystem],PartialFugacity);
+   RosenbluthIdealNew=Components[CurrentComponent].IdealGasRosenbluthWeight[CurrentSystem];
+ 
++  //printf("%f \n ",-log(GetAverageInverseDensity())/Beta[CurrentSystem]*ENERGY_TO_KELVIN);
++  
++
+   // acceptence rule
+   if(RandomNumber()<((RosenbluthNew/RosenbluthIdealNew)*Beta[CurrentSystem]*PartialFugacity*Volume[CurrentSystem]/
+                     (1.0+Components[CurrentComponent].NumberOfMolecules[CurrentSystem]-(Components[CurrentComponent].FractionalMolecule[CurrentSystem]>=0?1:0))))
+@@ -15028,11 +15885,11 @@ void HybridNVEMove(void)
+   // integrated the system 'NumberOfHybridNVESteps' steps
+   for(i=0;i<NumberOfHybridNVESteps;i++)
+   {
+-    // evolve the system a full time-step
+-    Integration();
++		// evolve the system a full time-step
++		Integration();
+ 
+-    // update the drift in the energy
+-    Drift+=fabs((ConservedEnergy[CurrentSystem]-ReferenceEnergy)/ReferenceEnergy);
++		// update the drift in the energy
++		Drift+=fabs((ConservedEnergy[CurrentSystem]-ReferenceEnergy)/ReferenceEnergy);
+   }
+ 
+   if((RandomNumber()<exp(-Beta[CurrentSystem]*(ConservedEnergy[CurrentSystem]-ReferenceEnergy)))&&(isfinite(Drift)))
+@@ -30411,6 +31268,75 @@ void WriteRestartMcMoves(FILE *FilePtr)
+ 
+   fwrite(&CFWangLandauEvery,sizeof(int),1,FilePtr);
+   fwrite(&TargetAccRatioLambdaChange,sizeof(REAL),1,FilePtr);
++  
++  // Added by Ambroise
++  //---------------------------------------------------------------------------------------------- 
++  fwrite(&NumberAlchemicalReactions,sizeof(int),1,FilePtr);
++  if(NumberAlchemicalReactions>0)
++  {	  
++	  // Read stored NVE statistics during osmostat transformation.
++	  fwrite(HybridNVEAlchDrift,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchDriftCount,sizeof(REAL),NumberOfSystems,FilePtr);
++
++	  fwrite(HybridNVEAlchStartTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTranslationalTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartRotationalTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTemperatureFramework,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTemperatureAdsorbate,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTemperatureCation,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTemperatureCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTemperatureTranslationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTemperatureRotationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTemperatureFrameworkCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTemperatureAdsorbateCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchStartTemperatureCationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTranslationalTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndRotationalTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperatureFramework,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperatureAdsorbate,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperatureCation,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperatureCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperatureTranslationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperatureRotationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperatureFrameworkCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperatureAdsorbateCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fwrite(HybridNVEAlchEndTemperatureCationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++
++	  // Statistics on tried MC steps.
++	  for(i=0;i<NumberOfSystems;i++)
++	  {
++	    fwrite(WidomOsmostat[i],sizeof(REAL),NumberAlchemicalReactions,FilePtr);
++	  }
++
++	  fwrite(&AlchReacLambda,sizeof(int),1,FilePtr);
++	  fwrite(&ChemicalPotentialAlchemical,sizeof(REAL),1,FilePtr);
++	  fwrite(&ProbabilityWidomOsmostatCalculationMove,sizeof(REAL),1,FilePtr);
++	  fwrite(&SizeProtocolWorkStore,sizeof(int),1,FilePtr);
++
++	  if(ProbabilityWidomOsmostatCalculationMove>0.0) 
++	  {
++			fwrite(ProtocolWorkStore,sizeof(REAL),SizeProtocolWorkStore,FilePtr);
++			fwrite(ProtocolWorkStore_vdw,sizeof(REAL),SizeProtocolWorkStore,FilePtr);
++			fwrite(ProtocolWorkStore_elec,sizeof(REAL),SizeProtocolWorkStore,FilePtr);
++	  }
++	  
++	  fwrite(&SolventIndex,sizeof(int),1,FilePtr);
++	  fwrite(&RelaxationStepsAlchemicalTransformationMove,sizeof(int),1,FilePtr);
++
++	  for(i=0;i<NumberAlchemicalReactions;i++)
++		 fwrite(SaltIndex[i],sizeof(int),1,FilePtr);
++		 
++	  for(i=0;i<NumberAlchemicalReactions;i++)
++		 fwrite(MultiplicitySalt[i],sizeof(int),1,FilePtr);
++	  
++	  
++	  for(i=0;i<Components[SolventIndex].NumberOfGroups;i++)
++			fwrite(SolventBodyfixedPositions[i],sizeof(VECTOR),Components[SolventIndex].Groups[i].NumberOfGroupAtoms,FilePtr);
++	  
++  }
++  //----------------------------------------------------------------------------------------------
++  
+ 
+   Check=123456789.0;
+   fwrite(&Check,1,sizeof(REAL),FilePtr);
+@@ -30566,6 +31492,12 @@ void AllocateMCMovesMemory(void)
+   IdentityChangeAttempts=(REAL***)calloc(NumberOfSystems,sizeof(REAL**));
+   IdentityChangeAccepted=(REAL(***)[2])calloc(NumberOfSystems,sizeof(REAL(**)[2]));
+ 
++  //----------------------------------------------------------------------------
++  // Added by Ambroise (widom osmostat)
++  //----------------------------------------------------------------------------
++  WidomOsmostat = (REAL**)calloc(NumberOfSystems,sizeof(REAL*));
++  //----------------------------------------------------------------------------
++
+   GibbsIdentityChangeAttempts=(REAL***)calloc(NumberOfSystems,sizeof(REAL**));
+   GibbsIdentityChangeAccepted=(REAL(***)[2])calloc(NumberOfSystems,sizeof(REAL(**)[2]));
+ 
+@@ -30679,6 +31611,13 @@ void AllocateMCMovesMemory(void)
+     IdentityChangeAttempts[i]=(REAL**)calloc(NumberOfComponents,sizeof(REAL*));
+     IdentityChangeAccepted[i]=(REAL(**)[2])calloc(NumberOfComponents,sizeof(REAL(*)[2]));
+ 
++	//-----------------------------------------------------
++	// Added by Ambroise (widom osmostat)
++	//----------------------------------------------------------------------------
++	WidomOsmostat[i] = (REAL*)calloc(NumberAlchemicalReactions,sizeof(REAL));
++	//----------------------------------------------------------------------------
++	
++	
+     GibbsIdentityChangeAttempts[i]=(REAL**)calloc(NumberOfComponents,sizeof(REAL*));
+     GibbsIdentityChangeAccepted[i]=(REAL(**)[2])calloc(NumberOfComponents,sizeof(REAL(*)[2]));
+ 
+@@ -30960,7 +31899,7 @@ void ReadRestartMcMoves(FILE *FilePtr)
+       for(j=0;j<NumberOfReactions;j++)
+         fread(RXMCLambdaHistogram[i][j],sizeof(REAL),RXMCLambdaHistogramSize,FilePtr);
+     }
+-
++    
+     fread(ReinsertionAttempts[i],sizeof(REAL),NumberOfComponents,FilePtr);
+     fread(ReinsertionAccepted[i],sizeof(REAL[2]),NumberOfComponents,FilePtr);
+ 
+@@ -31155,7 +32094,109 @@ void ReadRestartMcMoves(FILE *FilePtr)
+   fread(&CFWangLandauEvery,sizeof(int),1,FilePtr);
+   fread(&TargetAccRatioLambdaChange,sizeof(REAL),1,FilePtr);
+ 
++  // Added by Ambroise
++  //---------------------------------------------------------------------------------------------- 
++  fread(&NumberAlchemicalReactions,sizeof(int),1,FilePtr);
++  if(NumberAlchemicalReactions>0)
++  {	  
++	  InitializeNVEAlchStatistics();
++	  // Read stored NVE statistics during osmostat transformation.
++	  fread(HybridNVEAlchDrift,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchDriftCount,sizeof(REAL),NumberOfSystems,FilePtr);
++
++	  fread(HybridNVEAlchStartTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTranslationalTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartRotationalTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTemperatureFramework,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTemperatureAdsorbate,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTemperatureCation,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTemperatureCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTemperatureTranslationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTemperatureRotationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTemperatureFrameworkCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTemperatureAdsorbateCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchStartTemperatureCationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTranslationalTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndRotationalTemperature,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperatureFramework,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperatureAdsorbate,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperatureCation,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperatureCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperatureTranslationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperatureRotationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperatureFrameworkCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperatureAdsorbateCount,sizeof(REAL),NumberOfSystems,FilePtr);
++	  fread(HybridNVEAlchEndTemperatureCationCount,sizeof(REAL),NumberOfSystems,FilePtr);
++
++	  // Statistics on tried MC steps.
++	  for(i=0;i<NumberOfSystems;i++)
++	  {
++	    fread(WidomOsmostat[i],sizeof(REAL),NumberAlchemicalReactions,FilePtr);
++	  }
++  
++	  fread(&AlchReacLambda,sizeof(int),1,FilePtr);
++	  fread(&ChemicalPotentialAlchemical,sizeof(REAL),1,FilePtr);
++	  fread(&ProbabilityWidomOsmostatCalculationMove,sizeof(REAL),1,FilePtr);
++	  fread(&SizeProtocolWorkStore,sizeof(int),1,FilePtr);
++
++	  if(ProbabilityWidomOsmostatCalculationMove>0.0) 
++	  {
++
++		ProtocolWorkStore=(REAL*)realloc(ProtocolWorkStore,SizeProtocolWorkStore*sizeof(REAL));
++		ProtocolWorkStore_vdw=(REAL*)realloc(ProtocolWorkStore_vdw,SizeProtocolWorkStore*sizeof(REAL));
++		ProtocolWorkStore_elec=(REAL*)realloc(ProtocolWorkStore_elec,SizeProtocolWorkStore*sizeof(REAL));
++	
++		InitializeFileProtocolWork(SizeProtocolWorkStore);
++		
++	  }
++	  
++	  fread(ProtocolWorkStore,sizeof(REAL),SizeProtocolWorkStore,FilePtr);
++	  fread(ProtocolWorkStore_vdw,sizeof(REAL),SizeProtocolWorkStore,FilePtr);
++	  fread(ProtocolWorkStore_elec,sizeof(REAL),SizeProtocolWorkStore,FilePtr);
++			
++	  fread(&SolventIndex,sizeof(int),1,FilePtr);
++	  InitializeLambda();
++	  fread(&RelaxationStepsAlchemicalTransformationMove,sizeof(int),1,FilePtr);
++
++	  SaltIndex=(int**)calloc(NumberAlchemicalReactions,sizeof(int*));
++	  for(i=0;i<NumberAlchemicalReactions;i++)
++	  {
++			SaltIndex[i]=(int*)calloc(1,sizeof(int));
++			fread(SaltIndex[i],sizeof(int),1,FilePtr);
++	  }
++	  
++	  MultiplicitySalt=(int**)calloc(NumberAlchemicalReactions,sizeof(int*));
++	  for(i=0;i<NumberAlchemicalReactions;i++)
++	  {
++			MultiplicitySalt[i]=(int*)calloc(1,sizeof(int));
++			fread(MultiplicitySalt[i],sizeof(int),1,FilePtr);
++	  }
++	  
++	  // Read the fixed relative position of the solvent molecule.
++	  SolventBodyfixedPositions=(VECTOR**)calloc(Components[SolventIndex].NumberOfGroups,sizeof(VECTOR*));
++	  for(i=0;i<Components[SolventIndex].NumberOfGroups;i++)
++	  {
++			if(Components[SolventIndex].Groups[i].NumberOfGroupAtoms>0)
++				SolventBodyfixedPositions[i]=(VECTOR*)calloc(Components[SolventIndex].Groups[i].NumberOfGroupAtoms,sizeof(VECTOR));
++			
++			fread(SolventBodyfixedPositions[i],sizeof(VECTOR),Components[SolventIndex].Groups[i].NumberOfGroupAtoms,FilePtr);
++	  }
++
++	  ChosenMoleculeAlchemicalTransformation=(int**)calloc(NumberAlchemicalReactions,sizeof(int*));
++	  NumberTransientMoities=(int*)calloc(NumberAlchemicalReactions,sizeof(int));
++	  
++	  SetUpNumberMoitiesExchangedAlchemicalReaction(); 
++
++	  // Set up vdW parameters to be evolve during Alchemical transformation.
++	  InitializeIndexManagingTransientMoities();
++	  InitializeVectorforMixingRule();
++	  InitializeVectorCharge(); 
++  }
++  //----------------------------------------------------------------------------------------------
++  
+   fread(&Check,1,sizeof(REAL),FilePtr);
++	 
+   if(fabs(Check-123456789.0)>1e-10)
+   {
+     fprintf(stderr, "Error in binary restart-file (ReadRestartMcMoves)\n");
+@@ -31163,3 +32204,4 @@ void ReadRestartMcMoves(FILE *FilePtr)
+   }
+ }
+ 
++ 
+diff --git a/src/mc_moves.h b/src/mc_moves.h
+index 555d776..ef3612e 100644
+--- a/src/mc_moves.h
++++ b/src/mc_moves.h
+@@ -40,6 +40,19 @@
+ #include "input.h"
+ 
+ // delta energies
++// Modified by Ambroise: switched from static to extern for use in alchemical transformation.
++extern REAL UDeltaPolarization;
++extern REAL *UHostPolarizationNew;
++extern REAL *UAdsorbatePolarizationNew;
++extern REAL *UCationPolarizationNew;
++extern REAL *UPolarizationNew;
++
++extern REAL *UHostBackPolarizationNew;
++extern REAL *UAdsorbateBackPolarizationNew;
++extern REAL *UCationBackPolarizationNew;
++extern REAL *UBackPolarizationNew;
++//-------------------------------------------------------
++
+ extern REAL *UHostVDWDelta;
+ extern REAL *UHostChargeChargeRealDelta;
+ extern REAL *UHostChargeBondDipoleRealDelta;
+@@ -94,6 +107,9 @@ extern int NumberOfHybridNVESteps;
+ extern int NumberOfHybridNPHSteps;
+ extern int NumberOfHybridNPHPRSteps;
+ 
++
++//----------------------------------------------------------------------------------------
++
+ //----------------------------------------------------------------------------------------
+ // CFC-RXMC Parameters
+ //----------------------------------------------------------------------------------------
+@@ -149,6 +165,10 @@ int ReinsertionAdsorbateMove(void);
+ int ReinsertionInPlaceAdsorbateMove(void);
+ int ReinsertionInPlaneAdsorbateMove(void);
+ int IdentityChangeAdsorbateMove(void);
++// Added by Ambroise
++//-----------------------------------
++int WidomOsmostatCalculation(void);
++//-----------------------------------
+ int PartialReinsertionAdsorbateMove(void);
+ 
+ void OptimizeTranslationAcceptence(void);
+@@ -198,6 +218,15 @@ void PrintPartialReinsertionStatistics(FILE *FilePtr);
+ void PrintIdentityChangeStatistics(FILE *FilePtr);
+ void PrintParallelTemperingStatistics(FILE *FilePtr);
+ void PrintHyperParallelTemperingStatistics(FILE *FilePtr);
++// Added By Ambroise
++//-----------------------------------------------------------------------------
++void PrintwidomOsmostatStatistics(FILE *FilePtr);
++//-----------------------------------------------------------------------------
++
++// Added by Ambroise (Osmostat calculation)
++//----------------------------------------------
++extern REAL **WidomOsmostat;
++//----------------------------------------------
+ void PrintParallelMolFractionStatistics(FILE *FilePtr);
+ void PrintChiralInversionStatistics(FILE *FilePtr);
+ void PrintVolumeChangeStatistics(FILE *FilePtr);
+@@ -265,4 +294,5 @@ void WriteRestartMcMoves(FILE *FilePtr);
+ void AllocateMCMovesMemory(void);
+ void ReadRestartMcMoves(FILE *FilePtr);
+ 
++
+ #endif
+diff --git a/src/molecule.c b/src/molecule.c
+index 7b9a144..0b405ee 100644
+--- a/src/molecule.c
++++ b/src/molecule.c
+@@ -50,6 +50,7 @@
+ #include "mc_moves.h"
+ #include "ewald.h"
+ #include "thermo_baro_stats.h"
++#include "Alchemical_transformation.h"
+ #include "integration.h"
+ #include "scattering_factors.h"
+ #include "input.h"
+@@ -398,8 +399,45 @@ int IsFractionalReactionCationMolecule(int m)
+   return FALSE;
+ }
+ 
++// Added by Ambroise
++// This function select randomly a set of molecules to be replaced.
++void SelectRandomMoleculeAlchemicalTransformation(int * OldComponent, int NumberSpecies, int CurrentAlchemicalReaction)
++{
++	int i,j,d;
++	int SameIndexPicked;
++	int count,CurrentMolecule;
++	int species;
++	int TotalSaltIon;		
++		
++	ChosenMoleculeAlchemicalTransformation[CurrentAlchemicalReaction][0]=(int)(RandomNumber()*Components[OldComponent[0]].NumberOfMolecules[CurrentSystem]);	
++	
++	TotalSaltIon=0;
++	
++	for(species=0; species<NumberSpecies; species++)
++	{
++		for(i=0;i<MultiplicitySalt[CurrentAlchemicalReaction][species];i++)
++		{
++			count=-1;
++			CurrentMolecule=-1;
++			do   // search for n-th molecule of the right type
++			{
++				CurrentMolecule++;
++				if((Adsorbates[CurrentSystem][CurrentMolecule].Type==OldComponent[species])) count++;
++			}
++			while(ChosenMoleculeAlchemicalTransformation[CurrentAlchemicalReaction][TotalSaltIon]!=count);
++			
++			// index molecule to be outputed.
++			ChosenMoleculeAlchemicalTransformation[CurrentAlchemicalReaction][TotalSaltIon] = CurrentMolecule;
++			TotalSaltIon++;
++		}
++	}
++	
++}
++
++
+ int SelectRandomMoleculeOfTypeExcludingFractionalMolecule(int comp)
+ {
++
+   int d,count;
+   int CurrentMolecule;
+ 
+@@ -803,14 +841,14 @@ void ReadPseudoAtomsDefinitions(void)
+ }
+ 
+ void ComputeInertiaTensorGroups(int comp)
+-{
++{		
+   int j,k,ill;
+   REAL Mass,TotalMass,rotxyz,temp,rotall,rotlim;
+   VECTOR com,pos;
+   REAL_MATRIX3x3 eigenvectors;
+   VECTOR eigenvalues,dr;
+   int atom_nr;
+-
++  
+   for(j=0;j<Components[comp].NumberOfGroups;j++)
+   {
+     TotalMass=0.0;
+@@ -859,10 +897,10 @@ void ComputeInertiaTensorGroups(int comp)
+ 
+     // the local body frame is taken to be that in which the rotational inertia tensor is diagonal
+     EigenSystem3x3(Components[comp].Groups[j].InertiaTensor,&eigenvectors,&eigenvalues);
+-
+     Components[comp].Groups[j].InertiaVector.x=0.0;
+     Components[comp].Groups[j].InertiaVector.y=0.0;
+-    Components[comp].Groups[j].InertiaVector.z=0.0;
++    Components[comp].Groups[j].InertiaVector.z=0.0;          
++    
+     for(k=0;k<Components[comp].Groups[j].NumberOfGroupAtoms;k++)
+     {
+       atom_nr=Components[comp].Groups[j].Atoms[k];
+@@ -876,7 +914,6 @@ void ComputeInertiaTensorGroups(int comp)
+       if(fabs(pos.y)<1e-8) pos.y=0.0;
+       if(fabs(pos.z)<1e-8) pos.z=0.0;
+       Components[comp].Positions[atom_nr]=pos;
+-
+       atom_nr=Components[comp].Groups[j].Atoms[k];
+       Mass=PseudoAtoms[Components[comp].Type[atom_nr]].Mass;
+       Components[comp].Groups[j].InertiaVector.x+=Mass*(SQR(pos.y)+SQR(pos.z));
+@@ -1132,12 +1169,28 @@ void ComputeInertiaTensorGroups(int comp)
+         break;
+     }
+   }
++}
+ 
++//Added by Ambroise
++void SetUpNumberMoitiesExchangedAlchemicalReaction(void)
++{
++	// This is used to determine ratio of salt ions, depending of their charge.
++	REAL charge_salt_absolute_value[2]= {0.0,0.0};
++	REAL Total_charge = 0.0;
++	
++	int CurrentAlchReaction,i,j;
++	  
++	NumberTransientMoities[CurrentAlchReaction] = 1;  
++	
++	// Initialize the vector to store index of chosen molecule to be replaced in the MC-move.
++	ChosenMoleculeAlchemicalTransformation[CurrentAlchReaction] = (int*)calloc(NumberTransientMoities[CurrentAlchReaction],sizeof(int));
++		
++	MultiplicitySalt[CurrentAlchReaction][0] = 1;
+ }
+ 
+ // Read the definition of the comp-th Component of Type "Name"
+ void ReadComponentDefinition(int comp)
+-{
++{	
+   int i,j,k,n,nr;
+   int A,B,C,D,temp;
+   int A1,A2,B1,B2,C1,C2;
+@@ -1205,7 +1258,7 @@ void ReadComponentDefinition(int comp)
+            Components[comp].NumberOfAtoms);
+     exit(0);
+   }
+-
++  
+   // allocate charility-centers
+   Components[comp].Chirality=(int*)calloc(Components[comp].NumberOfAtoms,sizeof(int));
+   Components[comp].ChiralityType=(int*)calloc(Components[comp].NumberOfAtoms,sizeof(int));
+@@ -1337,11 +1390,15 @@ void ReadComponentDefinition(int comp)
+   }
+ 
+   total_mass=0.0;
++  
++   // Added by Ambroise (this is to store the relative postion of solvent atoms).
++  if(comp==SolventIndex)
++	SolventBodyfixedPositions=(VECTOR**)calloc(Components[comp].NumberOfGroups,sizeof(VECTOR*));
++ 
+   for(i=0;i<Components[comp].NumberOfGroups;i++)
+   {
+     ReadLine(line,1024,FilePtr);  // skip line
+-
+-
++    
+     ReadLine(line,1024,FilePtr);
+     sscanf(line,"%s",buffer);
+     if(strcasecmp("rigid",buffer)==0)
+@@ -1375,6 +1432,11 @@ void ReadComponentDefinition(int comp)
+     {
+       ReadLine(line,1024,FilePtr);  // skip line
+       Components[comp].Groups[i].Atoms=(int*)calloc(Components[comp].Groups[i].NumberOfGroupAtoms,sizeof(int));
++      
++      // added by Ambroise
++	  if(comp==SolventIndex)
++		SolventBodyfixedPositions[i]=(VECTOR*)calloc(Components[comp].Groups[i].NumberOfGroupAtoms,sizeof(VECTOR));
++      
+       for(j=0;j<Components[comp].Groups[i].NumberOfGroupAtoms;j++)
+       {
+         temp1=temp2=temp3=0.0;
+@@ -1392,6 +1454,13 @@ void ReadComponentDefinition(int comp)
+         pos.y=(REAL)temp2;
+         pos.z=(REAL)temp3;
+ 
++		
++		// added by Ambroise
++		if(comp==SolventIndex)
++		{
++		  SolventBodyfixedPositions[i][j]=pos;
++		}
++		
+         k=ReturnPseudoAtomNumber(buffer);
+         Components[comp].Type[temp]=k;
+         mass+=PseudoAtoms[k].Mass;
+@@ -1456,12 +1525,12 @@ void ReadComponentDefinition(int comp)
+     Components[comp].Groups[i].Mass=0.0;
+     for(j=0;j<Components[comp].Groups[i].NumberOfGroupAtoms;j++)
+     {
++	  
+       A=Components[comp].Groups[i].Atoms[j];
+       Components[comp].Groups[i].Mass+=PseudoAtoms[Components[comp].Type[A]].Mass;
+     }
+   }
+ 
+-
+   ComputeInertiaTensorGroups(comp);
+ 
+   // fill in charges
+@@ -2917,7 +2986,6 @@ void ReadComponentDefinition(int comp)
+     }
+   }
+ 
+-
+   if(Components[comp].NumberOfIntraBondDipoleBondDipole>0)
+   {
+     ReadLine(line,1024,FilePtr); // skip line
+@@ -3112,6 +3180,92 @@ void ReadComponentDefinition(int comp)
+   fclose(FilePtr);
+ }
+ 
++void InsertAdsorbateAlchMolecule(void)
++{
++  int i,type,nr_atoms;
++  int NewMolecule;
++
++  // add the number of atoms
++  nr_atoms=Components[CurrentComponent].NumberOfAtoms;
++  NumberOfAtomsPerSystem[CurrentSystem]+=nr_atoms;
++  NumberOfChargesPerSystem[CurrentSystem]+=Components[CurrentComponent].NumberOfCharges;
++  NumberOfBondDipolesPerSystem[CurrentSystem]+=Components[CurrentComponent].NumberOfBondDipoles;
++
++  // update the number of adsorbate molecules
++  NumberOfAdsorbateMolecules[CurrentSystem]++;
++  Components[CurrentComponent].NumberOfMolecules[CurrentSystem]++;
++
++  // add the new data at the last newly created element
++  NewMolecule=NumberOfAdsorbateMolecules[CurrentSystem]-1;
++  Adsorbates[CurrentSystem][NewMolecule].NumberOfAtoms=nr_atoms;
++  Adsorbates[CurrentSystem][NewMolecule].Type=CurrentComponent;
++
++  // allocate the meory for the atoms and groups
++  Adsorbates[CurrentSystem][NewMolecule].Atoms=(ATOM*)calloc(nr_atoms,sizeof(ATOM));
++  if(Components[CurrentComponent].NumberOfGroups>0)
++    Adsorbates[CurrentSystem][NewMolecule].Groups=(GROUP*)calloc(Components[CurrentComponent].NumberOfGroups,sizeof(GROUP));
++
++  // copy the grown positions etc to the current element
++  for(i=0;i<nr_atoms;i++)
++  {
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].Position=NewPosition[CurrentSystem][i];
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].AnisotropicPosition=TrialAnisotropicPosition[CurrentSystem][i];
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].Velocity=NewVelocity[CurrentSystem][i];
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].Force=NewForce[CurrentSystem][i];
++
++    // new Continuous-Fraction scaling factors are taken from the component-information
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].CFVDWScalingParameter=CFVDWScaling[i];
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].CFChargeScalingParameter=CFChargeScaling[i];
++
++    type=Components[CurrentComponent].Type[i];
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].Type=type;
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].Fixed.x=Components[CurrentComponent].Fixed[i];
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].Fixed.y=Components[CurrentComponent].Fixed[i];
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].Fixed.z=Components[CurrentComponent].Fixed[i];
++    Adsorbates[CurrentSystem][NewMolecule].Atoms[i].Charge=Components[CurrentComponent].Charge[i];
++    NumberOfPseudoAtomsType[CurrentSystem][type]++;
++  }
++
++  // update the center of mass
++  UpdateGroupCenterOfMassAdsorbate(NewMolecule);
++
++  // compute the quaternion (orientation) from the positions
++  ComputeQuaternionAdsorbate(NewMolecule);
++
++  // initialize the velocities
++  InitializeVelocityAdsorbate(NewMolecule);
++
++  // modify the degrees of freedom
++  for(i=0;i<Components[CurrentComponent].NumberOfGroups;i++)
++  {
++    if(Components[CurrentComponent].Groups[i].Rigid)
++    {
++	  DegreesOfFreedomAdsorbates[CurrentSystem]+=3;
++      DegreesOfFreedomTranslation[CurrentSystem]+=3;
++      DegreesOfFreedomTranslationalAdsorbates[CurrentSystem]+=3;
++      DegreesOfFreedom[CurrentSystem]+=3;
++                                  
++      DegreesOfFreedomRotation[CurrentSystem]+=Components[CurrentComponent].Groups[i].RotationalDegreesOfFreedom;
++      DegreesOfFreedomAdsorbates[CurrentSystem]+=Components[CurrentComponent].Groups[i].RotationalDegreesOfFreedom;
++      DegreesOfFreedomRotationalAdsorbates[CurrentSystem]+=Components[CurrentComponent].Groups[i].RotationalDegreesOfFreedom;
++      DegreesOfFreedom[CurrentSystem]+=Components[CurrentComponent].Groups[i].RotationalDegreesOfFreedom;
++    }
++    else
++    {
++      DegreesOfFreedomTranslation[CurrentSystem]+=3*Components[CurrentComponent].Groups[i].NumberOfGroupAtoms;
++      DegreesOfFreedomAdsorbates[CurrentSystem]+=3*Components[CurrentComponent].Groups[i].NumberOfGroupAtoms;
++      DegreesOfFreedomTranslationalAdsorbates[CurrentSystem]+=3*Components[CurrentComponent].Groups[i].NumberOfGroupAtoms;
++      DegreesOfFreedom[CurrentSystem]+=3*Components[CurrentComponent].Groups[i].NumberOfGroupAtoms;
++    }
++  }
++// reinitialize the Nose-Hoover internal variables based on the current number of molecules for MuPT, MuPTPR and MuVT ensembles 
++  if((Ensemble[CurrentSystem]==MuPT)||(Ensemble[CurrentSystem]==MuPTPR)||(Ensemble[CurrentSystem]==MuVT))
++  {
++    InitializeNoseHooverCurrentSystem();
++  }
++}
++
++
+ void InsertAdsorbateMolecule(void)
+ {
+   int i,type,nr_atoms;
+@@ -3134,6 +3288,7 @@ void InsertAdsorbateMolecule(void)
+ 
+   // if the number is largest than the currently allocated memory reallocate the memory for Ewald
+   // the hard-coded default here is to extend the arrays with 256 atoms
++  
+   if(LargestNumberOfCoulombicSites>=MaxNumberOfCoulombicSites)
+   {
+     MaxNumberOfCoulombicSites+=MAX2(MaxNumberOfBeads,512);
+@@ -3210,11 +3365,11 @@ void InsertAdsorbateMolecule(void)
+   {
+     if(Components[CurrentComponent].Groups[i].Rigid)
+     {
+-      DegreesOfFreedomAdsorbates[CurrentSystem]+=3;
++	  DegreesOfFreedomAdsorbates[CurrentSystem]+=3;
+       DegreesOfFreedomTranslation[CurrentSystem]+=3;
+       DegreesOfFreedomTranslationalAdsorbates[CurrentSystem]+=3;
+       DegreesOfFreedom[CurrentSystem]+=3;
+-
++                                  
+       DegreesOfFreedomRotation[CurrentSystem]+=Components[CurrentComponent].Groups[i].RotationalDegreesOfFreedom;
+       DegreesOfFreedomAdsorbates[CurrentSystem]+=Components[CurrentComponent].Groups[i].RotationalDegreesOfFreedom;
+       DegreesOfFreedomRotationalAdsorbates[CurrentSystem]+=Components[CurrentComponent].Groups[i].RotationalDegreesOfFreedom;
+@@ -3238,7 +3393,7 @@ void InsertAdsorbateMolecule(void)
+ void RemoveAdsorbateMolecule(void)
+ {
+   int i,j,k,type,nr_atoms;
+-  int LastMolecule;
++  int LastMolecule;	
+ 
+   // remove the the amount of atoms from the total
+   nr_atoms=Components[CurrentComponent].NumberOfAtoms;
+@@ -3261,6 +3416,8 @@ void RemoveAdsorbateMolecule(void)
+   Adsorbates[CurrentSystem][LastMolecule].Atoms=NULL;
+   Adsorbates[CurrentSystem][LastMolecule].Groups=NULL;
+ 
++
++
+   // decrease the molecule counters
+   NumberOfAdsorbateMolecules[CurrentSystem]--;
+   Components[CurrentComponent].NumberOfMolecules[CurrentSystem]--;
+@@ -3599,7 +3756,8 @@ void RescaleComponentProbabilities(void)
+             ProbabilityGibbsVolumeChangeMove+
+             ProbabilityFrameworkChangeMove+
+             ProbabilityFrameworkShiftMove+
+-            ProbabilityCFCRXMCLambdaChangeMove;
++            ProbabilityCFCRXMCLambdaChangeMove+
++            ProbabilityWidomOsmostatCalculationMove; // Added by Ambroise
+ 
+     Components[i].ProbabilityRandomTranslationMove+=Components[i].ProbabilityTranslationMove;
+     Components[i].ProbabilityRotationMove+=Components[i].ProbabilityRandomTranslationMove;
+@@ -3631,6 +3789,10 @@ void RescaleComponentProbabilities(void)
+     Components[i].ProbabilityParallelMolFractionMove=ProbabilityParallelMolFractionMove+Components[i].ProbabilityHyperParallelTemperingMove;
+     Components[i].ProbabilityChiralInversionMove=ProbabilityChiralInversionMove+Components[i].ProbabilityParallelMolFractionMove;
+     Components[i].ProbabilityHybridNVEMove=ProbabilityHybridNVEMove+Components[i].ProbabilityChiralInversionMove;
++    // Added by Ambroise
++    //-----------------------------------------------------------------------------------------------
++    Components[i].ProbabilityWidomOsmostatCalculationMove=ProbabilityWidomOsmostatCalculationMove+Components[i].ProbabilityHybridNVEMove;
++    //-----------------------------------------------------------------------------------------------
+     Components[i].ProbabilityHybridNPHMove=ProbabilityHybridNPHMove+Components[i].ProbabilityHybridNVEMove;
+     Components[i].ProbabilityHybridNPHPRMove=ProbabilityHybridNPHPRMove+Components[i].ProbabilityHybridNPHMove;
+     Components[i].ProbabilityVolumeChangeMove=ProbabilityVolumeChangeMove+Components[i].ProbabilityHybridNPHPRMove;
+@@ -3640,6 +3802,7 @@ void RescaleComponentProbabilities(void)
+     Components[i].ProbabilityFrameworkShiftMove=ProbabilityFrameworkShiftMove+Components[i].ProbabilityFrameworkChangeMove;
+     Components[i].ProbabilityCFCRXMCLambdaChangeMove=ProbabilityCFCRXMCLambdaChangeMove+Components[i].ProbabilityFrameworkShiftMove;
+ 
++
+     if(TotProb>1e-5)
+     {
+       Components[i].ProbabilityTranslationMove/=TotProb;
+@@ -3672,6 +3835,10 @@ void RescaleComponentProbabilities(void)
+       Components[i].ProbabilityParallelMolFractionMove/=TotProb;
+       Components[i].ProbabilityChiralInversionMove/=TotProb;
+       Components[i].ProbabilityHybridNVEMove/=TotProb;
++      // Added by Ambroise
++      //---------------------------------------------
++      Components[i].ProbabilityWidomOsmostatCalculationMove/=TotProb;
++      //---------------------------------------------
+       Components[i].ProbabilityHybridNPHMove/=TotProb;
+       Components[i].ProbabilityHybridNPHPRMove/=TotProb;
+       Components[i].ProbabilityVolumeChangeMove/=TotProb;
+@@ -3681,7 +3848,9 @@ void RescaleComponentProbabilities(void)
+       Components[i].ProbabilityFrameworkShiftMove/=TotProb;
+       Components[i].ProbabilityCFCRXMCLambdaChangeMove/=TotProb;
+     }
+-
++    
++    
++    
+     Components[i].FractionOfTranslationMove=Components[i].ProbabilityTranslationMove;
+     Components[i].FractionOfRandomTranslationMove=Components[i].ProbabilityRandomTranslationMove-Components[i].ProbabilityTranslationMove;
+     Components[i].FractionOfRotationMove=Components[i].ProbabilityRotationMove-Components[i].ProbabilityRandomTranslationMove;
+@@ -3721,6 +3890,7 @@ void RescaleComponentProbabilities(void)
+     Components[i].FractionOfFrameworkChangeMove=Components[i].ProbabilityFrameworkChangeMove-Components[i].ProbabilityGibbsVolumeChangeMove;
+     Components[i].FractionOfFrameworkShiftMove=Components[i].ProbabilityFrameworkShiftMove-Components[i].ProbabilityFrameworkChangeMove;
+     Components[i].FractionOfCFCRXMCLambdaChangeMove=Components[i].ProbabilityCFCRXMCLambdaChangeMove-Components[i].ProbabilityFrameworkShiftMove;
++		
+   }
+ }
+ 
+@@ -4596,6 +4766,7 @@ void InitializeVelocityAdsorbate(int m)
+   const int max_iter=5000;
+ 
+   Type=Adsorbates[CurrentSystem][m].Type;
++
+   for(l=0;l<Components[Type].NumberOfGroups;l++)
+   {
+     if(Components[Type].Groups[l].Rigid)
+@@ -4649,7 +4820,7 @@ void InitializeVelocityAdsorbate(int m)
+ 
+         MassA=PseudoAtoms[Components[Type].Type[A]].Mass;
+         MassB=PseudoAtoms[Components[Type].Type[B]].Mass;
+-
++		
+         velA=Adsorbates[CurrentSystem][m].Atoms[A].Velocity;
+         velB=Adsorbates[CurrentSystem][m].Atoms[B].Velocity;
+ 
+@@ -5494,7 +5665,7 @@ void CalculateAnisotropicSites(void)
+       Framework[CurrentSystem].Atoms[f1][i].AnisotropicPosition=posA;
+     }
+   }
+-
++ 
+   for(i=0;i<NumberOfAdsorbateMolecules[CurrentSystem];i++)
+   {
+     TypeMolA=Adsorbates[CurrentSystem][i].Type;
+@@ -6173,6 +6344,10 @@ void PrintCPUStatistics(FILE *FilePtr)
+   REAL CpuTimeCFGibbsSwapFractionalMoleculeToOtherBoxMove,CpuTimeCFGibbsLambdaChangeMove,CpuTimeCFGibbsFractionalToIntegerMove;
+   REAL CpuTimeParallelTemperingMoveTotal,CpuTimeHyperParallelTemperingMoveTotal,CpuTimeParallelMolFractionMoveTotal;
+   REAL CpuTimeChiralInversionMoveTotal,CpuTimeHybridNVEMoveTotal,CpuTimeHybridNPHMoveTotal;
++  // Added by Ambroise
++  //----------------------------------------------------
++  REAL CpuTimeWidomOsmostatChangeMoveTotal;
++  //----------------------------------------------------
+   REAL CpuTimeHybridNPHPRMoveTotal,CpuTimeVolumeChangeMoveTotal,CpuTimeBoxShapeChangeMoveTotal;
+   REAL CpuTimeGibbsVolumeChangeMoveTotal,CpuTimeFrameworkChangeMoveTotal,CpuTimeFrameworkShiftMoveTotal;
+   REAL CpuTimeCFCRXMCLambdaChangeMoveTotal;
+@@ -6302,6 +6477,10 @@ void PrintCPUStatistics(FILE *FilePtr)
+   fprintf(FilePtr,"\tmol-fraction replica-exchange: %18.10g [s]\n",CpuTimeParallelMolFractionMove[CurrentSystem]);
+   fprintf(FilePtr,"\tchiral inversion:              %18.10g [s]\n",CpuTimeChiralInversionMove[CurrentSystem]);
+   fprintf(FilePtr,"\thybrid MC/MD (NVE):            %18.10g [s]\n",CpuTimeHybridNVEMove[CurrentSystem]);
++  // Added by Ambroise 
++  //------------------------------------------------------------------------------------------------------------
++  fprintf(FilePtr,"\twidom osmostat:                %18.10g [s]\n",CpuTimeWidomOsmostatChangeMove[CurrentSystem]);
++  //------------------------------------------------------------------------------------------------------------
+   fprintf(FilePtr,"\thybrid MC/MD (NPH):            %18.10g [s]\n",CpuTimeHybridNPHMove[CurrentSystem]);
+   fprintf(FilePtr,"\thybrid MC/MD (NPHPR):          %18.10g [s]\n",CpuTimeHybridNPHPRMove[CurrentSystem]);
+   fprintf(FilePtr,"\tvolume change:                 %18.10g [s]\n",CpuTimeVolumeChangeMove[CurrentSystem]);
+@@ -6395,7 +6574,7 @@ void PrintCPUStatistics(FILE *FilePtr)
+   fprintf(FilePtr,"\tGibbs particle transform:           %18.10g [s]\n",CpuTimeGibbsChangeMove);
+   fprintf(FilePtr,"\tGibbs particle transform (CFMC):    %18.10g [s]\n",CpuTimeCFGibbsChangeMove);
+   fprintf(FilePtr,"\tGibbs particle transform (CB/CFMC): %18.10g [s]\n",CpuTimeCBCFGibbsChangeMove);
+-  fprintf(FilePtr,"\tGibbs indentity change:             %18.10g [s]\n",CpuTimeGibbsIdentityChangeMove);
++  fprintf(FilePtr,"\tGibbs identity change:              %18.10g [s]\n",CpuTimeGibbsIdentityChangeMove);
+   fprintf(FilePtr,"\tExchange frac./int. particle:       %18.10g [s]\n",CpuTimeExchangeFractionalParticleMove);
+   fprintf(FilePtr,"\tSwap Gibbs-fractional molecules:    %18.10g [s]\n",CpuTimeCFGibbsSwapFractionalMoleculeToOtherBoxMove);
+   fprintf(FilePtr,"\tChange Gibs-lambda value:           %18.10g [s]\n",CpuTimeCFGibbsLambdaChangeMove);
+@@ -6406,6 +6585,10 @@ void PrintCPUStatistics(FILE *FilePtr)
+   CpuTimeParallelMolFractionMoveTotal=0.0;
+   CpuTimeChiralInversionMoveTotal=0.0;
+   CpuTimeHybridNVEMoveTotal=0.0;
++  // Added by Ambroise
++  //----------------------------------------
++  CpuTimeWidomOsmostatChangeMoveTotal=0.0;
++  //----------------------------------------
+   CpuTimeHybridNPHMoveTotal=0.0;
+   CpuTimeHybridNPHPRMoveTotal=0.0;
+   CpuTimeVolumeChangeMoveTotal=0.0;
+@@ -6421,6 +6604,10 @@ void PrintCPUStatistics(FILE *FilePtr)
+     CpuTimeParallelMolFractionMoveTotal+=CpuTimeParallelMolFractionMove[j];
+     CpuTimeChiralInversionMoveTotal+=CpuTimeChiralInversionMove[j];
+     CpuTimeHybridNVEMoveTotal+=CpuTimeHybridNVEMove[j];
++    // Added by Ambroise
++    //-----------------------------------------------------
++    CpuTimeWidomOsmostatChangeMoveTotal+=CpuTimeWidomOsmostatChangeMove[j];
++    //-----------------------------------------------------
+     CpuTimeHybridNPHMoveTotal+=CpuTimeHybridNPHMove[j];
+     CpuTimeHybridNPHPRMoveTotal+=CpuTimeHybridNPHPRMove[j];
+     CpuTimeVolumeChangeMoveTotal+=CpuTimeVolumeChangeMove[j];
+@@ -6437,6 +6624,10 @@ void PrintCPUStatistics(FILE *FilePtr)
+   fprintf(FilePtr,"\tmol-fraction replica-exchange: %18.10g [s]\n",CpuTimeParallelMolFractionMoveTotal);
+   fprintf(FilePtr,"\tchiral inversion:              %18.10g [s]\n",CpuTimeChiralInversionMoveTotal);
+   fprintf(FilePtr,"\thybrid MC/MD (NVE):            %18.10g [s]\n",CpuTimeHybridNVEMoveTotal);
++  // Added by Ambroise
++  //-------------------------------------------------------------------------------------------------
++  fprintf(FilePtr,"\twidom osmostat:                %18.10g [s]\n",CpuTimeWidomOsmostatChangeMoveTotal);
++  //-------------------------------------------------------------------------------------------------
+   fprintf(FilePtr,"\thybrid MC/MD (NPH):            %18.10g [s]\n",CpuTimeHybridNPHMoveTotal);
+   fprintf(FilePtr,"\thybrid MC/MD (NPHPR):          %18.10g [s]\n",CpuTimeHybridNPHPRMoveTotal);
+   fprintf(FilePtr,"\tvolume change:                 %18.10g [s]\n",CpuTimeVolumeChangeMoveTotal);
+@@ -7693,5 +7884,7 @@ void ReadRestartComponent(FILE *FilePtr)
+     fprintf(stderr, "Error in binary restart-file (ReadRestartComponent)\n");
+     ContinueAfterCrash=FALSE;
+   }
+-  printf("DONE!!!\n");
++  printf("DONE!!!!\n");
++
++
+ }
+diff --git a/src/molecule.h b/src/molecule.h
+index 59fa4d4..f2f634e 100644
+--- a/src/molecule.h
++++ b/src/molecule.h
+@@ -39,6 +39,7 @@
+ #include "simulation.h"
+ #include "cubic_spline_1d.h"
+ 
++
+ #define MAX_BOND_POTENTIAL_ARGUMENTS 20
+ #define MAX_BEND_POTENTIAL_ARGUMENTS 10
+ #define MAX_UREYBRADLEY_POTENTIAL_ARGUMENTS 10
+@@ -546,6 +547,10 @@ typedef struct Component
+   REAL ProbabilityParallelMolFractionMove;
+   REAL ProbabilityChiralInversionMove;
+   REAL ProbabilityHybridNVEMove;
++  // Added by Ambroise
++  //--------------------------------
++  REAL ProbabilityWidomOsmostatCalculationMove;
++  //--------------------------------
+   REAL ProbabilityHybridNPHMove;
+   REAL ProbabilityHybridNPHPRMove;
+   REAL ProbabilityVolumeChangeMove;
+@@ -696,6 +701,11 @@ void CheckTypeOfMolecules();
+ int SelectRandomMoleculeOfTypeExcludingReactionMolecules(int reaction,int **LambdaRetraceMolecules);
+ int SelectRandomMoleculeOfTypeExcludingProductMolecules(int reaction,int **LambdaRetraceMolecules);
+ 
++// Added by Ambroise
++//-----------------------------------------------------------------------
++void SelectRandomMoleculeAlchemicalTransformation(int * OldComponent, int NumberSpecies, int CurrentAlchemicalReaction);
++//-----------------------------------------------------------------------
++
+ int SelectRandomMoleculeOfType(int comp);
+ int SelectRandomMoleculeOfTypeExcludingFractionalMolecule(int comp);
+ 
+@@ -708,9 +718,14 @@ int AddPseudoAtom(PSEUDO_ATOM atom);
+ void ReadPseudoAtomsDefinitions(void);
+ 
+ void AllocateComponentMemory(void);
++// Added by Ambroise
++//-----------------------------------------------------------------------
++void SetUpNumberMoitiesExchangedAlchemicalReaction(void);
++//-----------------------------------------------------------------------
+ void ReadComponentDefinition(int comp);
+ 
+ void InsertAdsorbateMolecule(void);
++void InsertAdsorbateAlchMolecule(void);
+ void RemoveAdsorbateMolecule(void);
+ 
+ void InsertCationMolecule(void);
+diff --git a/src/monte_carlo.c b/src/monte_carlo.c
+index bec0d1e..1f18c82 100644
+--- a/src/monte_carlo.c
++++ b/src/monte_carlo.c
+@@ -42,6 +42,7 @@
+ #include "simulation.h"
+ #include "molecule.h"
+ #include "framework_energy.h"
++#include "Alchemical_transformation.h"
+ #include "framework.h"
+ #include "utils.h"
+ #include "molecule.h"
+@@ -126,7 +127,6 @@ void MonteCarloSimulation(void)
+   SampleDcTSTConfigurationFiles(ALLOCATE);
+   SamplePDBMovies(ALLOCATE,-1);
+ 
+-
+   // loop over all the pressures of the isotherm
+   for(CurrentIsothermPressure=0;CurrentIsothermPressure<NumberOfIsothermPressures;CurrentIsothermPressure++)
+   {
+@@ -146,13 +146,37 @@ void MonteCarloSimulation(void)
+ 
+     InitializeSmallMCStatisticsAllSystems();
+     InitializeMCMovesStatisticsAllSystems();
+-
++    
+     // compute total energy for all systems
+     CalculateTotalEnergyAllSystems();
+-
++	
+     CFWangLandauIteration(INITIALIZE);
+     CFRXMCWangLandauIteration(INITIALIZE);
+-
++	// If alchemical simulation is existing
++	
++	if(NumberAlchemicalReactions>0)
++    {
++	  // Added by Ambroise
++	  //---------------------------------------------------------------------
++	  // Read the multiplicity of salt (e.g. take into account of ion ratio).
++	  SetUpNumberMoitiesExchangedAlchemicalReaction(); 
++	  // Set up vdW parameters to be evolve during Alchemical transformation.
++	  InitializeIndexManagingTransientMoities();
++	  InitializeVectorforMixingRule();
++	  InitializeVectorCharge();
++	  // Initialize the lambda pointers for alchemical transformation.
++	  InitializeLambda();
++	  // Initialize NVE-MD statistics for alchemical transformation.
++	  InitializeNVEAlchStatistics();
++
++	  if(ProbabilityWidomOsmostatCalculationMove>0.0) 
++	  {
++		InitializeStoreProtocolWork();
++		InitializeFileProtocolWork(0);
++	  }
++	  //---------------------------------------------------------------------
++	}	
++	
+     // initialization to reach equilibration of positions (no averages are computed yet)
+     SimulationStage=POSITION_INITIALIZATION;
+     for(CurrentCycle=0;CurrentCycle<NumberOfInitializationCycles;CurrentCycle++)
+@@ -267,6 +291,12 @@ void MonteCarloSimulation(void)
+             ChiralInversionMove();
+           else if(ran<Components[CurrentComponent].ProbabilityHybridNVEMove)
+             HybridNVEMove();
++          // Added by Ambroise
++          //---------------------------------------------------------------------------
++
++          else if(ran<Components[CurrentComponent].ProbabilityWidomOsmostatCalculationMove)
++            WidomOsmostatCalculation();
++          //---------------------------------------------------------------------------
+           else if(ran<Components[CurrentComponent].ProbabilityHybridNPHMove)
+             HybridNPHMove();
+           else if(ran<Components[CurrentComponent].ProbabilityHybridNPHPRMove)
+@@ -315,17 +345,15 @@ void MonteCarloSimulation(void)
+ 
+     }
+ 
+-
+     // initialize the energies and compute the total energies for all systems
+     InitializesEnergiesAllSystems();
+     InitializesEnergyAveragesAllSystems();
+-
+     InitializeSmallMCStatisticsAllSystems();
+     InitializeMCMovesStatisticsAllSystems();
+ 
+     // compute total energy for all systems
+     CalculateTotalEnergyAllSystems();
+-
++    
+     if(NumberOfEquilibrationCycles>0)
+     {
+       CFWangLandauIteration(INITIALIZE);
+@@ -537,7 +565,7 @@ void MonteCarloSimulation(void)
+ 
+       CalculateTotalEnergyAllSystems();
+     }
+-
++   
+     // initialize sampling-routines at the start of the production run
+     SampleRadialDistributionFunction(INITIALIZE);
+     SampleProjectedLengthsDistributionFunction(INITIALIZE);
+@@ -564,7 +592,6 @@ void MonteCarloSimulation(void)
+ 
+     ClearLambdaHistogram();
+ 
+-
+     SimulationStage=PRODUCTION;
+     for(CurrentCycle=0;CurrentCycle<NumberOfCycles;CurrentCycle++)
+     {
+@@ -608,18 +635,18 @@ void MonteCarloSimulation(void)
+         for(CurrentSystem=0;CurrentSystem<NumberOfSystems;CurrentSystem++)
+           PrintPropertyStatus(CurrentCycle,NumberOfCycles,OutputFilePtr[CurrentSystem]);
+       }
+-
++  
+       // Print at 'PrintEvery' intervals the status and a restart-file
+       if((CurrentCycle%PrintEvery)==0)
+       {
+         for(CurrentSystem=0;CurrentSystem<NumberOfSystems;CurrentSystem++)
+         {
+-          PrintIntervalStatusProduction(CurrentCycle,NumberOfCycles,OutputFilePtr[CurrentSystem]);
++          PrintIntervalStatusProduction(CurrentCycle,NumberOfCycles,OutputFilePtr[CurrentSystem]); 
+           PrintRestartFile();
+         }
+       }
+-
+-      // select MC moves
++		 
++	  // select MC moves
+       for(i=0;i<NumberOfSystems;i++)
+       {
+         // choose a random system
+@@ -633,9 +660,10 @@ void MonteCarloSimulation(void)
+         }
+         NumberOfSteps=NumberOfParticleMoves*(NumberOfComponents==0?1:NumberOfComponents);
+ 
+-        // loop over the MC 'steps' per MC 'cycle'
++        // loop over the MC 'steps' per MC 'cycle' (21 for alchemical)
+         for(j=0;j<NumberOfSteps;j++)
+         {
++
+           // set the selected system
+           CurrentSystem=SelectedSystem;
+ 
+@@ -647,9 +675,11 @@ void MonteCarloSimulation(void)
+ 
+           // choose any of the MC moves randomly with the selected probability
+           ran=RandomNumber();
+-
++          
++          
+           if(ran<Components[CurrentComponent].ProbabilityTranslationMove)
+-          {
++          {	  
++			//printf("Translation\n");
+             cpu_before=get_cpu_time();
+             TranslationMove();
+             cpu_after=get_cpu_time();
+@@ -664,6 +694,7 @@ void MonteCarloSimulation(void)
+           }
+           else if(ran<Components[CurrentComponent].ProbabilityRotationMove)
+           {
++			//printf("Orientation\n");
+             cpu_before=get_cpu_time();
+             RotationMove();
+             cpu_after=get_cpu_time();
+@@ -854,6 +885,17 @@ void MonteCarloSimulation(void)
+             cpu_after=get_cpu_time();
+             CpuTimeChiralInversionMove[CurrentSystem]+=(cpu_after-cpu_before);
+           }
++		  // Added by Ambroise (widom osmostat)
++		  //---------------------------------------------------------------------------
++		  else if(ran<Components[CurrentComponent].ProbabilityWidomOsmostatCalculationMove)
++		  {
++			//printf("Osmostat: %d and ran: %lf / proba: %lf \n", j, ran, Components[CurrentComponent].ProbabilityTranslationMove);	  
++           
++			cpu_before=get_cpu_time();
++			WidomOsmostatCalculation();
++			cpu_after=get_cpu_time();
++			CpuTimeWidomOsmostatChangeMove[CurrentSystem]+=(cpu_after-cpu_before);
++		  }
+           else if(ran<Components[CurrentComponent].ProbabilityHybridNVEMove) 
+           {
+             cpu_before=get_cpu_time();
+@@ -925,7 +967,6 @@ void MonteCarloSimulation(void)
+         }
+       }
+ 
+-
+       if(CurrentCycle%OptimizeAcceptenceEvery==0)
+       {
+         for(CurrentSystem=0;CurrentSystem<NumberOfSystems;CurrentSystem++)
+@@ -986,7 +1027,7 @@ void MonteCarloSimulation(void)
+     }
+ 
+     SimulationStage=FINISHED;
+-
++   
+     for(CurrentSystem=0;CurrentSystem<NumberOfSystems;CurrentSystem++)
+     {
+       OptimizeVolumeChangeAcceptence();
+@@ -1049,7 +1090,7 @@ void MonteCarloSimulation(void)
+   // set current prssure to the last one
+   CurrentIsothermPressure=NumberOfIsothermPressures-1;
+ 
+-
++ 
+   // finalize output
+   SampleRadialDistributionFunction(FINALIZE);
+   SampleProjectedLengthsDistributionFunction(FINALIZE);
+@@ -1132,7 +1173,6 @@ void DebugEnergyStatus(void)
+   REAL UHostPolarizationStored,UAdsorbatePolarizationStored,UCationPolarizationStored;
+   REAL UHostBackPolarizationStored,UAdsorbateBackPolarizationStored,UCationBackPolarizationStored;
+ 
+-
+   // store all energies
+   StoredUTotal=UTotal[CurrentSystem];
+   StoredUTailCorrection=UTailCorrection[CurrentSystem];
+diff --git a/src/run.c b/src/run.c
+index f40a451..762ea2a 100644
+--- a/src/run.c
++++ b/src/run.c
+@@ -256,7 +256,7 @@ char* run(char *inputData, char *inputCrystal, char *raspaDir, bool stream)
+         free(FILE_CONTENTS[i]);
+       }
+     }
+-
++  
+   // Write the final positions to files
+   } else {
+     WriteFrameworkDefinitionCSSR("final");
+@@ -318,9 +318,37 @@ char* run(char *inputData, char *inputCrystal, char *raspaDir, bool stream)
+ 
+       free(Framework[i].Atoms[j]);
+     }
++    
+     free(Framework[i].Atoms);
+     free(Framework[i].ExclusionMatrix);
+     free(Framework[i].Neighbours);
++    // Added by Ambroise
++    // Free memory
++    //------------------------------------------------------------------------
++    for (j = 0; j < Framework[i].NumberOfFrameworks; j++)
++    {
++		for(k = 0; k < Framework[i].pair14VDW_size[j]; k++)
++		{free(Framework[i].scaling_pair14VDW[j][k]);}
++		free(Framework[j].scaling_pair14VDW[j]);
++		
++		for(k = 0; k < Framework[i].pair14ChargeCharge_size[j]; k++)
++		{free(Framework[i].scaling_pair14ChargeCharge[j][k]);}
++		free(Framework[i].scaling_pair14ChargeCharge[j]);
++
++		//for(k = 0; k < Framework[i].list14pair_size[j]; k++)
++		//{free(Framework[i].list14pair[j][k]);}
++		free(Framework[i].list14pair[j]);    
++    }	
++    
++    free(Framework[i].scaling_pair14VDW);
++    free(Framework[i].scaling_pair14ChargeCharge);
++    free(Framework[i].list14pair);
++
++    free(Framework[i].pair14VDW_size);
++    free(Framework[i].pair14ChargeCharge_size);
++    free(Framework[i].list14pair_size);
++    //------------------------------------------------------------------------
++    
+   }
+ 
+   return output;
+diff --git a/src/simulation.c b/src/simulation.c
+index 5558ddd..d35be96 100644
+--- a/src/simulation.c
++++ b/src/simulation.c
+@@ -77,6 +77,26 @@ REAL **CFRXMCWangLandauScalingFactor;
+ 
+ //----------------------------------------------------------------------------------------
+ 
++// Added by Ambroise
++//----------------------------------------------------------------------------------------
++// Alchemical transformation Parameters
++//----------------------------------------------------------------------------------------
++
++int NumberAlchemicalReactions;                       // Total number of Reactions
++int AlchReacLambda;                       	    	 // Number of step for chemical transformation           
++int **SaltIndex;                   // Reactants Stoichiometry
++int **MultiplicitySalt;								 // Tell the number of cation and anion (for charge)
++int SolventIndex;					 // The solvent to be exchanged with the salt.
++int *NumberTransientMoities;
++int **ChosenMoleculeAlchemicalTransformation;
++REAL *Lambda;										 // Parameter lambda step
++int RelaxationStepsAlchemicalTransformationMove;
++REAL ChemicalPotentialAlchemical;
++//----------------------------------------------------------------------------------------
++
++
++
++
+ int NumberOfPartialPressures;
+ int CurrentPartialPressure;
+ 
+@@ -384,6 +404,10 @@ REAL ProbabilityHyperParallelTemperingMove;
+ REAL ProbabilityParallelMolFractionMove;
+ REAL ProbabilityChiralInversionMove;
+ REAL ProbabilityHybridNVEMove;
++// Added by Ambroise
++//---------------------------------
++REAL ProbabilityWidomOsmostatCalculationMove;
++//---------------------------------
+ REAL ProbabilityHybridNPHMove;
+ REAL ProbabilityHybridNPHPRMove;
+ REAL ProbabilityVolumeChangeMove;
+@@ -402,6 +426,10 @@ REAL *CpuTimeHyperParallelTemperingMove;
+ REAL *CpuTimeParallelMolFractionMove;
+ REAL *CpuTimeChiralInversionMove;
+ REAL *CpuTimeHybridNVEMove;
++// Added by Ambroise
++//---------------------------------------------
++REAL *CpuTimeWidomOsmostatChangeMove;
++//---------------------------------------------
+ REAL *CpuTimeHybridNPHMove;
+ REAL *CpuTimeHybridNPHPRMove;
+ REAL *CpuTimeVolumeChangeMove;
+@@ -422,7 +450,22 @@ int OptimizeCFGibbsLambdaChange;
+ int OptimizeCBCFLambdaChange;
+ int OptimizeCBCFGibbsLambdaChange;
+ int OptimizeRXMCLambdaChange;
+-
++/*
++// Added by Ambroise
++//---------------------------------------------------------------------
++void InitializeLambdaAlchemicalMove(void)
++{
++  int i;
++	
++  Lambda    = (REAL*)calloc(AlchReacLambda+1,sizeof(REAL));
++  
++  for(i=0;i<=AlchReacLambda;i++)
++  {
++	Lambda[i]    = ((REAL)i)/AlchReacLambda;
++  }
++}
++//---------------------------------------------------------------------
++*/
+ void ScaleBornTerm(REAL r)
+ {
+   BornTerm[CurrentSystem].xxxx*=r;
+@@ -1202,6 +1245,10 @@ void AllocateSimulationMemory(void)
+   CpuTimeParallelMolFractionMove=(REAL*)calloc(NumberOfSystems,sizeof(REAL));
+   CpuTimeChiralInversionMove=(REAL*)calloc(NumberOfSystems,sizeof(REAL));
+   CpuTimeHybridNVEMove=(REAL*)calloc(NumberOfSystems,sizeof(REAL));
++  // Added by Ambroise
++  //-------------------------------------------------------------------
++  CpuTimeWidomOsmostatChangeMove=(REAL*)calloc(NumberOfSystems,sizeof(REAL));
++  //-------------------------------------------------------------------
+   CpuTimeHybridNPHMove=(REAL*)calloc(NumberOfSystems,sizeof(REAL));
+   CpuTimeHybridNPHPRMove=(REAL*)calloc(NumberOfSystems,sizeof(REAL));
+   CpuTimeVolumeChangeMove=(REAL*)calloc(NumberOfSystems,sizeof(REAL));
+diff --git a/src/simulation.h b/src/simulation.h
+index 1574b18..7247d63 100644
+--- a/src/simulation.h
++++ b/src/simulation.h
+@@ -109,6 +109,21 @@ extern int RXMCLambdaHistogramSize;
+ extern REAL ***RXMCBiasingFactors;
+ extern REAL **CFRXMCWangLandauScalingFactor;
+ 
++// Added by Ambroise
++//----------------------------------------------------------------------------------------
++// Alchemical transformation Parameters
++//----------------------------------------------------------------------------------------
++
++extern int NumberAlchemicalReactions;                       // Total number of Reactions
++extern int AlchReacLambda;                       	    	// Number of step for chemical transformation
++extern int **SaltIndex;                	// Reactants Stoichiometry
++extern int **MultiplicitySalt;							 	// Tell the number of cation and anion (for charge)
++extern int SolventIndex;					// The solvent to be exchanged with the salt.
++extern int *NumberTransientMoities;
++extern int **ChosenMoleculeAlchemicalTransformation;
++extern REAL *Lambda;						 				// Parameter lambda step
++extern int RelaxationStepsAlchemicalTransformationMove;      // Steps of NVE MD to relax between lambda change.
++extern REAL ChemicalPotentialAlchemical;
+ //----------------------------------------------------------------------------------------
+ 
+ 
+@@ -422,6 +437,10 @@ extern REAL ProbabilityHyperParallelTemperingMove;
+ extern REAL ProbabilityParallelMolFractionMove;
+ extern REAL ProbabilityChiralInversionMove;
+ extern REAL ProbabilityHybridNVEMove;
++// Added by Ambroise
++//---------------------------------
++extern REAL ProbabilityWidomOsmostatCalculationMove;
++//---------------------------------
+ extern REAL ProbabilityHybridNPHMove;
+ extern REAL ProbabilityHybridNPHPRMove;
+ extern REAL ProbabilityVolumeChangeMove;
+@@ -440,6 +459,10 @@ extern REAL *CpuTimeHyperParallelTemperingMove;
+ extern REAL *CpuTimeParallelMolFractionMove;
+ extern REAL *CpuTimeChiralInversionMove;
+ extern REAL *CpuTimeHybridNVEMove;
++// Added by Ambroise
++//---------------------------------------------
++extern REAL *CpuTimeWidomOsmostatChangeMove;
++//---------------------------------------------
+ extern REAL *CpuTimeHybridNPHMove;
+ extern REAL *CpuTimeHybridNPHPRMove;
+ extern REAL *CpuTimeVolumeChangeMove;
+@@ -461,6 +484,7 @@ extern int OptimizeCBCFLambdaChange;
+ extern int OptimizeCBCFGibbsLambdaChange;
+ extern int OptimizeRXMCLambdaChange;
+ 
++//void InitializeLambdaAlchemicalMove(void);
+ void ScaleBornTerm(REAL r);
+ void AddContributionToCrossTerm(int i,REAL_MATRIX CrossTerm,REAL DDF,REAL DF,VECTOR dr);
+ void AddContributionToBornTerm(REAL DDF,REAL DF,VECTOR dr);
+diff --git a/src/statistics.c b/src/statistics.c
+index 9b7be64..7a79909 100644
+--- a/src/statistics.c
++++ b/src/statistics.c
+@@ -48,6 +48,7 @@
+ #include "inter_energy.h"
+ #include "framework.h"
+ #include "framework_energy.h"
++#include "Alchemical_transformation.h"
+ #include "ewald.h"
+ #include "sample.h"
+ #include "utils.h"
+@@ -253,7 +254,6 @@ REAL **SurfaceAreaCount;
+ VECTOR ***PrincipleMomentsOfInertiaAccumulated;
+ REAL ***PrincipleMomentsOfInertiaCount;
+ 
+-
+ void AddBornTermToAverages(void)
+ {
+ 
+@@ -2842,6 +2842,16 @@ void PrintPropertyStatus(long long CurrentCycle,long long NumberOfCycles, FILE *
+       fprintf(FilePtr,"\t\t(average excess chemical potential: %18.10f [K], ideal-gas contribution: %18.10f [K])\n",
+             (-log(GetAverageWidomExcess(i))/Beta[CurrentSystem])*ENERGY_TO_KELVIN,
+             (-log(GetAverageWidomIdealGas(i))/Beta[CurrentSystem])*ENERGY_TO_KELVIN);
++            
++      /*fprintf(FilePtr,"ideal-gas contribution: %18.10f [K])\n ideal-gas value: %18.10f [K])\n volume: %18.10f [A^3])\n inverse density: %18.10f [])\n Beta: %18.10f [])\n toto: %18.10f [])\n",
++            (-log(GetAverageWidomIdealGas(i))/Beta[CurrentSystem])*ENERGY_TO_KELVIN,
++            (-log(GetAverageInverseDensity())/Beta[CurrentSystem])*ENERGY_TO_KELVIN,
++            Volume[CurrentSystem],
++            GetAverageInverseDensity(),
++            Beta[CurrentSystem],
++            -log(GetAverageInverseDensity())/Beta[CurrentSystem],
++            );
++       */
+     }
+ 
+     if(Components[i].FractionOfGibbsWidomMove>0.0)
+@@ -3900,7 +3910,7 @@ void PrintAverageTotalSystemEnergiesMC(FILE *FilePtr)
+       }
+ 
+       InverseRealMatrix(matrix);
+-
++	 
+       for(int k1=0;k1<NumberOfComponents;k1++)
+       {
+         HeatOfAdsorptionPerComponent[k1][i]=0.0;
+@@ -4502,7 +4512,52 @@ void PrintAverageTotalSystemEnergiesMC(FILE *FilePtr)
+     fprintf(FilePtr,"\t[%s] Average Gibbs chemical potential:   %lg +/- %lf [K]\n",
+       Components[j].Name, avg, error);
+   }
+-
++  
++  
++  // Added by Ambroise: osmostat calibration. 
++  fprintf(FilePtr,"\n");
++  fprintf(FilePtr,"Average osmostat calibration for alchemical transformation:\n");
++  fprintf(FilePtr,"=======================================\n"); 
++   
++  if(WidomOsmostat[CurrentSystem][0]>0.0)
++  {
++		sum=sum_squared=0.0;
++		
++		REAL increase;
++		REAL wavelength_broglie_water = 0.237475478;
++		
++		int blocksize=floor(SizeProtocolWorkStore/NR_BLOCKS);
++
++		for(int i=0;i<NR_BLOCKS;i++)
++		{
++			increase = 0.0;
++			for(int j=0;j<blocksize;j++)
++			{	
++		        increase+= exp(-ProtocolWorkStore[i*blocksize+j]*Beta[CurrentSystem]);
++			}
++			
++			REAL tmp=-(log(Volume[CurrentSystem]/pow(wavelength_broglie_water,3)/NumberOfAdsorbateMolecules[CurrentSystem])/Beta[CurrentSystem])*ENERGY_TO_KELVIN-(log((increase/blocksize))/Beta[CurrentSystem])*ENERGY_TO_KELVIN;
++			sum+=tmp;
++			sum_squared+=SQR(tmp);
++			fprintf(FilePtr,"\tBlock[%2d] %-lg [-]\n",i,(double)tmp);
++		}
++   }
++   else
++	{
++		for(int i=0;i<NR_BLOCKS;i++)
++		{
++			fprintf(FilePtr,"\tBlock[%2d] %-lg [-]\n",i,(double)0.0);
++		}
++    } 
++      
++    avg=AVERAGE(sum);
++    error=ERROR_CONFIDENCE_INTERVAL_95(sum,sum_squared);
++    fprintf(FilePtr,"\t------------------------------------------------------------------------------\n");
++    fprintf(FilePtr,"\tAverage osmostat calibration for alchemical transformation:   %lg +/- %lf [K]\n",
++      avg, error);
++    fprintf(FilePtr,"\tAverage osmostat calibration for alchemical transformation:   %lg +/- %lf [kJ/mol]\n",
++      avg*KELVIN_TO_KJ_PER_MOL, error*KELVIN_TO_KJ_PER_MOL);
++  
+   // Average Gibbs Widom ideal-gas contribution
+   fprintf(FilePtr,"\n");
+   fprintf(FilePtr,"Average Gibbs Widom Ideal-gas contribution:\n");
+@@ -5476,3 +5531,5 @@ void ReadRestartStatistics(FILE *FilePtr)
+     ContinueAfterCrash=FALSE;
+   }
+ }
++
++
