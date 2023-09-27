@@ -1,0 +1,54 @@
+SimulationType                MolecularDynamics
+NumberOfCycles                200000
+NumberOfInitializationCycles  1000
+NumberOfEquilibrationCycles   200000
+PrintEvery                    1000
+
+Movies no
+
+
+RandomSeed 1
+RestartFile					  no
+ContinueAfterCrash yes
+WriteBinaryRestartFileEvery   1000
+
+Ensemble                      NVT
+
+ChargeMethod                  Ewald
+Forcefield                    bulk_water_ions
+CutOffVDW                     7.0
+CutOffCoulomb                 7.0
+EwaldPrecision                1e-6
+
+Box 0
+BoxLengths 16.5474301039119 16.5474301039119 16.5474301039119
+ExternalTemperature 300.0
+ 
+AlchemicalTransformation 0 1
+ProbabilityWidomOsmostatCalculationMove 0.0002
+LambdaStepsAlchemicalTransformationMove 200
+RelaxationStepsAlchemicalTransformationMove 200
+ 
+
+
+Component 0 MoleculeName             Tip4p
+            MoleculeDefinition       SmallMolecules
+            TranslationProbability   1.0
+            RotationProbability      1.0
+            ReinsertionProbability   1.0
+            CreateNumberOfMolecules  128
+
+Component 1 MoleculeName             vi
+            MoleculeDefinition       SmallMolecules
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  1
+
+Component 2 MoleculeName             Cs
+            MoleculeDefinition       SmallMolecules
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  11
+
+Component 3 MoleculeName             Cl
+            MoleculeDefinition       SmallMolecules
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  11

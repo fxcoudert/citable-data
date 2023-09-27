@@ -1,0 +1,11 @@
+#include "../../../oplsaa.ff/forcefield.itp"
+#include "../../../oplsaa.ff/tip4p.itp"
+#include "../../../oplsaa.ff/ions.itp"
+
+[ System ]
+system in water
+
+[ Molecules ]
+SOL         512
+CS               44
+CL               44
