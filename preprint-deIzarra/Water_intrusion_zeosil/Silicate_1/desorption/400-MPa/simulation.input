@@ -1,0 +1,37 @@
+SimulationType                MonteCarlo
+NumberOfCycles                100000
+NumberOfEquilibrationCycles   200000
+PrintEvery                    1
+Movies                        yes
+WriteMoviesEvery              1000
+
+RestartFile					 no
+
+ContinueAfterCrash yes
+WriteBinaryRestartFileEvery   1000
+
+
+CutOff 8.0
+CutOffChargeCharge 8.0
+CutOffChargeBondDipole 8.0
+CutOffBondDipoleBondDipole 8.0
+
+RemoveAtomNumberCodeFromLabel yes
+ChargeMethod                  Ewald
+EwaldPrecision                1e-6
+
+Framework                     0
+FrameworkName                 MFI_SI_Olson
+UnitCells                     2 1 2
+
+ExternalTemperature           300.0
+ExternalPressure              4e8
+
+Component 0 MoleculeName             Tip4p
+            MoleculeDefinition       Local
+			FugacityCoefficient      0.000208271913721
+            TranslationProbability   0.5
+            RotationProbability      0.5
+            SwapProbability          1.0
+            CreateNumberOfMolecules  0
+

@@ -1,0 +1,7 @@
+#! /bin/sh -f
+cd "$(dirname "$0")"
+export RASPA_DIR=${CCCWORKDIR}/RASPA_osmostat_water/simulations/
+export DYLD_LIBRARY_PATH=${RASPA_DIR}/lib
+export LD_LIBRARY_PATH=${RASPA_DIR}/lib
+$RASPA_DIR/bin/simulate $1
+

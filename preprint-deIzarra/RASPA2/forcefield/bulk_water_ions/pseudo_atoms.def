@@ -1,0 +1,20 @@
+#number of pseudo atoms
+17
+#type      print   as    chem  oxidation   mass        charge   polarization B-factor radii  connectivity anisotropic anisotropic-type   tinker-type
+Ow         yes     O     O     0           15.9994     0.00000    0.0          1.0      1.00   0            0           relative           0
+Hw         yes     H     H     0           1.00794     0.52000    0.0          1.0      1.00   0            0           relative           0
+Mw         no      M     H     0           0.00000    -1.04000    0.0          1.0      1.00   0            0           relative           0
+Cs                 yes     Cs    Cs    0                   132.90545   1.00000    0.0              1.0          1.0    0            0           relative           0
+Cl                 yes     Cl    Cl    0                   35.4530    -1.00000    0.0              1.0          1.0    0            0           relative           0
+K                  yes     K     K     0                   39.0983     1.00000    0.0              1.0          1.0    0            0           relative           0
+Br                 yes     Br    Br    0                   79.9040    -1.00000    0.0              1.0          1.0    0            0           relative           0
+F                  yes     F     F     0                   18.9984    -1.00000    0.0              1.0          1.0    0            0           relative           0
+I                  yes     I     I     0                   126.90447  -1.00000    0.0              1.0          1.0    0            0           relative           0
+Li                 yes     Li    Li    0                   6.94100     1.00000    0.0              1.0          1.0    0            0           relative           0
+Na                 yes     Na    Na    0                   22.9898     1.00000    0.0              1.0          1.0    0            0           relative           0
+Rb                 yes     Rb    Rb    0                   85.4678     1.00000    0.0              1.0          1.0    0            0           relative           0
+vi                 yes     v     v     0                   35.4530     0.00000    0.0              1.0          1.0    0            0           relative           0
+Ba                 yes     Ba    Ba    0                   137.327     2.00000    0.0              1.0          1.0    0            0           relative           0
+Ca                 yes     Ca    Ca    0                   40.0780     2.00000    0.0              1.0          1.0    0            0           relative           0
+Mg                 yes     Mg    Mg    0                   24.3050     2.00000    0.0              1.0          1.0    0            0           relative           0
+Sr                 yes     Sr    Sr    0                   87.6200     2.00000    0.0              1.0          1.0    0            0           relative           0

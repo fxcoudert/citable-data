@@ -1,0 +1,47 @@
+SimulationType                MonteCarlo
+NumberOfCycles                200000
+NumberOfInitializationCycles  1000
+NumberOfEquilibrationCycles   20000
+PrintEvery                    1000
+
+Movies no
+
+RandomSeed 1
+RestartFile					  no
+ContinueAfterCrash no
+WriteBinaryRestartFileEvery   5
+
+Ensemble                      NVT
+
+ChargeMethod                  Ewald
+Forcefield                    bulk_water_ions
+CutOffVDW                     7.0
+CutOffCoulomb                 7.0
+EwaldPrecision                1e-6
+
+Box 0
+BoxLengths 16.2621526450173 16.2621526450173 16.2621526450173
+ExternalTemperature 300.0
+ExternalPressure 5e6
+
+AlchemicalTransformation 0 1 2
+ProbabilityWidomOsmostatCalculationMove 0.0002
+LambdaStepsAlchemicalTransformationMove 200
+RelaxationStepsAlchemicalTransformationMove 200
+
+Component 0 MoleculeName             Tip4p
+            MoleculeDefinition       SmallMolecules
+            TranslationProbability   1.0
+            RotationProbability      1.0
+            ReinsertionProbability   1.0
+            CreateNumberOfMolecules  135
+
+Component 1 MoleculeName             Mg
+            MoleculeDefinition       SmallMolecules
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  5
+
+Component 2 MoleculeName             Cl
+			MoleculeDefinition       SmallMolecules
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  10
