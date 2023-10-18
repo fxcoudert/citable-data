@@ -1,0 +1,215 @@
+# This file serves as a starting example input file for Allegro
+# For a full, detailed set of general training+dataset options see configs/full.yaml in the NequIP repo: 
+# https://github.com/mir-group/nequip/blob/main/configs/full.yaml
+# This file additionally documents the Allegro-specific options
+
+
+# general
+
+# Two folders will be used during the training: 'root'/process and 'root'/'run_name'
+# run_name contains logfiles and saved models
+# process contains processed data sets
+# if 'root'/'run_name' exists, 'root'/'run_name'_'year'-'month'-'day'-'hour'-'min'-'s' will be used instead.
+root: /lus/work/CT8/cpt7069/ncastel/training/allegro/007_l2r6stress0a/results
+run_name: num_layers2-parityo3_full-learning_rate0001
+
+# model initialization seed
+seed: 666
+
+# data set seed, determines which data to sample from file
+dataset_seed: 666
+
+# set true if a restarted run should append to the previous log file
+append: true
+
+# type of float to use, e.g. float32 and float64
+default_dtype: float32
+
+# -- network --
+# tell nequip which modules to build
+model_builders:
+ - allegro.model.Allegro
+ # the typical model builders from `nequip` can still be used:
+ - PerSpeciesRescale
+ - StressForceOutput
+ - RescaleEnergyEtc
+
+# radial cutoff in length units
+r_max: 6.0
+
+# average number of neighbors in an environment is used to normalize the sum, auto precomputed it automitcally 
+avg_num_neighbors: auto
+
+# radial basis
+# set true to train the bessel roots
+BesselBasis_trainable: true
+
+# p-parameter in envelope function, as proposed in Klicpera, J. et al., arXiv:2003.03123 
+# sets it BOTH for the RadialBasisProjection AND the Allegro_Module
+PolynomialCutoff_p: 6  
+
+# symmetry
+# maximum order l to use in spherical harmonics embedding, 1 is basedline (fast), 2 is more accurate, but slower, 3 highly accurate but slow
+l_max: 2
+
+# whether to include E(3)-symmetry / parity
+# allowed: o3_full, o3_restricted, so3
+parity: o3_full  
+
+# number of tensor product layers, 1-3 usually best, more is more accurate but slower
+num_layers: 2
+
+# number of features, more is more accurate but slower, 1, 4, 8, 16, 64, 128 are good options to try depending on data set
+env_embed_multiplicity: 64
+
+# whether or not to embed the initial edge, true often works best
+embed_initial_edge: true
+
+# hidden layer dimensions of the 2-body embedding MLP
+two_body_latent_mlp_latent_dimensions: [128, 256, 512, 1024]
+# nonlinearity used in the 2-body embedding MLP
+two_body_latent_mlp_nonlinearity: silu
+# weight initialization of the 2-body embedding MLP
+two_body_latent_mlp_initialization: uniform
+
+# hidden layer dimensions of the latent MLP
+# these MLPs are cheap if you have have large l/env_embed_multiplicity, so a good place to put model capacity if you can afford it
+# only if you are in the ultra-fast/scalable regime, make these smaller
+latent_mlp_latent_dimensions: [1024, 1024, 1024]
+
+# nonlinearity used in the latent MLP
+latent_mlp_nonlinearity: silu
+
+# weight initialization of the latent MLP
+latent_mlp_initialization: uniform
+
+# whether to use a resnet update in the scalar latent latent space, true works best usually
+latent_resnet: true
+
+# hidden layer dimensions of the environment embedding mlp, none work best (will build a single linear layer)
+env_embed_mlp_latent_dimensions: []
+
+# nonlinearity used in the environment embedding mlp
+env_embed_mlp_nonlinearity: null
+
+# weight initialzation of the environment embedding mlp
+env_embed_mlp_initialization: uniform
+
+# - end allegro layers -
+
+# Final MLP to go from Allegro latent space to edge energies:
+
+# hidden layer dimensions of the per-edge energy final MLP
+edge_eng_mlp_latent_dimensions: [128]
+
+# nonlinearity used in the per-edge energy final MLP
+edge_eng_mlp_nonlinearity: null
+
+# weight initialzation in the per-edge energy final MLP
+edge_eng_mlp_initialization: uniform
+
+# -- data --
+# there are two options to specify a dataset, npz or ase
+# npz works with npz files, ase can ready any format that ase.io.read can read
+# IMPORTANT: in most cases working with the ase option and an extxyz file is by far the simplest way to do it and we strongly recommend using this
+# simply provide a single extxyz file that contains the structures together with energies and forces (generated with ase.io.write(atoms, format='extxyz', append=True))
+# for a simple snippet to do this, see the gists here: https://github.com/simonbatzner
+
+# npz option
+dataset: npz                                                                 # type of data set, can be npz or ase
+dataset_file_name: /lus/work/CT8/cpt7069/ncastel/training/allegro/007_l2r6stress0a/dataset/flathist_2700_traintest.npz           # path to data set file
+key_mapping:
+  Z: atomic_numbers                                                                # atomic species, integers
+  energy: total_energy                                                                  # total potential eneriges to train to
+  force: forces                                                                        # atomic forces to train to
+  positions: pos                                                                           # raw atomic positions
+  stress: stress
+  cell: cell
+  pbc: pbc
+chemical_symbols:
+  - C
+  - H
+  - N
+  - Zn
+
+
+# logging
+# whether to use weight and biases (see wandb.ai)
+wandb: false
+
+
+# the same as python logging, e.g. warning, info, debug, error. case insensitive
+verbose: debug
+
+# training
+# number of training samples to use
+n_train: 2375                                                                       # number of training data
+n_val: 190                                                                          # number of validation data
+
+# batch size, we found it important to keep this small for most applications including forces (1-5); for energy-only training, higher batch sizes work better
+batch_size: 1
+
+# stop training after _ number of epochs, we set a very large number here, it won't take this long in practice and we will use early stopping instead
+max_epochs: 1000
+
+# learning rate, we found values between 0.002 and 0.0005 to work best - this is often one of the most important hyperparameters to tune
+learning_rate: 0.001
+
+# can be random or sequential. if sequential, first n_train elements are training, next n_val are val, else random, usually random is the right choice
+train_val_split: sequential
+
+# If true, the data loader will shuffle the data, almost always a good idea
+shuffle: false
+
+# metrics used for scheduling and saving best model. Options: `set`_`quantity`, set can be either "train" or "validation, "quantity" can be loss or anything that appears in the validation batch step header, such as f_mae, f_rmse, e_mae, e_rmse
+metrics_key: validation_loss
+
+# use an exponential moving average of the weights
+# if true, use exponential moving average on weights for val/test, usually helps a lot with training, in particular for energy errors
+use_ema: true
+
+# ema weight, typically set to 0.99 or 0.999
+ema_decay: 0.99
+
+# whether to use number of updates when computing averages
+ema_use_num_updates: true
+
+# loss function
+# different weights to use in a weighted loss functions
+# if you use peratommseloss, then this is already in a per-atom normalized space (both E/F are per-atom quantities)
+# in that case, 1:1 works best usually
+loss_coeffs:
+  forces: 1
+  stress: 0
+  total_energy:
+    - 1
+    - PerAtomMSELoss
+
+# optimizer
+# default optimizer is Adam 
+optimizer_name: Adam
+optimizer_params:
+  amsgrad: false
+  betas: !!python/tuple
+  - 0.9
+  - 0.999
+  eps: 1.0e-08
+  weight_decay: 0.
+
+# lr scheduler, drop lr if no improvement for 50 epochs
+# on-plateau, reduce lr by factory of lr_scheduler_factor if metrics_key hasn't improved for lr_scheduler_patience epoch
+lr_scheduler_name: ReduceLROnPlateau
+lr_scheduler_patience: 50
+lr_scheduler_factor: 0.5
+
+# early stopping if max 7 days is reached or lr drops below 1e-5 or no improvement on val loss for 100 epochs
+early_stopping_upper_bounds:
+  cumulative_wall: 604800.
+
+early_stopping_lower_bounds:
+  LR: 1.0e-6
+
+early_stopping_patiences:
+  validation_loss: 100
+
+

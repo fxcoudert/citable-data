@@ -1,0 +1,60 @@
+# Zn/N 
+units           metal
+
+## Boundary condition
+dimension       3
+boundary        p p p
+
+# added to fix following error:
+# ERROR: Pair style NEQUIP requires newton pair off (src/pair_nequip.cpp:108)
+newton off
+
+# Create geometry from a structure file
+atom_style      atomic
+read_data       crystal.lmp
+
+change_box      all triclinic
+
+# create a 222 supercell
+replicate 2 2 2
+
+
+# Apply NequIP potentials
+pair_style	nequip
+pair_coeff	* * nequip_l2r6stress0.pth C  H  N  Zn
+
+
+# Same neighbours code than in pair_nequip test
+neighbor	    1.0 bin
+neigh_modify    delay 0 every 1 check no
+
+# minimization
+min_style       cg
+minimize        5e-7 0 20000 100000
+
+
+timestep        0.00025
+thermo          10
+thermo_style    custom step time pe ke etotal evdwl ecoul enthalpy temp press vol density cella cellb cellc cellalpha cellbeta cellgamma pxx pyy pzz pxy pxz pyz
+thermo_modify   format float %15.14g
+
+dump            1 all custom 50 dump_vel id type x y z
+dump            2 all xyz 50 ZIF4.xyz 
+restart         5000 backup1.restart backup2.restart
+dump_modify     1 sort id element C H N Zn
+dump_modify     2 sort id element C H N Zn
+
+reset_timestep  0 
+
+
+log             log.run.1.prepare
+fix             4  all  nvt temp  300  300  0.1
+run             80000 
+write_data      prepare_300K.data.*
+write_restart   prepare_300K.restart.*
+unfix 4
+
+
+write_restart   final.restart
+
+
