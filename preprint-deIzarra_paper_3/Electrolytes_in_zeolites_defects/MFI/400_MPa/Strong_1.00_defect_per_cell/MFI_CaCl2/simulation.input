@@ -1,0 +1,60 @@
+SimulationType                MonteCarlo
+NumberOfCycles                100000
+NumberOfEquilibrationCycles   0
+PrintEvery                    1
+Movies                        yes
+WriteMoviesEvery              500
+
+Forcefield                    Local
+RestartFile					 yes
+
+ContinueAfterCrash yes
+WriteBinaryRestartFileEvery   1
+RandomSeed 1663336443667469524
+
+CutOff 8.0
+CutOffChargeCharge 8.0
+CutOffChargeBondDipole 8.0
+CutOffBondDipoleBondDipole 8.0
+
+RemoveAtomNumberCodeFromLabel yes
+ChargeMethod                  Ewald
+EwaldPrecision                1e-6
+
+Framework                     0
+FrameworkName                 MFI_Olson_SI_defect_1.00_per_cell_equilibrated
+UnitCells                     1 1 1
+
+ExternalTemperature           300.0
+ExternalPressure              4e8
+
+TimeStep				  0.001
+
+AlchemicalTransformation 0 1 2
+ProbabilityWidomOsmostatCalculationMove 0.001
+LambdaStepsAlchemicalTransformationMove 200
+RelaxationStepsAlchemicalTransformationMove 200
+
+Component 0 MoleculeName             Tip4p
+            MoleculeDefinition       Local
+			FugacityCoefficient      0.000208271913721
+            TranslationProbability   1.0
+            RotationProbability      1.0
+            SwapProbability          1.0
+            CreateNumberOfMolecules  0
+
+Component 1 MoleculeName             Ca
+            MoleculeDefinition       Local
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  0
+
+Component 2 MoleculeName             Cl
+            MoleculeDefinition       Local
+            TranslationProbability   1.0
+            CreateNumberOfMolecules  0
+
+
+
+
+
+
