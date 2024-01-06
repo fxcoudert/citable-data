@@ -1,4 +1,4 @@
-Supporting information for: [“Enhancing Gas Separation Selectivity Prediction through Geometrical and Chemical Descriptors”](https://doi.org/10.1021/acs.chemmater.3c01031), E. Ren and F.-X. Coudert, _Chem. Mater._, **2023**, DOI: [10.1021/acs.chemmater.3c01031](https://doi.org/10.1021/acs.chemmater.3c01031)
+Supporting information for: [“Enhancing Gas Separation Selectivity Prediction through Geometrical and Chemical Descriptors”](https://doi.org/10.1021/acs.chemmater.3c01031), E. Ren and F.-X. Coudert, _Chem. Mater._, **2023**, 35 (17), 6771–6781, DOI: [10.1021/acs.chemmater.3c01031](https://doi.org/10.1021/acs.chemmater.3c01031)
 
 
 A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv-2023-q841f-v3)
