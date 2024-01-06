@@ -1,4 +1,7 @@
-Supporting information for: [“Predictive Thermodynamic Model for Intrusion of Electrolyte Aqueous Solutions in Nanoporous Materials”](https://doi.org/10.1021/acs.chemmater.3c02230), A. De Izarra, F.-X. Coudert, A. H. Fuchs and A. Boutin, _Chem. Mater._, **2023**, DOI: [10.1021/acs.chemmater.3c02230](https://doi.org/10.1021/acs.chemmater.3c02230)
+Supporting information for: [“Predictive Thermodynamic Model for Intrusion of Electrolyte Aqueous Solutions in Nanoporous Materials”](https://doi.org/10.1021/acs.chemmater.3c02230), A. De Izarra, F.-X. Coudert, A. H. Fuchs and A. Boutin, _Chem. Mater._, **2023**, 35 (24), 10606–10618, DOI: [10.1021/acs.chemmater.3c02230](https://doi.org/10.1021/acs.chemmater.3c02230)
+
+
+A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv-2023-k1q81-v2)
 
 
 **RASPA2 common files:**
