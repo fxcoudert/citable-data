@@ -1,1 +1,0 @@
-Supporting information for: [“Molecular Simulation of the Impact of Defects on Electrolyte Intrusion in Zeolites”](https://doi.org/10.26434/chemrxiv-2023-jd03x), A. De Izarra, F.-X. Coudert, A. H. Fuchs and A. Boutin, preprint DOI: [10.26434/chemrxiv-2023-jd03x](https://doi.org/10.26434/chemrxiv-2023-jd03x)
