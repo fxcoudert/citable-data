@@ -1,4 +1,6 @@
-Supporting information for: [“Machine-Learnt Interatomic Potentials for Amorphous Zeolitic Imidazolate Frameworks”](https://doi.org/10.26434/chemrxiv-2023-8003d), N. Castel, D. André, C. Edwards, J. D. Evans and F.-X. Coudert, preprint DOI: [10.26434/chemrxiv-2023-8003d](https://doi.org/10.26434/chemrxiv-2023-8003d)
+Supporting information for: [“Machine learning interatomic potentials for amorphous zeolitic imidazolate frameworks”](https://doi.org/10.1039/D3DD00236E), N. Castel, D. André, C. Edwards, J. D. Evans and F.-X. Coudert, _Digital Discovery_, **2024**, DOI: [10.1039/D3DD00236E](https://doi.org/10.1039/D3DD00236E)
+
+A first version of this paper was posted as a [preprint on ChemRxiv](https://doi.org/10.26434/chemrxiv-2023-8003d-v2)
 
 
 **Ab initio data:**
