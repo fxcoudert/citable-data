@@ -1,7 +1,7 @@
-Supporting information for: [“Prediction of Diffusion Coefficient Through Machine Learning Based on Transition State Theory Descriptors”](https://doi.org/10.26434/chemrxiv-2024-h98mf), E. Ren and F.-X. Coudert, preprint on _ChemRxiv_, **2023**, DOI: [10.26434/chemrxiv-2024-h98mf](https://doi.org/10.26434/chemrxiv-2024-h98mf)
+Supporting information for: [“Prediction of the Diffusion Coefficient through Machine Learning Based on Transition-State Theory Descriptors”](https://doi.org/10.1021/acs.jpcc.4c00631), E. Ren and F.-X. Coudert, _J. Phys. Chem. C_, **2024**, DOI: [10.1021/acs.jpcc.4c00631](https://doi.org/10.1021/acs.jpcc.4c00631)
 
 
-A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv-2024-h98mf)
+A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv-2024-h98mf-v2)
 
 
 **Related repositories**
