@@ -1,4 +1,4 @@
-Supporting information for: [“Neural Network-Based Interatomic Potential for the Study of Thermal and Mechanical Properties of Siliceous Zeolites”](https://doi.org/10.1021/acs.jpcc.4c07365), L. Brugnoli, M. Ducamp and F.-X. Coudert, _J. Phys. Chem. C_, **2024**, DOI: [10.1021/acs.jpcc.4c07365](https://doi.org/10.1021/acs.jpcc.4c07365)
+Supporting information for: [“Neural Network-Based Interatomic Potential for the Study of Thermal and Mechanical Properties of Siliceous Zeolites”](https://doi.org/10.1021/acs.jpcc.4c07365), L. Brugnoli, M. Ducamp and F.-X. Coudert, _J. Phys. Chem. C_, **2024**, 128 (47), 20512–20522, DOI: [10.1021/acs.jpcc.4c07365](https://doi.org/10.1021/acs.jpcc.4c07365)
 
 A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv-2024-np8wf-v2)
 
