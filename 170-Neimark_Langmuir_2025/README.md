@@ -1,4 +1,6 @@
-Supporting information for: [“Phase Transformations in MOFs Induced by Adsorbate Exchange”](https://doi.org/10.1021/acs.langmuir.4c04626), A. V. Neimark, N. J. Corrente and F.-X. Coudert, _Langmuir_, **2025**, DOI: [10.1021/acs.langmuir.4c04626](https://doi.org/10.1021/acs.langmuir.4c04626)
+Supporting information for: [“Phase Transformations in MOFs Induced by Adsorbate Exchange”](https://doi.org/10.1021/acs.langmuir.4c04626), A. V. Neimark, N. J. Corrente and F.-X. Coudert, _Langmuir_, **2025**, 41 (7), 4720–4729, DOI: [10.1021/acs.langmuir.4c04626](https://doi.org/10.1021/acs.langmuir.4c04626)
+
+A first version of this paper was posted as a [preprint on chemRxiv](https://doi.org/10.26434/chemrxiv-2024-s96xk)
 
 
 **Data**
