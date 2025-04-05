@@ -24,3 +24,4 @@ There is a small error in the published article − page 26951; page 26952; and 
     - `*.vel.xyz`: velocities at each step in XYZ format
     - `*.frc.xyz`: forces at each step in XYZ format
     - `*.stress`: stress matrix at each step
+    - These files are also deposited on [Zenodo](https://doi.org/10.5281/zenodo.10116391) (DOI: [10.5281/zenodo.10116391](https://doi.org/10.5281/zenodo.10116391))
