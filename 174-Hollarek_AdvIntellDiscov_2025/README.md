@@ -3,6 +3,6 @@ Supporting information for: [“opXRD: Open Experimental Powder X-ray Diffractio
 A first version of this paper was posted as a [preprint on arXiv](https://doi.org/10.48550/arXiv.2503.05577)
 
 
-**Data, input files, code**
+**Data**
 
 All data related to this paper is freely available and hosted on Zenodo at [DOI: 10.5281/zenodo.15298026](https://zenodo.org/doi/10.5281/zenodo.15298026). We provide a new open powder X-ray diffraction (opXRD) dataset that collects a broad range of patterns from experiments. Our opXRD dataset has been curated by collecting the accumulated powder data from multiple large research groups and institutions with high-throughput XRD facilities. It contains pXRD patterns from single and multiphase materials from a wide variety of materials classes.
