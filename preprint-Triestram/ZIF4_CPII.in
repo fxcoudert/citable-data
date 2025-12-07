@@ -1,0 +1,136 @@
+# Zn/N 
+units           metal
+
+## Boundary condition
+dimension       3
+boundary        p p p
+
+atom_modify map yes
+newton on
+
+
+# Create geometry from a structure file
+atom_style      atomic
+read_restart    ZIF4_NPT.restart
+
+change_box      all triclinic
+
+# create a 222 supercell
+#replicate 2 2 2
+
+
+# Apply mace potentials
+pair_style	mace no_domain_decomposition 
+pair_coeff	* * MACE_ZIF4_stress100_compiled.model-lammps.pt C  H  N  Zn
+
+
+neighbor	    1.0 bin
+neigh_modify    delay 0 every 1 check no
+
+
+
+timestep        0.0005
+thermo          10
+thermo_style    custom step time pe ke etotal evdwl ecoul enthalpy temp press vol density cella cellb cellc cellalpha cellbeta cellgamma pxx pyy pzz pxy pxz pyz
+thermo_modify   format float %15.14g
+
+dump            1 all custom 50 dump_vel id type x y z
+dump            2 all xyz 50 ZIF4.xyz 
+restart         5000 backup1.restart backup2.restart
+dump_modify     1 sort id element C H N Zn
+dump_modify     2 sort id element C H N Zn
+
+reset_timestep  0 
+
+
+
+log             log.run.1_plat
+fix             4  all  npt temp  300  300  0.1 tri 6500 6500 1
+run             20000 
+write_data      1_plat.data.*
+write_restart   1_plat.restart.*
+unfix 4
+
+
+log             log.run.1_ramp
+fix             4  all  npt temp  300  300  0.1 tri 6500 8000 1
+run             20000 
+write_data      1_ramp.data.*
+write_restart   1_ramp.restart.*
+unfix 4
+
+
+log             log.run.2_plat
+fix             4  all  npt temp  300  300  0.1 tri 8000 8000 1
+run             20000
+write_data      2_plat.data.*
+write_restart   2_plat.restart.*
+unfix 4
+
+
+log             log.run.2_ramp
+fix             4  all  npt temp  300  300  0.1 tri 8000 9500 1
+run             20000
+write_data      2_ramp.data.*
+write_restart   2_ramp.restart.*
+unfix 4
+
+
+log             log.run.3_plat
+fix             4  all  npt temp  300  300  0.1 tri 9500 9500 1
+run             20000
+write_data      3_plat.data.*
+write_restart   3_plat.restart.*
+unfix 4
+
+
+log             log.run.3_ramp
+fix             4  all  npt temp  300  300  0.1 tri 9500 11000 1
+run             20000
+write_data      3_ramp.data.*
+write_restart   3_ramp.restart.*
+unfix 4
+
+
+log             log.run.4_plat
+fix             4  all  npt temp  300  300  0.1 tri 11000 11000 1
+run             20000
+write_data      4_plat.data.*
+write_restart   4_plat.restart.*
+unfix 4
+
+
+log             log.run.4_ramp
+fix             4  all  npt temp  300  300  0.1 tri 11000 12500 1
+run             20000
+write_data      4_ramp.data.*
+write_restart   4_ramp.restart.*
+unfix 4
+
+
+log             log.run.5_plat
+fix             4  all  npt temp  300  300  0.1 tri 12500 12500 1
+run             20000
+write_data      5_plat.data.*
+write_restart   5_plat.restart.*
+unfix 4
+
+
+log             log.run.5_ramp
+fix             4  all  npt temp  300  300  0.1 tri 12500 14000 1
+run             20000
+write_data      5_ramp.data.*
+write_restart   5_ramp.restart.*
+unfix 4
+
+
+log             log.run.6_plat
+fix             4  all  npt temp  300  300  0.1 tri 14000 14000 1
+run             200000
+write_data      6_plat.data.*
+write_restart   6_plat.restart.*
+unfix 4
+
+write_restart   final.restart
+
+

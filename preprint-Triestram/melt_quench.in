@@ -1,0 +1,253 @@
+# Zn/N 
+units           metal
+
+## Boundary condition
+dimension       3
+boundary        p p p
+
+atom_modify map yes
+newton on
+
+
+# Create geometry from a structure file
+atom_style      atomic
+read_restart    ZIF_4_NVT.restart
+
+change_box      all triclinic
+
+# create a 222 supercell
+#replicate 2 2 2
+
+
+# Apply mace potentials
+pair_style	mace no_domain_decomposition 
+pair_coeff	* * MACE_ZIF4_stress100_compiled.model-lammps.pt C  H  N  Zn
+
+
+# 
+neighbor	    1.0 bin
+neigh_modify    delay 0 every 1 check no
+
+# minimization
+#min_style       cg
+#minimize        5e-7 0 20000 100000
+
+
+timestep        0.00025
+thermo          10
+thermo_style    custom step time pe ke etotal evdwl ecoul enthalpy temp press vol density cella cellb cellc cellalpha cellbeta cellgamma pxx pyy pzz pxy pxz pyz
+thermo_modify   format float %15.14g
+
+dump            1 all custom 50 dump_vel id type x y z
+dump            2 all xyz 50 ZIF4.xyz 
+restart         5000 backup1.restart backup2.restart
+dump_modify     1 sort id element C H N Zn
+dump_modify     2 sort id element C H N Zn
+
+reset_timestep  0 
+
+#MD
+
+log             log.run.300
+fix             4  all  nvt temp  300  300  0.1
+run             40000 
+write_data      300K.data.*
+write_restart   300K.restart.*
+unfix 4
+
+
+log             log.run.300_500
+fix             4  all  nvt temp  300  500  0.1
+run             20000 
+write_data      300_500K.data.*
+write_restart   300_500K.restart.*
+unfix 4
+
+
+log             log.run.500
+fix             4  all  nvt temp  500  500  0.1
+run             20000 
+write_data      500K.data.*
+write_restart   500K.restart.*
+unfix 4
+
+
+log             log.run.500_700
+fix             4  all  nvt temp  500  700  0.1
+run             20000 
+write_data      500_700K.data.*
+write_restart   500_700K.restart.*
+unfix 4
+
+
+log             log.run.700
+fix             4  all  nvt temp  700  700  0.1
+run             20000 
+write_data      700K.data.*
+write_restart   700K.restart.*
+unfix 4
+
+
+log             log.run.700_900
+fix             4  all  nvt temp  700  900  0.1
+run             20000 
+write_data      700_900K.data.*
+write_restart   700_900K.restart.*
+unfix 4
+
+
+log             log.run.900
+fix             4  all  nvt temp  900  900  0.1
+run             20000 
+write_data      900K.data.*
+write_restart   900K.restart.*
+unfix 4
+
+
+log             log.run.900_1100
+fix             4  all  nvt temp  900  1100  0.1
+run             20000 
+write_data      900_1100K.data.*
+write_restart   900_1100K.restart.*
+unfix 4
+
+
+log             log.run.1100
+fix             4  all  nvt temp  1100  1100  0.1
+run             20000 
+write_data      1100K.data.*
+write_restart   1100K.restart.*
+unfix 4
+
+
+log             log.run.1100_1300
+fix             4  all  nvt temp  1100  1300  0.1
+run             20000 
+write_data      1100_1300K.data.*
+write_restart   1100_1300K.restart.*
+unfix 4
+
+
+
+log             log.run.1300
+fix             4  all  nvt temp  1300  1300  0.1
+run             20000 
+write_data      1300K.data.*
+write_restart   1300K.restart.*
+unfix 4
+
+
+log             log.run.1300_1500
+fix             4  all  nvt temp  1300  1500  0.1
+run             20000 
+write_data      1300_1500K.data.*
+write_restart   1300_1500K.restart.*
+unfix 4
+
+
+log             log.run.1500
+fix             4  all  nvt temp  1500  1500  0.1
+run             920000 
+write_data      1500K.data.*
+write_restart   1500K.restart.*
+unfix 4
+
+log             log.run.1500_1300
+fix             4  all  nvt temp  1500  1300  0.1
+run             20000
+write_data      1300_1500K.data.*
+write_restart   1300_1500K.restart.*
+unfix 4
+
+
+log             log.run.1300
+fix             4  all  nvt temp  1300  1300  0.1
+run             20000
+write_data      1300K.data.*
+write_restart   1300K.restart.*
+unfix 4
+
+
+log             log.run.1300_1100
+fix             4  all  nvt temp  1300  1100  0.1
+run             20000
+write_data      1100_1300K.data.*
+write_restart   1100_1300K.restart.*
+unfix 4
+
+
+log             log.run.1100
+fix             4  all  nvt temp  1100  1100  0.1
+run             20000
+write_data      1100K.data.*
+write_restart   1100K.restart.*
+unfix 4
+
+
+log             log.run.1100_900
+fix             4  all  nvt temp  1100  900  0.1
+run             20000
+write_data      900_1100K.data.*
+write_restart   900_1100K.restart.*
+unfix 4
+
+
+log             log.run.900
+fix             4  all  nvt temp  900  900  0.1
+run             20000
+write_data      900K.data.*
+write_restart   900K.restart.*
+
+
+log             log.run.900_700
+fix             4  all  nvt temp  900  700  0.1
+run             20000
+write_data      700_900K.data.*
+write_restart   700_900K.restart.*
+unfix 4
+
+
+log             log.run.700
+fix             4  all  nvt temp  700  700  0.1
+run             20000
+write_data      700K.data.*
+write_restart   700K.restart.*
+unfix 4
+
+
+log             log.run.700_500
+fix             4  all  nvt temp  700  500  0.1
+run             20000
+write_data      500_700K.data.*
+write_restart   500_700K.restart.*
+unfix 4
+
+
+log             log.run.500
+fix             4  all  nvt temp  500  500  0.1
+run             20000
+write_data      500K.data.*
+write_restart   500K.restart.*
+unfix 4
+
+
+log             log.run.500_300
+fix             4  all  nvt temp  500  300  0.1
+run             20000
+write_data      300_500K.data.*
+write_restart   300_500K.restart.*
+unfix 4
+
+log             log.run.300
+fix             4  all  nvt temp  300  300  0.1
+run             1000000
+write_data      300K.data.*
+write_restart   300K.restart.*
+unfix 4
+
+
+
+
+write_restart   final.restart
+
+
