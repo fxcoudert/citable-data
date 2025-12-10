@@ -1,4 +1,4 @@
-Supporting information for: [“Identifying Phase Transitions in Zeolitic Imidazolate Frameworks: Microscopic Insight from Molecular Simulations”](https://doi.org/10.26434/chemrxiv-2025-xxxxx), L. Triestram and F.-X. Coudert, preprint on _ChemRxiv_, **2025**, DOI: [10.26434/chemrxiv-2025-xxxxx](https://doi.org/10.26434/chemrxiv-2025-xxxxx)
+Supporting information for: [“Identifying Phase Transitions in Zeolitic Imidazolate Frameworks: Microscopic Insight from Molecular Simulations”](https://doi.org/10.26434/chemrxiv-2025-71lb4), L. Triestram and F.-X. Coudert, preprint on _ChemRxiv_, **2025**, DOI: [10.26434/chemrxiv-2025-71lb4](https://doi.org/10.26434/chemrxiv-2025-71lb4)
 
 
 **Data, scripts, input files**
