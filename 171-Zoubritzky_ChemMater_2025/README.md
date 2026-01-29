@@ -1,4 +1,4 @@
-Supporting information for: [“Large-Scale Characterization of Chemical Bonding and Topology in the Materials Project Database”](https://doi.org/10.1021/acs.chemmater.4c03172), L. Zoubritzky and F.-X. Coudert, _Chem. Mater._, **2025**, DOI: [10.1021/acs.chemmater.4c03172](https://doi.org/10.1021/acs.chemmater.4c03172)
+Supporting information for: [“Large-Scale Characterization of Chemical Bonding and Topology in the Materials Project Database”](https://doi.org/10.1021/acs.chemmater.4c03172), L. Zoubritzky and F.-X. Coudert, _Chem. Mater._, **2025**, 37 (9), 3137–3146, DOI: [10.1021/acs.chemmater.4c03172](https://doi.org/10.1021/acs.chemmater.4c03172)
 
 
 **Paper history**
