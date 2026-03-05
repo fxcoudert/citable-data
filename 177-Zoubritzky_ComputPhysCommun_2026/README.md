@@ -1,4 +1,4 @@
-Supporting information for: [“CrystalNets: A web app for topology determination of crystalline structures”](https://doi.org/10.1016/j.cpc.2026.110106), L. Zoubritzky and F.-X. Coudert, _Comput. Phys. Commun._, **2026**, DOI: [10.1016/j.cpc.2026.110106](https://doi.org/10.1016/j.cpc.2026.110106)
+Supporting information for: [“CrystalNets: A web app for topology determination of crystalline structures”](https://doi.org/10.1016/j.cpc.2026.110106), L. Zoubritzky and F.-X. Coudert, _Comput. Phys. Commun._, **2026**, 323, 110106, DOI: [10.1016/j.cpc.2026.110106](https://doi.org/10.1016/j.cpc.2026.110106)
 
 
 **Paper history**
