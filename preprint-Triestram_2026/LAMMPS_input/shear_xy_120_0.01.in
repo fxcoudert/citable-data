@@ -1,0 +1,101 @@
+# Zn/N 
+units           metal
+
+## Boundary condition
+dimension       3
+boundary        p p p
+
+atom_modify map yes
+newton on
+
+
+# Create geometry from a structure file
+atom_style      atomic
+read_restart    800K.restart
+
+change_box      all triclinic
+
+# create a 222 supercell
+replicate 2 2 2
+
+# Apply mace potentials
+pair_style	mliap unified MACE_ZIF4_stress100.model-mliap_lammps.pt 0 
+pair_coeff	* * C  H  N  Zn
+
+# 
+neighbor	    1.0 bin
+neigh_modify    delay 0 every 1 check no
+
+# minimization
+
+
+timestep        0.0005
+thermo          10
+thermo_style    custom step time pe ke etotal evdwl ecoul enthalpy temp press vol density cella cellb cellc cellalpha cellbeta cellgamma pxx pyy pzz pxy pxz pyz
+thermo_modify   format float %15.14g
+
+dump            1 all custom 50 dump_vel id type x y z
+dump            2 all xyz 50 ZIF4.xyz 
+restart         5000 backup1.restart backup2.restart
+dump_modify     1 sort id element C H N Zn
+dump_modify     2 sort id element C H N Zn
+
+
+log             log.800_eq
+fix             4  all  nvt temp  800  800  0.1
+run             20000 
+write_data      800_eq.data.*
+write_restart   800_eq.restart.*
+unfix 4
+
+reset_timestep  0 
+
+log             log.up
+fix             4  all  nvt temp  800  800  0.1
+fix             5  all  deform 1 xy erate 0.01 flip no
+run             240000 
+write_data      up.data.*
+write_restart   up.restart.*
+unfix 4
+unfix 5
+
+
+log             log.plateau
+fix             4  all  nvt temp  800  800  0.1
+run             50000 
+write_data      plat.data.*
+write_restart   plat.restart.*
+unfix 4
+
+
+
+log             log.down
+fix             4  all  nvt temp  800  800  0.1
+fix             5  all  deform 1 xy erate -0.01 flip no
+run             240000 
+write_data      down.data.*
+write_restart   down.restart.*
+unfix 4
+unfix 5
+
+
+log             log.800_300
+fix             4  all  nvt temp  800  300  0.1
+run             20000 
+write_data      800_300.data.*
+write_restart   800_300.restart.*
+unfix 4
+
+
+log             log.300
+fix             4  all  nvt temp  300  300  0.1
+run             100000 
+write_data      300.data.*
+write_restart   300.restart.*
+unfix 4
+
+
+
+write_restart   final.restart
+
+
